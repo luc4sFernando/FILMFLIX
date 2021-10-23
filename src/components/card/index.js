@@ -1,21 +1,23 @@
 import React from 'react'
-import { useState, useEffect, createContext } from 'react'
+import {  useEffect, useState } from 'react'
 import { RowWrap, H2, ImgPost, PostWrap, PostContainer } from './style';
 
 import { fetchMovies, fetchVideo } from '../../services/api';
 
 
 function Card({ title, fetchUrl, isLargeRow }) {
-    const [movie, setMovie] = useState([]);
+     const [movie, setMovie] = useState([]);
 
     const [post, setPost] = useState([])
     const [hover, setHover] = useState('');
     // const [id, setId] = useState('')
+
+
     useEffect(() => {
         async function getDataMovieApi() {
             const movies = await fetchMovies(fetchUrl);
             
-            const videos = await Promise.all(movies.map(item => fetchVideo(item.id)),  setMovie(movies) );
+            const videos = await Promise.all(movies.map(item => fetchVideo(item.id)), setMovie(movies) );
          
             movies.map((movie, index)=>{
                 if(videos[index].length > 0){
@@ -33,7 +35,7 @@ function Card({ title, fetchUrl, isLargeRow }) {
         getDataMovieApi()
     }, [fetchUrl])
 
-   
+  
    
     return (
         <>
