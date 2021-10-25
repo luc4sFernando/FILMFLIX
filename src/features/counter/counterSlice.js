@@ -1,39 +1,31 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCount } from './counterAPI';
+import {  createSlice, current } from '@reduxjs/toolkit';
+
 
 const initialState = {
 post: [],
-movies: []
-
+id: ''
 };
 
 
-export const incrementAsync = createAsyncThunk(
-  'counter/fetchCount',
-  async (amount) => {
-    const response = await fetchCount(amount);
-
-    // The value we return becomes the `fulfilled` action payload
-
-    return response.data;
-  }
-);
 
 export const stockSlice = createSlice({
   name: 'stock',
   initialState,
   reducers: {
     
-    setPost(state, action){
-      return  state = action.payload
+    setPost: (state, action) => {
+     
+      state.post = action.payload
     },
-    setMoive(state, action){
-      return state = action.payload
+    setId: (state, action) => {
+     
+      state.id = action.payload
+      return state
     }
  
 }});
 
-export const {setMoive, setPost} = stockSlice.actions;
+export const {setPost, setId} = stockSlice.actions;
 
 
 

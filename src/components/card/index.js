@@ -1,16 +1,17 @@
 import React from 'react'
 import {  useEffect, useState } from 'react'
-import { RowWrap, H2, ImgPost, PostWrap, PostContainer } from './style';
-
+import { RowWrap, H2, ImgPost, PostWrap, PostContainer, ImgInfo } from './style';
+import { setPost, setId } from '../../features/counter/counterSlice';
 import { fetchMovies, fetchVideo } from '../../services/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { current } from '@reduxjs/toolkit';
 
 
 function Card({ title, fetchUrl, isLargeRow }) {
-     const [movie, setMovie] = useState([]);
+    const dispatch = useDispatch()
+    const [movie, setMovie] = useState([]);
 
-    const [post, setPost] = useState([])
-    const [hover, setHover] = useState('');
-    // const [id, setId] = useState('')
+    const id = useSelector(state => state.stock.id)
 
 
     useEffect(() => {
@@ -19,24 +20,23 @@ function Card({ title, fetchUrl, isLargeRow }) {
             
             const videos = await Promise.all(movies.map(item => fetchVideo(item.id)), setMovie(movies) );
          
-            movies.map((movie, index)=>{
+             movies.map((movie, index)=>{
                 if(videos[index].length > 0){
                     movie.trailer = videos[index]
                 }
                 return
             })
-         
-          
-          
-          setPost(movies)
-          
+           
+            dispatch(setPost(movies))
         }
        
         getDataMovieApi()
     }, [fetchUrl])
 
-  
-   
+   useEffect(() => {
+      console.log(id)
+   }, [id])
+    
     return (
         <>
        
@@ -50,14 +50,16 @@ function Card({ title, fetchUrl, isLargeRow }) {
                         >
                             
                             <ImgPost src={`https://image.tmdb.org/t/p/original${isLargeRow ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} isLarge={isLargeRow} id={movie.id} onMouseEnter={(e) => {
-                               setHover(e.target.id)
-                             
-                            }} />
                             
+                            
+                                dispatch(setId(e.target.id))
+                            }} />
+                          
+                    
                         </PostWrap>
                            
                     ))}
-                   
+                  
                 </PostContainer>
                 
             </RowWrap>

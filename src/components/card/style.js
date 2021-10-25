@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const RowWrap = styled.div`
 color: white;
 margin-left: 20px;
+margin: 00px 0px;
 
 `
 export const H2 = styled.h2`
@@ -21,17 +22,18 @@ display: none;
 `
 
 export const PostWrap = styled.div`
+
+
 `
 export const ImgPost = styled.img`
 cursor: pointer;
 max-height: ${props => props.isLarge ? '250px' : '100px'};
 object-fit: contain;
 margin-right: 10px;
-transition: transform 450ms;
-
+transition: transform 0.5s;
 &:hover{
-    transform: ${props => props.isLarge ? 'scale(1.09)' : 'scale(2.08)'};
-    box-shadow: 10px 10px 40px gray;
-    opacity: 1;
+    transform: ${props => props.isLarge ? 'scale(1.09)' : 'scale(1.08)'}
+    
 }
+
 `
