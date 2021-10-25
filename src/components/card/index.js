@@ -4,7 +4,7 @@ import { RowWrap, H2, ImgPost, PostWrap, PostContainer, ImgInfo } from './style'
 import { setPost, setId } from '../../features/counter/counterSlice';
 import { fetchMovies, fetchVideo } from '../../services/api';
 import { useDispatch, useSelector } from 'react-redux';
-import { current } from '@reduxjs/toolkit';
+
 
 
 function Card({ title, fetchUrl, isLargeRow }) {

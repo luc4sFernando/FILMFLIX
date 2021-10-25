@@ -7,6 +7,7 @@ margin: 00px 0px;
 
 `
 export const H2 = styled.h2`
+margin-left: 20px;
 font-size: 0.9rem;
 `
 export const PostContainer = styled.div`
