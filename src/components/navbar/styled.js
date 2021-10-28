@@ -33,3 +33,15 @@ position: fixed;
 top: 15px;
 right: 20px;
 `
+export const ButtonLogin = styled.button`
+border: none;
+cursor: pointer;
+padding: 10px 20px;
+position: fixed;
+top: 15px;
+right: 20px;
+font-size: 1rem;
+font-weight: 600;
+background-color: #DB202C;
+color: white;
+`
