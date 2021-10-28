@@ -6,7 +6,7 @@ import {BsPlayFill} from 'react-icons/bs'
 import {AiOutlineInfoCircle} from 'react-icons/ai'
 import axios from '../../services/axios'
 import requests from '../../services/requests';
-import Video from '../trailer';
+
 
 function Banner() {
 

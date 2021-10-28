@@ -1,7 +1,7 @@
 import React from 'react'
 import {  useEffect, useState } from 'react'
-import { RowWrap, H2, ImgPost, PostWrap, PostContainer, ImgInfo } from './style';
-import { setPost, setId } from '../../features/counter/counterSlice';
+import { RowWrap, H2, ImgPost, PostWrap, PostContainer} from './style';
+import { setPost } from '../../features/counter/stockSlice';
 import { fetchMovies, fetchVideo } from '../../services/api';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -49,11 +49,7 @@ function Card({ title, fetchUrl, isLargeRow }) {
                         <PostWrap key={movie.id} 
                         >
                             
-                            <ImgPost src={`https://image.tmdb.org/t/p/original${isLargeRow ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} isLarge={isLargeRow} id={movie.id} onMouseEnter={(e) => {
-                            
-                            
-                                dispatch(setId(e.target.id))
-                            }} />
+                            <ImgPost src={`https://image.tmdb.org/t/p/original${isLargeRow ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} isLarge={isLargeRow} id={movie.id}  />
                           
                     
                         </PostWrap>

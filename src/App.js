@@ -2,8 +2,8 @@ import React from 'react';
 
 
 import './index.css';
+import Routes from './routes/Routes';
 
-import Home from './pages/Home/index';
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="app">
  
-     <Home />
+    <Routes />
   
     </div>
   );

@@ -1,9 +1,10 @@
-import {  createSlice, current } from '@reduxjs/toolkit';
+import {  createSlice } from '@reduxjs/toolkit';
 
 
 const initialState = {
 post: [],
-id: ''
+id: '',
+user: null
 };
 
 
@@ -20,12 +21,21 @@ export const stockSlice = createSlice({
     setId: (state, action) => {
      
       state.id = action.payload
-      return state
+      return state;
+    },
+    login: (state, action) => {
+      
+      state.user = action.payload
+      return state;
+    },
+    logout: (state) => {
+      state.user = null;
+      return state;
     }
  
 }});
 
-export const {setPost, setId} = stockSlice.actions;
+export const {setPost, setId, login, logout} = stockSlice.actions;
 
 
 
