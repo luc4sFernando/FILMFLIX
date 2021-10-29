@@ -15,6 +15,10 @@ import {
   import LoginScreen from '../pages/login';
 
   import {auth} from '../services/firebase'
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute copy';
+import {Loggin} from '../components/sign'
+import Signup from '../pages/signup';
 
 function Routes() {
 
@@ -23,7 +27,8 @@ function Routes() {
   // use selector acessa os dados da loja;
 
   const user = useSelector(userSelector);
-  console.log(user, 'aqui')
+  console.log(user)
+ 
     useEffect(() => {
       // adciona um ouvinte para o estado da autenticação, demostrando o usuário que foi autenticado.
       const unsubscribe = auth.onAuthStateChanged((userAuth) => {
@@ -37,21 +42,27 @@ function Routes() {
       })
       return unsubscribe;
     }, [dispatch]);
+    console.log(user)
 
     return (
     <>
     <Router>
-      {!user ? (<LoginScreen />) : (
+      
       <Switch>
-      <Route exact path="/">
-      <Home />
-      </Route> 
-      <Route  exact path="/signup">
-      <h1>REGISTER</h1>
-      </Route> 
+      <PublicRoute exact path="/">
+      <LoginScreen /> 
+      </PublicRoute> 
+      <PublicRoute exact path="/signin">
+      <Loggin />
+      </PublicRoute> 
+      <PrivateRoute path={'/home'} component={<Home/>}/>
+
+      <PublicRoute  exact path="/signup">
+      <Signup />
+      </PublicRoute> 
          
          
-      </Switch> )}
+      </Switch> 
      
       
 

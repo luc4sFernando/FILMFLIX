@@ -7,23 +7,26 @@ position: fixed;
 top: 0;
 padding: 20px;
 width: 100%;
-height: 60px;
+height: 90px;
 display: flex;
 justify-content: space-between;
 background-color: ${props => props.color ? 'black' : 'transparent'};
 z-index: 1;
-transition-timing-function:ease-in ;
+transition-timing-function: ease-in ;
 transition: all 0.5s;
+border-bottom: ${props => props.border ? "1px solid #e6e6e6" : 'none'};
+
 
 `
 
 export const NetFlixLogo = styled.img`
 cursor: pointer;
 position: fixed;
-top: 20px;
-left: 30px;
-width: ${props => !props.user ? '144px' : '80px'};
+top: 23.8px;
+left: 51px;
+width: ${props => !props.user ? '168px' : '80px'};
 object-fit: contain;
+
 
 `
 export const ProfileLogo = styled.img`
@@ -38,8 +41,8 @@ border: none;
 cursor: pointer;
 padding: 10px 20px;
 position: fixed;
-top: 20px;
-right: 30px;
+top: 25px;
+right: 50px;
 font-size: 1rem;
 font-weight: 600;
 border-radius: 3px;
