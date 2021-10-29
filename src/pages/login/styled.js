@@ -61,6 +61,7 @@ padding: 10px 10px ;
 
 &::-webkit-input-placeholder{
 font-size: 16px;
+align-items: center;
 }
 `
 export const Button = styled.button`
@@ -72,5 +73,9 @@ export const Button = styled.button`
     color: white;
     padding: 0 20px;
     border-left: 1px solid black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 `

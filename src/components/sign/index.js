@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../services/firebase';
+import db from '../../services/firebase'
+import { collection, addDoc } from "firebase/firestore";
+
 import { Container, H1, Wrap, Form, Input, Button, Register, Paragraph } from './style'
 
-function SignUp() {
+function SignIn() {
 
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
@@ -11,8 +14,17 @@ function SignUp() {
     const register = (e) => {
         e.preventDefault();
       createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {console.log(userCredential)}
-      ).catch(error => console.log(error))
+      .then((userCredential) => {
+          return userCredential
+      }
+      ).then((user) => {
+          addDoc(collection(db, "users"), {
+              email: user.user.email,
+              uid: user.user.uid
+          })
+      
+      }).catch(error => console.log(error))
+      
     
     }
    
@@ -46,4 +58,4 @@ function SignUp() {
     )
 }
 
-export default SignUp
+export default SignIn;

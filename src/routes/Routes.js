@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {
     BrowserRouter as Router,
     Switch,
-    Route, Redirect
+    Route
   } from "react-router-dom";
   
   import {useDispatch, useSelector} from 'react-redux'
@@ -13,6 +13,7 @@ import {
 
   import Home from '../pages/Home'
   import LoginScreen from '../pages/login';
+
   import {auth} from '../services/firebase'
 
 function Routes() {
@@ -22,7 +23,7 @@ function Routes() {
   // use selector acessa os dados da loja;
 
   const user = useSelector(userSelector);
-
+  console.log(user, 'aqui')
     useEffect(() => {
       // adciona um ouvinte para o estado da autenticação, demostrando o usuário que foi autenticado.
       const unsubscribe = auth.onAuthStateChanged((userAuth) => {
@@ -35,20 +36,28 @@ function Routes() {
         }
       })
       return unsubscribe;
-    }, []);
+    }, [dispatch]);
 
     return (
     <>
     <Router>
-     <Switch>
-      {user ?  (<Route exact path="/">
-            <Home />
-          </Route>) :  (<Route path="/login">
-            {!user ? <Redirect to="/" /> : <LoginScreen /> }
-          </Route>)}
+      {!user ? (<LoginScreen />) : (
+      <Switch>
+      <Route exact path="/">
+      <Home />
+      </Route> 
+      <Route  exact path="/signup">
+      <h1>REGISTER</h1>
+      </Route> 
          
          
-        </Switch>
+      </Switch> )}
+     
+      
+
+
+
+ 
   
     </Router>
     </>
