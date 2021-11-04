@@ -24,7 +24,7 @@ cursor: pointer;
 position: fixed;
 top: 23.8px;
 left: 51px;
-width: ${props => !props.user ? '168px' : '80px'};
+width: ${props => !props.user?.plans ? '168px' : '80px'};
 object-fit: contain;
 
 

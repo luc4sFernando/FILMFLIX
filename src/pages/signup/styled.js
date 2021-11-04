@@ -49,7 +49,7 @@ margin-bottom: 30px;
 export const Input = styled.input`
 border-radius: 4px;
 border: 0.4px solid black;
-color: #fff;
+color: black;
 height: 60px;
 line-height: 50px;
 padding: 16px 10px ;
@@ -58,6 +58,7 @@ margin-bottom: 30px;
 &::-webkit-input-placeholder{
 font-size: 16px;
 align-items: center;
+
 }
 `
 export const Button = styled.button`

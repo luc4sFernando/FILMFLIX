@@ -7,10 +7,11 @@ function PublicRoute({ component: Component, ...rest}) {
     
     const user = useSelector(userSelector) ;
     return (
+        <>
 <Route {...rest} render={props => (
     !user ? <Component {...props} /> : <Redirect to={{pathname: '/home', state: {from: props.location}}}/>
 )}/>
-
+</>
 
     )
 }

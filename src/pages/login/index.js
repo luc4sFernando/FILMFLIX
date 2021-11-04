@@ -14,6 +14,7 @@ function LoginScreen() {
     const dispatch = useDispatch();
 
     function handleClick(){
+        
         history.push("/signup")
     }
     return (

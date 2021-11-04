@@ -36,11 +36,15 @@ export const stockSlice = createSlice({
     passedEmail: (state, action) => {
       state.signUpEmail = action.payload;
       return state
+    },
+    newPlan: (state, action) => {
+      state.user.plans = action.payload;
+      return state
     }
  
 }});
 
-export const {setPost, setId, login, logout, passedEmail} = stockSlice.actions;
+export const {setPost, setId, login, logout, passedEmail, newPlan} = stockSlice.actions;
 
 
 

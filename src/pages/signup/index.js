@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import NavBar from '../../components/navbar'
 
 import { auth } from '../../services/firebase';
+
+import { collection, addDoc } from "firebase/firestore";
 
 import db from '../../services/firebase'
 
@@ -10,19 +12,37 @@ import { createUserWithEmailAndPassword} from 'firebase/auth';
 import { emailSelector } from '../../features/selectors'
 import { useSelector } from 'react-redux'
 import { Body, Form, Content, Span,Span2,Span3, Paragraph, ValueEmail, Input, Button } from './styled'
+import { useHistory } from 'react-router';
 
 function Signup() {
     const user = useSelector(emailSelector);
+    const history = useHistory();
 
-    console.log(user);
 
     const [pass, setPass] = useState('');
 
     const register = async () => {
         
         const userCredential = await createUserWithEmailAndPassword(auth, user, pass);
-        console.log(userCredential)
+       
+        const docRef = await addDoc(collection(db, "users"), {
+            uid: userCredential.user.uid,
+            email: userCredential.user.email,
+            photoURL: userCredential.user.photoURL,
+            plans: null
+        })
+        console.log(userCredential, docRef)
     };
+
+    function handleRoute(){
+        history.push("/signup/intro")
+    }
+    // useEffect(() => {
+    //     if(!user?.plans){
+    //         history.push("/signup/intro");
+    //     }
+    //     return;
+    // }, [])
     return (
         <>
             <NavBar val={true}/>
@@ -44,6 +64,7 @@ function Signup() {
                         <Button type="submit" onClick={(e) => {
                             e.preventDefault();
                             register();
+                            handleRoute();
                         }}>Next</Button>
                     </Form>
                 </Content>
