@@ -2,23 +2,32 @@ import {  createSlice } from '@reduxjs/toolkit';
 
 
 const initialState = {
-post: [],
 id: '',
 user: null,
 signUpEmail: ''
 };
 
+export const postStock = createSlice({
+  name: 'store', 
+  initialState: {
+    posts: []
+  },
+  reducers: {
 
+    setPost: (state, action) => {
+     
+      state.posts = action.payload
+    }
+
+  }
+})
 
 export const stockSlice = createSlice({
   name: 'stock',
   initialState,
   reducers: {
     
-    setPost: (state, action) => {
-     
-      state.post = action.payload
-    },
+    
     setId: (state, action) => {
      
       state.id = action.payload
@@ -44,8 +53,8 @@ export const stockSlice = createSlice({
  
 }});
 
-export const {setPost, setId, login, logout, passedEmail, newPlan} = stockSlice.actions;
-
+export const { setId, login, logout, passedEmail, newPlan} = stockSlice.actions;
+export const {setPost} = postStock.actions;
 
 
 export default stockSlice.reducer;

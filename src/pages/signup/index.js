@@ -31,7 +31,8 @@ function Signup() {
             photoURL: userCredential.user.photoURL,
             plans: null
         })
-        console.log(userCredential, docRef)
+       
+        
     };
 
     function handleRoute(){

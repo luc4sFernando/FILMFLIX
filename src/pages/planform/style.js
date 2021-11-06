@@ -127,6 +127,18 @@ z-index: 1;
 
 
 `
+export const SquareDescWrap = styled.div`
+position: relative;
+top: -50px;
+width: 100%;
+display: flex;
+justify-content:   space-around;
+margin-bottom: 20px;
+margin-top: -50px;
+z-index: 1;
+color: white;
+font-weight: bold;
+`
 // export const P = styled.p`
 // position: relative;
 
@@ -164,7 +176,7 @@ export const TableRow = styled.tr`
 `
 export const TableD = styled.td`
 min-height: 60px;
-padding: 15px 0px;
+padding: 16px 0px;
 align-items: center;
 border-bottom: ${props => !props.border ?  "1px solid #ccc" : "none"} ;
 text-align: center;
@@ -175,4 +187,32 @@ width: 40%;
 padding: 15px;
 min-height: 60px;
 border-bottom: ${props => !props.border ?  "1px solid #ccc" : "none"} ;
+`
+export const InfoTexts = styled.p`
+font-size: 13px;
+margin-left: 14px;
+color: #737373;
+margin-bottom: 10px;
+width: 90%;
+
+`
+export const SubmitContainer = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+
+`
+export const SubmitButton = styled.button`
+padding: 12px;
+background-color: #e50914;
+min-height: 48px;
+font-weight: 400;
+font-size: 17px;
+color: white;
+border: none;
+width: 45%;
+border-radius: 2px;
+box-shadow: 0 1px 1px rgba(0,0,0,.25);
+cursor: pointer;
 `

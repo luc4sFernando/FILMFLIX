@@ -36,7 +36,8 @@ function Routes() {
       const unsubscribe = auth.onAuthStateChanged((userAuth) => {
         if(userAuth) {
           dispatch(
-            login({uid: userAuth.uid,
+            login({
+          uid: userAuth.uid,
           email: userAuth.email,
           plans: null}))
         }
