@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import NavBar from "../../components/navbar";
+import {loadStripe} from '@stripe/stripe-js';
 import {
   Body,
   Content,
@@ -25,7 +26,7 @@ import {
   SquareDescWrap,
   InfoTexts,
   SubmitContainer,
-  SubmitButton
+  SubmitButton,
 } from "./style";
 
 import { BsCheck2 } from "react-icons/bs";
@@ -38,26 +39,91 @@ import { userSelector, idSelector } from "../../features/selectors";
 
 import "./planform.css";
 import { DataBase } from "../../services/firebaseRequests";
+import db from "../../services/firebase";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  query,
+  where,
+  doc,
+  addDoc,
+} from "@firebase/firestore";
+import { deepCopy } from "@firebase/util";
 
 function PlanForm() {
-
   // const user = useSelector(userSelector);
 
   const id = useSelector(idSelector);
 
-  
-  const [select, setSelect] = useState("g");
+  const [products, setPrducts] = useState([]);
+
+  const [select, setSelect] = useState("Premium");
 
   const dispatch = useDispatch();
 
   function handleInput(select) {
-
     setSelect(select);
   }
 
   const history = useHistory();
-   
- 
+
+  useEffect(() => {
+    const handlePlansDataBase = async () => {
+      const q = query(collection(db, "products"), where("active", "==", true));
+
+      const querySnapshot = await getDocs(q);
+      const product = {};
+      querySnapshot.forEach(async (doc) => {
+        product[doc.id] = doc.data();
+        const p = collection(db, `products/${doc.id}/prices`);
+        const prices = await getDocs(p);
+        prices.forEach((price) => {
+          product[doc.id].prices = {
+            priceId: price.id,
+            priceData: price.data(),
+          };
+        });
+        setPrducts(product);
+      });
+    };
+    handlePlansDataBase();
+  }, []);
+
+  //  console.log(products, id)
+
+  async function handleCustomersPlans() {
+    Object.entries(products).forEach(async (doc) => {
+      if (doc[1].name === select) {
+        const customer = await addDoc(
+          collection(db, `customers/${id}/checkout_sessions`),
+          {
+            price: doc[1].prices.priceId,
+            success_url: window.location.origin,
+            cancel_url: window.location.origin,
+          }
+        );
+        console.log(customer);
+        const querySnapshot = await getDocs(collection(db, `customers/${id}/checkout_sessions`));
+        querySnapshot.forEach(async (snap) => {
+          const { error, sessionId, url } = snap.data();
+          
+          if (error) {
+            alert(`An error occurred: ${error.message}`);
+          }
+          if (sessionId) {
+            
+            const stripe = await loadStripe(
+              "pk_test_51JstdED0ly0PJOCve0BmfMmNwYoWqvu2Qy4lrqriCZQ4E5U8SJ8onPHNcaS6nCbjbFR3MSBLKdc3mq1mlfAN60xl00wqR9Rw9U"
+            );
+            await stripe.redirectToCheckout({sessionId})
+            console.log(url, sessionId, 'aqui')
+          }
+        });
+      }
+    });
+  }
+
   return (
     <>
       <NavBar val={true} />
@@ -87,35 +153,39 @@ function PlanForm() {
                 <SquaresWrap>
                   <Square
                     style={{
-                      opacity: select === "p" ? "1" : "0.6",
+                      opacity: select === "Basic" ? "1" : "0.6",
                       boxShadow:
-                        select == "p" ? "02px 02px 20px #e6e6e6" : "none",
+                        select == "Basic" ? "02px 02px 20px #e6e6e6" : "none",
                     }}
                   >
                     <Input
                       type="radio"
                       name="planinfo"
-                      value="p"
+                      value="Basic"
                       onClick={(e) => {
                         handleInput(e.target.value);
                       }}
                     />
                   </Square>
-                  <Square style={{ opacity: select === "m" ? "1" : "0.6" }}>
+                  <Square
+                    style={{ opacity: select === "Standard" ? "1" : "0.6" }}
+                  >
                     <Input
                       type="radio"
                       name="planinfo"
-                      value="m"
+                      value="Standard"
                       onClick={(e) => {
                         handleInput(e.target.value);
                       }}
                     />
                   </Square>
-                  <Square style={{ opacity: select === "g" ? "1" : "0.6" }}>
+                  <Square
+                    style={{ opacity: select === "Premium" ? "1" : "0.6" }}
+                  >
                     <Input
                       type="radio"
                       name="planinfo"
-                      value="g"
+                      value="Premium"
                       onClick={(e) => {
                         handleInput(e.target.value);
                       }}
@@ -126,21 +196,22 @@ function PlanForm() {
                   <SquareSelector>
                     <Selector
                       style={{
-                        visibility: select !== "p" ? "hidden" : "visible",
+                        visibility: select !== "Basic" ? "hidden" : "visible",
                       }}
                     />
                   </SquareSelector>
                   <SquareSelector>
                     <Selector
                       style={{
-                        visibility: select !== "m" ? "hidden" : "visible",
+                        visibility:
+                          select !== "Standard" ? "hidden" : "visible",
                       }}
                     />
                   </SquareSelector>
                   <SquareSelector>
                     <Selector
                       style={{
-                        visibility: select !== "g" ? "hidden" : "visible",
+                        visibility: select !== "Premium" ? "hidden" : "visible",
                       }}
                     />
                   </SquareSelector>
@@ -163,23 +234,37 @@ function PlanForm() {
           <Table>
             <TableRow role="row">
               <FeatureCell>Price per month</FeatureCell>
-              <TableD className={select === "p" ? "red" : null}>R$25,90</TableD>
-              <TableD className={select === "m" ? "red" : null}>R$39,90</TableD>
-              <TableD className={select === "g" ? "red" : null}>R$55,90</TableD>
+              <TableD className={select === "Basic" ? "red" : null}>
+                R$25,90
+              </TableD>
+              <TableD className={select === "Standard" ? "red" : null}>
+                R$39,90
+              </TableD>
+              <TableD className={select === "Premium" ? "red" : null}>
+                R$55,90
+              </TableD>
             </TableRow>
             <TableRow>
               <FeatureCell>Qualidade do vídeo</FeatureCell>
-              <TableD className={select === "p" ? "red" : null}>Boa</TableD>
-              <TableD className={select === "m" ? "red" : null}>Melhor</TableD>
-              <TableD className={select === "g" ? "red" : null}>
+              <TableD className={select === "Basic" ? "red" : null}>Boa</TableD>
+              <TableD className={select === "Standard" ? "red" : null}>
+                Melhor
+              </TableD>
+              <TableD className={select === "Premium" ? "red" : null}>
                 Superior
               </TableD>
             </TableRow>
             <TableRow>
               <FeatureCell>Resolução</FeatureCell>
-              <TableD className={select === "p" ? "red" : null}>480p</TableD>
-              <TableD className={select === "m" ? "red" : null}>1080p</TableD>
-              <TableD className={select === "g" ? "red" : null}>4K+HDR</TableD>
+              <TableD className={select === "Basic" ? "red" : null}>
+                480p
+              </TableD>
+              <TableD className={select === "Standard" ? "red" : null}>
+                1080p
+              </TableD>
+              <TableD className={select === "Premium" ? "red" : null}>
+                4K+HDR
+              </TableD>
             </TableRow>
             <TableRow>
               <FeatureCell border={true}>
@@ -189,42 +274,51 @@ function PlanForm() {
                 {" "}
                 <BsCheck2
                   size="25px"
-                  color={select === "p" ? "#e50914" : "black"}
+                  color={select === "Basic" ? "#e50914" : "black"}
                 />
               </TableD>
               <TableD border={true}>
                 {" "}
                 <BsCheck2
                   size="25px"
-                  color={select === "m" ? "#e50914" : "black"}
+                  color={select === "Standard" ? "#e50914" : "black"}
                 />
               </TableD>
               <TableD border={true}>
                 {" "}
                 <BsCheck2
                   size="25px"
-                  color={select === "g" ? "#e50914" : "black"}
+                  color={select === "Premium" ? "#e50914" : "black"}
                 />
               </TableD>
             </TableRow>
           </Table>
           <InfoWrap>
-              <InfoTexts>
-              Availability of HD (720p), Full HD (1080p), Ultra HD (4K) and HDR options is subject to internet service and device functionality. Not all content is available in all resolutions. For more details, see our Terms of Use.
-              </InfoTexts>
-              <InfoTexts>
-              Only people who live with you can use your account. Watch on 4 devices at the same time with the Premium plan, on 2 devices with the Standard plan and on 1 with the Basic plan.
-              </InfoTexts>
+            <InfoTexts>
+              Availability of HD (720p), Full HD (1080p), Ultra HD (4K) and HDR
+              options is subject to internet service and device functionality.
+              Not all content is available in all resolutions. For more details,
+              see our Terms of Use.
+            </InfoTexts>
+            <InfoTexts>
+              Only people who live with you can use your account. Watch on 4
+              devices at the same time with the Premium plan, on 2 devices with
+              the Standard plan and on 1 with the Basic plan.
+            </InfoTexts>
           </InfoWrap>
           <SubmitContainer>
-              <SubmitButton type="submit" onClick={async(e) => {
+            <SubmitButton
+              type="submit"
+              onClick={async (e) => {
                 e.preventDefault();
-             
-                const error = await DataBase.setData({plans: select}, id)
-                if(!error.length >= 0) {
-                  history.push("/sigup/payment")
-                }
-              }}>Next</SubmitButton>
+
+                 const error = await DataBase.setData({ plans: select }, id);
+                await handleCustomersPlans();
+              
+              }}
+            >
+              Next
+            </SubmitButton>
           </SubmitContainer>
         </Content>
       </Body>
