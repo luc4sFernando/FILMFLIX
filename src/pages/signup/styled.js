@@ -13,8 +13,6 @@ export const Content = styled.div`
 max-width: 450px;
 width: 100%;
 
-
-
 `
 export const Form = styled.form`
 

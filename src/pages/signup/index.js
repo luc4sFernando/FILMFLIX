@@ -24,15 +24,15 @@ function Signup() {
     const register = async () => {
         
         const userCredential = await createUserWithEmailAndPassword(auth, user, pass);
-       
+        
         const docRef = await addDoc(collection(db, "users"), {
             uid: userCredential.user.uid,
             email: userCredential.user.email,
             photoURL: userCredential.user.photoURL,
             plans: null
         })
-       
-        
+        console.log(docRef);
+        handleRoute();
     };
 
     function handleRoute(){
@@ -65,7 +65,7 @@ function Signup() {
                         <Button type="submit" onClick={(e) => {
                             e.preventDefault();
                             register();
-                            handleRoute();
+                            
                         }}>Next</Button>
                     </Form>
                 </Content>

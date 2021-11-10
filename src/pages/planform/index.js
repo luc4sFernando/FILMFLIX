@@ -48,6 +48,7 @@ import {
   where,
   doc,
   addDoc,
+  updateDoc
 } from "@firebase/firestore";
 import { deepCopy } from "@firebase/util";
 
@@ -76,6 +77,7 @@ function PlanForm() {
       const product = {};
       querySnapshot.forEach(async (doc) => {
         product[doc.id] = doc.data();
+        
         const p = collection(db, `products/${doc.id}/prices`);
         const prices = await getDocs(p);
         prices.forEach((price) => {
@@ -90,9 +92,9 @@ function PlanForm() {
     handlePlansDataBase();
   }, []);
 
-  //  console.log(products, id)
 
   async function handleCustomersPlans() {
+    handleUserPlan();
     Object.entries(products).forEach(async (doc) => {
       if (doc[1].name === select) {
         const customer = await addDoc(
@@ -103,7 +105,7 @@ function PlanForm() {
             cancel_url: window.location.origin,
           }
         );
-        console.log(customer);
+       
         const querySnapshot = await getDocs(collection(db, `customers/${id}/checkout_sessions`));
         querySnapshot.forEach(async (snap) => {
           const { error, sessionId, url } = snap.data();
@@ -117,12 +119,33 @@ function PlanForm() {
               "pk_test_51JstdED0ly0PJOCve0BmfMmNwYoWqvu2Qy4lrqriCZQ4E5U8SJ8onPHNcaS6nCbjbFR3MSBLKdc3mq1mlfAN60xl00wqR9Rw9U"
             );
             await stripe.redirectToCheckout({sessionId})
-            console.log(url, sessionId, 'aqui')
+         
           }
         });
       }
     });
   }
+
+  const handleUserPlan = async () => {
+   
+    const dataRef = await getDocs(collection(db, `/users`));
+    dataRef.forEach(async docS => {
+     
+       const {uid} = docS.data();
+
+      if(uid === id){
+        const ref = docS.id;
+        
+        const docRef = doc(db, "users", ref);
+        await updateDoc(docRef, {plans: true})
+        
+      }
+     
+    })
+   
+
+  }
+
 
   return (
     <>
@@ -309,12 +332,10 @@ function PlanForm() {
           <SubmitContainer>
             <SubmitButton
               type="submit"
-              onClick={async (e) => {
-                e.preventDefault();
-
-                 const error = await DataBase.setData({ plans: select }, id);
+              onClick={async () => {
+                
                 await handleCustomersPlans();
-              
+          
               }}
             >
               Next
