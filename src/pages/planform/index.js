@@ -332,11 +332,7 @@ function PlanForm() {
           <SubmitContainer>
             <SubmitButton
               type="submit"
-              onClick={async () => {
-                
-                await handleCustomersPlans();
-          
-              }}
+              onClick={handleCustomersPlans}
             >
               Next
             </SubmitButton>

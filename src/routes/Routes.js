@@ -22,6 +22,7 @@ import Signup from '../pages/signup';
 import RouteRegister from './SignUp';
 import Intro from '../pages/signupIntro';
 import PlanForm from '../pages/planform';
+import ProfileManager from '../pages/profiles';
 
 function Routes() {
 
@@ -65,7 +66,7 @@ function Routes() {
       <RouteRegister path="/signup/intro" component={Intro}/>
       <RouteRegister path="/signup/planform" component={PlanForm}/>
      
-     
+      <PrivateRoute path='/profiles/manager' component={ProfileManager}/>
      
      
          
