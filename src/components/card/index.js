@@ -24,7 +24,7 @@ function Card({ title, fetchUrl, isLargeRow }) {
                 if(videos[index].length > 0){
                     movie.trailer = videos[index]
                 }
-                return
+              
             })
            
             dispatch(setPost(movies))

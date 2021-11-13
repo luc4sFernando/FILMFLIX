@@ -17,14 +17,14 @@ function Banner() {
          const response = await axios.get(requests.fetchNetflixOriginals);
 
          setMovie(response.data.results[Math.floor(Math.random() * response.data.results.length - 1)]);
-         
+         console.log(movie)
          return response;
       }
       
       requestData()
   }, [])
 
-    
+    console.log(movie)
     const truncate = (string, n) => {
         return string?.length > 100 ? string.substr(0, n - 1) + ' ...' : string
     };

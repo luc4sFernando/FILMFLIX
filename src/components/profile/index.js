@@ -1,11 +1,11 @@
 import React from 'react'
-import { collection, addDoc, getDocs } from '@firebase/firestore';
+
 import {MdEdit} from "react-icons/md"
 import {GrAddCircle} from "react-icons/gr"
 import { AvatarProfile, AvatarWrap, ListProfiles, Name, ProfileLink, ProfileList, ProfilesContainer, ProfilesWrap, SectionTitle } from "../../components/profile/style";
 
 
-import db from '../../services/firebase'
+
 
 function ProfileCard() {
 

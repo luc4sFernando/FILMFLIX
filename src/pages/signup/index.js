@@ -18,7 +18,8 @@ function Signup() {
     const user = useSelector(emailSelector);
     const history = useHistory();
 
-
+   
+ 
     const [pass, setPass] = useState('');
 
     const register = async () => {
@@ -38,12 +39,9 @@ function Signup() {
     function handleRoute(){
         history.push("/signup/intro")
     }
-    // useEffect(() => {
-    //     if(!user?.plans){
-    //         history.push("/signup/intro");
-    //     }
-    //     return;
-    // }, [])
+   
+    
+
     return (
         <>
             <NavBar val={true}/>

@@ -18,7 +18,7 @@ function NavBar({val}) {
 
     const currentUser = auth.currentUser;
 
-    console.log(currentUser)
+ 
     
     
     const transitionNavBar = () =>{

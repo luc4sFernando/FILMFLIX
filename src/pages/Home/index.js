@@ -1,13 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Banner from '../../components/banner'
 import NavBar from '../../components/navbar'
 import Row from '../../components/row'
 
-
-
 function Home(){
-   
+
     return (
         <>
             <NavBar />
