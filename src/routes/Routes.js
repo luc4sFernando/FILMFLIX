@@ -12,7 +12,7 @@ import {
   import { userSelector } from '../features/selectors';
 
   import Home from '../pages/Home'
-  import LoginScreen from '../pages/login';
+  import LoginScreen from '../pages/Login';
 
   import {auth} from '../services/firebase'
 import PrivateRoute from './PrivateRoute';
@@ -21,7 +21,7 @@ import {Loggin} from '../components/sign'
 import Signup from '../pages/signup';
 import RouteRegister from './SignUp';
 import Intro from '../pages/signupIntro';
-import PlanForm from '../pages/planform';
+import PlanForm from '../pages/Plans';
 import ProfileManager from '../pages/profiles';
 
 function Routes() {

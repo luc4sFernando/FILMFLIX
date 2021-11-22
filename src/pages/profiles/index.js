@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LoginBackground } from "../login/styled";
+import { LoginBackground } from "../Login/styled";
 import NavBar from "../../components/navbar";
 import ProfileCard from "../../components/profile";
 import AddProfileForm from "../../components/profile/add";

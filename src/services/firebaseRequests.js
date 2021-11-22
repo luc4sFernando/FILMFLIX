@@ -32,8 +32,6 @@ class Firestore {
 
       const useRef = doc(this.db, "users", this.user);
 
-      console.log("aqui", useRef);
-
       await updateDoc(useRef, data);
     } catch (error) {
       this.errors.push(error.message);

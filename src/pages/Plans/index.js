@@ -1,7 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+
+import { loadStripe } from "@stripe/stripe-js";
+
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+  addDoc,
+  updateDoc,
+} from "@firebase/firestore";
+
 import NavBar from "../../components/navbar";
-import {loadStripe} from '@stripe/stripe-js';
+import { BsCheck2 } from "react-icons/bs";
+
+import { useSelector } from "react-redux";
+import { idSelector } from "../../features/selectors";
+
+import db from "../../services/firebase";
+
 import {
   Body,
   Content,
@@ -29,45 +47,16 @@ import {
   SubmitButton,
 } from "./style";
 
-import { BsCheck2 } from "react-icons/bs";
-
-import { useDispatch, useSelector } from "react-redux";
-
-// import { newPlan } from "../../features/counter/stockSlice";
-
-import { userSelector, idSelector } from "../../features/selectors";
-
 import "./planform.css";
-import { DataBase } from "../../services/firebaseRequests";
-import db from "../../services/firebase";
-import {
-  collection,
-  getDoc,
-  getDocs,
-  query,
-  where,
-  doc,
-  addDoc,
-  updateDoc
-} from "@firebase/firestore";
-import { deepCopy } from "@firebase/util";
 
 function PlanForm() {
-  // const user = useSelector(userSelector);
-
   const id = useSelector(idSelector);
-
   const [products, setPrducts] = useState([]);
-
   const [select, setSelect] = useState("Premium");
-
-  const dispatch = useDispatch();
 
   function handleInput(select) {
     setSelect(select);
   }
-
-  const history = useHistory();
 
   useEffect(() => {
     const handlePlansDataBase = async () => {
@@ -77,7 +66,7 @@ function PlanForm() {
       const product = {};
       querySnapshot.forEach(async (doc) => {
         product[doc.id] = doc.data();
-        
+
         const p = collection(db, `products/${doc.id}/prices`);
         const prices = await getDocs(p);
         prices.forEach((price) => {
@@ -92,34 +81,29 @@ function PlanForm() {
     handlePlansDataBase();
   }, []);
 
-
   async function handleCustomersPlans() {
     handleUserPlan();
     Object.entries(products).forEach(async (doc) => {
       if (doc[1].name === select) {
-        const customer = await addDoc(
-          collection(db, `customers/${id}/checkout_sessions`),
-          {
-            price: doc[1].prices.priceId,
-            success_url: window.location.origin,
-            cancel_url: window.location.origin,
-          }
+        await addDoc(collection(db, `customers/${id}/checkout_sessions`), {
+          price: doc[1].prices.priceId,
+          success_url: window.location.origin,
+          cancel_url: window.location.origin,
+        });
+
+        const querySnapshot = await getDocs(
+          collection(db, `customers/${id}/checkout_sessions`)
         );
-       
-        const querySnapshot = await getDocs(collection(db, `customers/${id}/checkout_sessions`));
         querySnapshot.forEach(async (snap) => {
-          const { error, sessionId, url } = snap.data();
-          
+          const { error, sessionId } = snap.data();
           if (error) {
             alert(`An error occurred: ${error.message}`);
           }
           if (sessionId) {
-            
             const stripe = await loadStripe(
               "pk_test_51JstdED0ly0PJOCve0BmfMmNwYoWqvu2Qy4lrqriCZQ4E5U8SJ8onPHNcaS6nCbjbFR3MSBLKdc3mq1mlfAN60xl00wqR9Rw9U"
             );
-            await stripe.redirectToCheckout({sessionId})
-         
+            await stripe.redirectToCheckout({ sessionId });
           }
         });
       }
@@ -127,25 +111,16 @@ function PlanForm() {
   }
 
   const handleUserPlan = async () => {
-   
     const dataRef = await getDocs(collection(db, `/users`));
-    dataRef.forEach(async docS => {
-     
-       const {uid} = docS.data();
-
-      if(uid === id){
+    dataRef.forEach(async (docS) => {
+      const { uid } = docS.data();
+      if (uid === id) {
         const ref = docS.id;
-        
         const docRef = doc(db, "users", ref);
-        await updateDoc(docRef, {plans: true})
-        
+        await updateDoc(docRef, { plans: true });
       }
-     
-    })
-   
-
-  }
-
+    });
+  };
 
   return (
     <>
@@ -178,7 +153,7 @@ function PlanForm() {
                     style={{
                       opacity: select === "Basic" ? "1" : "0.6",
                       boxShadow:
-                        select == "Basic" ? "02px 02px 20px #e6e6e6" : "none",
+                        select === "Basic" ? "02px 02px 20px #e6e6e6" : "none",
                     }}
                   >
                     <Input
@@ -330,10 +305,7 @@ function PlanForm() {
             </InfoTexts>
           </InfoWrap>
           <SubmitContainer>
-            <SubmitButton
-              type="submit"
-              onClick={handleCustomersPlans}
-            >
+            <SubmitButton type="submit" onClick={handleCustomersPlans}>
               Next
             </SubmitButton>
           </SubmitContainer>

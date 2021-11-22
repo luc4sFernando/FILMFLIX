@@ -2,12 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import {NavContainer, NetFlixLogo, ProfileLogo, ButtonLogin} from './styled'
 import {useSelector} from 'react-redux'
-import {userSelector, idSelector} from '../../features/selectors'
+import {userSelector} from '../../features/selectors'
 import { useHistory } from 'react-router'
 import DropDown from '../dropdown'
 import { getAuth } from "firebase/auth";
-import { collection, getDocs } from "firebase/firestore";
-import db from '../../services/firebase'
+
 function NavBar({val}) {
 
     const history = useHistory();

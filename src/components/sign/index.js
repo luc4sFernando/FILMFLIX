@@ -1,34 +1,20 @@
 import React, {useState} from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../services/firebase';
-import db from '../../services/firebase'
-import { collection, addDoc } from "firebase/firestore";
+
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useHistory } from 'react-router';
+
+import { auth } from '../../services/firebase';
+
 import { Container, H1, Wrap, Form, Input, Button, Register, Paragraph  } from './style';
 import NavBar from '../navbar'
-import {  LoginBackground, LoginContainer} from '../../pages/login/styled'
+import {  LoginBackground, LoginContainer} from '../../pages/Login/styled'
 
 export function Loggin() {
     const history = useHistory()
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
 
-    const register = (e) => {
-        e.preventDefault();
-      createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-          return userCredential
-      }
-      ).then((user) => {
-          addDoc(collection(db, "users"), {
-              email: user.user.email,
-              uid: user.user.uid
-          })
-      
-      }).catch(error => console.log(error))
-      
-    
-    }
+   
    
     const sigIn = (e) => {
         e.preventDefault();
