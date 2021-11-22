@@ -24,7 +24,7 @@ function AddProfileForm({value}) {
     }, [value])
 
 
-    console.log(user)
+   
     
     const getAndSetUserFromFirestore = async () => {
     saveImgsDatabase(value);
