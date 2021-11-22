@@ -22,7 +22,7 @@ import Signup from '../pages/signup';
 import RouteRegister from './SignUp';
 import Intro from '../pages/signupIntro';
 import PlanForm from '../pages/Plans';
-import ProfileManager from '../pages/profiles';
+import ProfileManager from '../pages/Profiles';
 
 function Routes() {
 
