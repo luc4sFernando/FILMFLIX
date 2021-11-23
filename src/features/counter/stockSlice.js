@@ -4,7 +4,8 @@ import {  createSlice } from '@reduxjs/toolkit';
 const initialState = {
 id: '',
 user: null,
-signUpEmail: ''
+signUpEmail: '',
+url: "oi",
 };
 
 export const postStock = createSlice({
@@ -49,11 +50,15 @@ export const stockSlice = createSlice({
     newPlan: (state, action) => {
       state.user.plans = action.payload;
       return state
+    },
+    setBasicUrl: (state, action) => {
+      console.log(action.payload)
+      state.url = action.payload;
     }
  
 }});
 
-export const { setId, login, logout, passedEmail, newPlan} = stockSlice.actions;
+export const { setId, login, logout, passedEmail, newPlan, setBasicUrl} = stockSlice.actions;
 export const {setPost} = postStock.actions;
 
 

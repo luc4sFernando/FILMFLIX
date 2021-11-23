@@ -7,18 +7,22 @@ import db from "../../../services/firebase"
 import { Button, ButtonsContent, ContainerAddProfile, ContainerElements, Content, DescContainer, ImageProfile, Input, InputContainer, SectionDesc, SectionTitle } from './style';
 import {idSelector} from "../../../features/selectors/index"
 import { saveImgsDatabase } from '../../../services/fireStoreUrl';
-
+import {useDispatch} from "react-redux"
+import {setBasicUrl} from "../../../features/counter/stockSlice"
 
 function AddProfileForm({value}) {
-
+    
     const [loadScreen, setLoadScreen] = useState(false);
     const user = useSelector(idSelector);
     const [userName, setUserName] = useState("");
-  
+    const dispatch = useDispatch();
+    
     const history = useHistory();
+
     useEffect(() => {
         if(value.length > 0){
             setLoadScreen(true)
+            dispatch(setBasicUrl(value[0]));
         }
        
     }, [value])
@@ -32,7 +36,6 @@ function AddProfileForm({value}) {
     const querySnap = await getDocs(q);
    
      querySnap.forEach(async (doc) => {
-    console.log(doc.id)
      await addDoc(collection(db, `users/${doc.id}/profiles`), {
         photoURL: value[0],
          name: userName
@@ -40,10 +43,6 @@ function AddProfileForm({value}) {
      })
      history.push('/')
     }
-    
-    
-
-
     
 
     return (
@@ -66,7 +65,10 @@ function AddProfileForm({value}) {
         </InputContainer>
         </ContainerElements>
         <ButtonsContent>
-            <Button color={true} onClick={getAndSetUserFromFirestore}>Continuar</Button>
+            <Button color={true} onClick={() => {
+                getAndSetUserFromFirestore();
+               
+            }}>Continuar</Button>
             <Button>Cancelar</Button>
         </ButtonsContent>
         </Content>) : ( <h1>LOADING</h1>) }

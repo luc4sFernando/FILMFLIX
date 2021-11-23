@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const DropdDownWrap = styled.div`
-max-width: 205px;
+max-width: 155px;
 width: 100%;
 position: fixed;
-top: 100px;
-right: 50px;
+top: 70px;
+right: 40px;
 background-color: rgba(0,0,0,.75);
-display: none;
+display: block;
 ;
 
 

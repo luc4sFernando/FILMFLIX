@@ -5,16 +5,16 @@ import {
   
   } from "react-router-dom";
   
-  import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
-  import {login, logout} from '../features/counter/stockSlice'
+import {login, logout} from '../features/counter/stockSlice'
   
-  import { userSelector } from '../features/selectors';
+import { userSelector } from '../features/selectors';
 
-  import Home from '../pages/Home'
-  import LoginScreen from '../pages/Login';
+import Home from '../pages/Home'
+import LoginScreen from '../pages/Login';
 
-  import {auth} from '../services/firebase'
+import {auth} from '../services/firebase'
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import {Loggin} from '../components/sign'
@@ -53,9 +53,7 @@ function Routes() {
     return (
     <>
     <Router>
-      
       <Switch>
-
       <PublicRoute exact path="/" component={LoginScreen} />
    
       <PublicRoute  path="/signin" component={Loggin}/>
@@ -66,19 +64,8 @@ function Routes() {
       <RouteRegister path="/signup/intro" component={Intro}/>
       <RouteRegister path="/signup/planform" component={PlanForm}/>
      
-      <PrivateRoute path='/profiles/manager' component={ProfileManager}/>
-     
-     
-         
-         
+      <PrivateRoute path='/profiles/manager' component={ProfileManager}/>  
       </Switch> 
-     
-      
-
-
-
- 
-  
     </Router>
     </>
     )
