@@ -1,0 +1,27 @@
+.post_controler_r{
+    position: absolute;
+    top: 50px;
+    right: 0;
+    z-index: 1;
+    justify-content: space-between;
+    transition: opacity, 0.5s; 
+    cursor: pointer;
+}
+.post_controler_l{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+    justify-content: space-between;
+    transition: opacity, 0.5s; 
+    cursor: pointer;
+}
+.post_controler_l {
+transform: rotate(180deg);}
+
+.next, .prev{
+    cursor: pointer;
+    height:100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.987), rgba(0, 0, 0, 0.296));
+}
+

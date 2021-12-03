@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import NavBar from "../../components/navbar";
+import React, { useState } from 'react';
 
-import { auth } from "../../services/firebase";
-import db from "../../services/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { auth } from '../../services/firebase';
+import db from '../../services/firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-import { useSelector } from "react-redux";
-import { emailSelector } from "../../features/selectors";
+import { useSelector } from 'react-redux';
+import { emailSelector } from '../../features/selectors';
 
-import { useHistory } from "react-router";
+import { useHistory } from 'react-router';
 
 import {
   Body,
@@ -23,12 +22,14 @@ import {
   ValueEmail,
   Input,
   Button,
-} from "./styled";
+} from './styled';
+import Menu from '../../components/nav/Menu';
+import NavBar from '../../components/navbar';
 
 function Signup() {
   const user = useSelector(emailSelector);
   const history = useHistory();
-  const [pass, setPass] = useState("");
+  const [pass, setPass] = useState('');
 
   const register = async () => {
     const userCredential = await createUserWithEmailAndPassword(
@@ -36,7 +37,7 @@ function Signup() {
       user,
       pass
     );
-    const docRef = await addDoc(collection(db, "users"), {
+    const docRef = await addDoc(collection(db, 'users'), {
       uid: userCredential.user.uid,
       email: userCredential.user.email,
       photoURL: userCredential.user.photoURL,
@@ -47,12 +48,12 @@ function Signup() {
   };
 
   function handleRoute() {
-    history.push("/signup/intro");
+    history.push('/signup/planform');
   }
 
   return (
     <>
-      <NavBar val={true} />
+      <NavBar />
 
       <Body>
         <Content>
@@ -73,15 +74,15 @@ function Signup() {
               <b>{user}</b>
             </ValueEmail>
             <Input
-              placeholder="Enter your password"
-              type="password"
+              placeholder='Enter your password'
+              type='password'
               onChange={(e) => {
                 setPass(e.target.value);
               }}
               value={pass}
             />
             <Button
-              type="submit"
+              type='submit'
               onClick={(e) => {
                 e.preventDefault();
                 register();

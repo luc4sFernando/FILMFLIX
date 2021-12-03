@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { LoginBackground } from "../Login/styled";
 import NavBar from "../../components/navbar";
+
 import ProfileCard from "../../components/profile";
 import AddProfileForm from "../../components/profile/add";
 
-
-
-
-
 import { storage } from "../../services/firebase";
-import { getDownloadURL, listAll, ref, list } from "@firebase/storage";
+import { getDownloadURL, listAll, ref } from "@firebase/storage";
 
 function ProfileManager() {
-
   const [addProfile, setAddProfile] = useState(true);
+
   const [imgs, setImgs] = useState([]);
 
   useEffect(() => {
@@ -28,8 +25,7 @@ function ProfileManager() {
 
     handleGetDatas();
   }, []);
- 
-
+  console.log(imgs)
   return (
     <>
       <NavBar />

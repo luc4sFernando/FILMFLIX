@@ -11,7 +11,7 @@ import {useDispatch} from "react-redux"
 import {setBasicUrl} from "../../../features/counter/stockSlice"
 
 function AddProfileForm({value}) {
-    
+    console.log(value)
     const [loadScreen, setLoadScreen] = useState(false);
     const user = useSelector(idSelector);
     const [userName, setUserName] = useState("");

@@ -2,13 +2,13 @@ import React, {useEffect} from 'react'
 import {
     BrowserRouter as Router,
     Switch,
-  
+
   } from "react-router-dom";
-  
+
 import {useDispatch, useSelector} from 'react-redux'
 
 import {login, logout} from '../features/counter/stockSlice'
-  
+
 import { userSelector } from '../features/selectors';
 
 import Home from '../pages/Home'
@@ -27,11 +27,10 @@ import ProfileManager from '../pages/Profiles';
 function Routes() {
 
   const dispatch = useDispatch();
-  
-
   const user = useSelector(userSelector);
+  console.log(user)
 
- 
+
     useEffect(() => {
       // adciona um ouvinte para o estado da autenticação, demostrando o usuário que foi autenticado.
       const unsubscribe = auth.onAuthStateChanged((userAuth) => {
@@ -48,24 +47,24 @@ function Routes() {
       })
       return unsubscribe;
     }, [dispatch]);
-    console.log(user)
+
 
     return (
     <>
     <Router>
       <Switch>
       <PublicRoute exact path="/" component={LoginScreen} />
-   
+
       <PublicRoute  path="/signin" component={Loggin}/>
-    
+
       <PrivateRoute path='/home' component={Home}/>
-      
-      <RouteRegister exact path="/signup" component={Signup}/>
+
+      <RouteRegister  exact path="/signup" component={Signup}/>
       <RouteRegister path="/signup/intro" component={Intro}/>
       <RouteRegister path="/signup/planform" component={PlanForm}/>
-     
-      <PrivateRoute path='/profiles/manager' component={ProfileManager}/>  
-      </Switch> 
+
+      <PrivateRoute path='/profiles/manager' component={ProfileManager}/>
+      </Switch>
     </Router>
     </>
     )

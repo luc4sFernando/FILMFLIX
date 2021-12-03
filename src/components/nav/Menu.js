@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {NavigatorLink, Preferences} from './NavigatorLink'
 import { Container,  NavigatorList } from './stylemenu'
 
-function Menu() {
+function Menu({type}) {
 
     const [show, handleShow] = useState(false)
     const transitionNavBar = () =>{
@@ -22,9 +22,9 @@ function Menu() {
     }, [])
 
     return (
-<Container  color={show}>
+    <Container  color={show}>
     <NavigatorList>
-    <NavigatorLink icon="https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg"/>
+    <NavigatorLink type={type} icon="https://devflix.johnywalves.com.br/img/logo.png"/>
     <NavigatorLink>
         Start
     </NavigatorLink>
@@ -35,7 +35,7 @@ function Menu() {
         Films
     </NavigatorLink>
     </NavigatorList>
-<Preferences/>
+<Preferences type={type}/>
 </Container>
     )
 }

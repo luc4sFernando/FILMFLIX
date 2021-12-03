@@ -13,14 +13,13 @@ class Firestore {
       const users = await getDocs(collection(db, "users"));
       users.forEach((user) => {
         if (user.data().uid === id) {
-        this.user = user.id;
-        const val = this.user;
-        return val;
+          this.user = user.id;
+          const val = this.user;
+          return val;
         }
       });
     } catch (error) {
       this.errors.push(error);
-      
     }
     if (this.errors.length > 0) {
       return;

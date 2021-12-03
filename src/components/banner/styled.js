@@ -16,6 +16,7 @@ export const BannerTitle = styled.h1`
 font-size: 3rem;
 font-weight: 800;
 padding-bottom: 0.3rem;
+margin-left: 1.2rem;
 
 
 `
@@ -25,6 +26,7 @@ display: flex;
 
 `
 export const BannerButton = styled.button`
+margin-left: 1.2rem;
 display: ${props => props.flex ? 'flex' : 'block'};
 justify-content: center;
 align-items: center;
@@ -53,6 +55,7 @@ line-height: 1.3rem;
 padding-top: 1rem;
 max-width: 360px;
 height: 80px;
+margin-left: 1.2rem;
 
 `
 export const FadeBottom = styled.div`

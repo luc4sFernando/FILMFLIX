@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import {Link} from 'react-router-dom';
 export const Nav = styled.div`
 `
 export const NavContainer = styled.div`
@@ -48,4 +48,14 @@ font-weight: 600;
 border-radius: 3px;
 background-color: #DB202C;
 color: white;
+`
+export const ExitLink = styled(Link)`
+position: absolute;
+color: black;
+right: 40px;
+font-size: 2em;
+z-index: 999;
+cursor: pointer;
+font-weight: 400;
+
 `

@@ -1,35 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
-import stockReducer from '../features/counter/stockSlice';
+import stockReducer from "../features/counter/stockSlice";
 
-import {combineReducers} from 'redux';
+import { combineReducers } from "redux";
 
-import {
+import { persistReducer, persistStore } from "redux-persist";
 
-  persistReducer,
-  persistStore,
-
-} from 'redux-persist';
-
-import storage from 'redux-persist/lib/storage';
+import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
-  stock: stockReducer
-  
-})
+  stock: stockReducer,
+});
 
 const persistConfig = {
-  key: 'USER',
+  key: "USER",
   storage,
-  blacklist: ['navigation']
-  
-}
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+  blacklist: ["navigation"],
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer
-  
-  
+  reducer: persistedReducer,
 });
 
 export const persistor = persistStore(store);

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from '@stripe/stripe-js';
 
 import {
   collection,
@@ -10,15 +10,15 @@ import {
   doc,
   addDoc,
   updateDoc,
-} from "@firebase/firestore";
+} from '@firebase/firestore';
 
-import NavBar from "../../components/navbar";
-import { BsCheck2 } from "react-icons/bs";
+import NavBar from '../../components/navbar';
+import { BsCheck2 } from 'react-icons/bs';
 
-import { useSelector } from "react-redux";
-import { idSelector } from "../../features/selectors";
+import { useSelector } from 'react-redux';
+import { idSelector } from '../../features/selectors';
 
-import db from "../../services/firebase";
+import db from '../../services/firebase';
 
 import {
   Body,
@@ -45,14 +45,14 @@ import {
   InfoTexts,
   SubmitContainer,
   SubmitButton,
-} from "./style";
+} from './style';
 
-import "./planform.css";
+import './planform.css';
 
 function PlanForm() {
   const id = useSelector(idSelector);
   const [products, setPrducts] = useState([]);
-  const [select, setSelect] = useState("Premium");
+  const [select, setSelect] = useState('Premium');
 
   function handleInput(select) {
     setSelect(select);
@@ -60,7 +60,7 @@ function PlanForm() {
 
   useEffect(() => {
     const handlePlansDataBase = async () => {
-      const q = query(collection(db, "products"), where("active", "==", true));
+      const q = query(collection(db, 'products'), where('active', '==', true));
 
       const querySnapshot = await getDocs(q);
       const product = {};
@@ -82,7 +82,7 @@ function PlanForm() {
   }, []);
 
   async function handleCustomersPlans() {
-    handleUserPlan();
+    await handleUserPlan();
     Object.entries(products).forEach(async (doc) => {
       if (doc[1].name === select) {
         await addDoc(collection(db, `customers/${id}/checkout_sessions`), {
@@ -101,7 +101,7 @@ function PlanForm() {
           }
           if (sessionId) {
             const stripe = await loadStripe(
-              "pk_test_51JstdED0ly0PJOCve0BmfMmNwYoWqvu2Qy4lrqriCZQ4E5U8SJ8onPHNcaS6nCbjbFR3MSBLKdc3mq1mlfAN60xl00wqR9Rw9U"
+              'pk_test_51JstdED0ly0PJOCve0BmfMmNwYoWqvu2Qy4lrqriCZQ4E5U8SJ8onPHNcaS6nCbjbFR3MSBLKdc3mq1mlfAN60xl00wqR9Rw9U'
             );
             await stripe.redirectToCheckout({ sessionId });
           }
@@ -116,7 +116,7 @@ function PlanForm() {
       const { uid } = docS.data();
       if (uid === id) {
         const ref = docS.id;
-        const docRef = doc(db, "users", ref);
+        const docRef = doc(db, 'users', ref);
         await updateDoc(docRef, { plans: true });
       }
     });
@@ -133,15 +133,15 @@ function PlanForm() {
             </Span>
             <Text1>Escolha o melhor plano para você</Text1>
             <TextContent>
-              <BsCheck2 size="25px" color="#DB202C" />
+              <BsCheck2 size='25px' color='#DB202C' />
               <Texts>Assista o quanto quiser. Sem anúncios.</Texts>
             </TextContent>
             <TextContent>
-              <BsCheck2 size="25px" color="#DB202C" />
+              <BsCheck2 size='25px' color='#DB202C' />
               <Texts>Recomendações especiais para você.</Texts>
             </TextContent>
             <TextContent>
-              <BsCheck2 size="25px" color="#DB202C" />
+              <BsCheck2 size='25px' color='#DB202C' />
               <Texts>Altere ou cancele seu plano quando quiser.</Texts>
             </TextContent>
           </InfoWrap>
@@ -151,39 +151,39 @@ function PlanForm() {
                 <SquaresWrap>
                   <Square
                     style={{
-                      opacity: select === "Basic" ? "1" : "0.6",
+                      opacity: select === 'Basic' ? '1' : '0.6',
                       boxShadow:
-                        select === "Basic" ? "02px 02px 20px #e6e6e6" : "none",
+                        select === 'Basic' ? '02px 02px 20px #e6e6e6' : 'none',
                     }}
                   >
                     <Input
-                      type="radio"
-                      name="planinfo"
-                      value="Basic"
+                      type='radio'
+                      name='planinfo'
+                      value='Basic'
                       onClick={(e) => {
                         handleInput(e.target.value);
                       }}
                     />
                   </Square>
                   <Square
-                    style={{ opacity: select === "Standard" ? "1" : "0.6" }}
+                    style={{ opacity: select === 'Standard' ? '1' : '0.6' }}
                   >
                     <Input
-                      type="radio"
-                      name="planinfo"
-                      value="Standard"
+                      type='radio'
+                      name='planinfo'
+                      value='Standard'
                       onClick={(e) => {
                         handleInput(e.target.value);
                       }}
                     />
                   </Square>
                   <Square
-                    style={{ opacity: select === "Premium" ? "1" : "0.6" }}
+                    style={{ opacity: select === 'Premium' ? '1' : '0.6' }}
                   >
                     <Input
-                      type="radio"
-                      name="planinfo"
-                      value="Premium"
+                      type='radio'
+                      name='planinfo'
+                      value='Premium'
                       onClick={(e) => {
                         handleInput(e.target.value);
                       }}
@@ -194,7 +194,7 @@ function PlanForm() {
                   <SquareSelector>
                     <Selector
                       style={{
-                        visibility: select !== "Basic" ? "hidden" : "visible",
+                        visibility: select !== 'Basic' ? 'hidden' : 'visible',
                       }}
                     />
                   </SquareSelector>
@@ -202,14 +202,14 @@ function PlanForm() {
                     <Selector
                       style={{
                         visibility:
-                          select !== "Standard" ? "hidden" : "visible",
+                          select !== 'Standard' ? 'hidden' : 'visible',
                       }}
                     />
                   </SquareSelector>
                   <SquareSelector>
                     <Selector
                       style={{
-                        visibility: select !== "Premium" ? "hidden" : "visible",
+                        visibility: select !== 'Premium' ? 'hidden' : 'visible',
                       }}
                     />
                   </SquareSelector>
@@ -230,37 +230,37 @@ function PlanForm() {
           </SquaresContainer>
 
           <Table>
-            <TableRow role="row">
+            <TableRow role='row'>
               <FeatureCell>Price per month</FeatureCell>
-              <TableD className={select === "Basic" ? "red" : null}>
+              <TableD className={select === 'Basic' ? 'red' : null}>
                 R$25,90
               </TableD>
-              <TableD className={select === "Standard" ? "red" : null}>
+              <TableD className={select === 'Standard' ? 'red' : null}>
                 R$39,90
               </TableD>
-              <TableD className={select === "Premium" ? "red" : null}>
+              <TableD className={select === 'Premium' ? 'red' : null}>
                 R$55,90
               </TableD>
             </TableRow>
             <TableRow>
               <FeatureCell>Qualidade do vídeo</FeatureCell>
-              <TableD className={select === "Basic" ? "red" : null}>Boa</TableD>
-              <TableD className={select === "Standard" ? "red" : null}>
+              <TableD className={select === 'Basic' ? 'red' : null}>Boa</TableD>
+              <TableD className={select === 'Standard' ? 'red' : null}>
                 Melhor
               </TableD>
-              <TableD className={select === "Premium" ? "red" : null}>
+              <TableD className={select === 'Premium' ? 'red' : null}>
                 Superior
               </TableD>
             </TableRow>
             <TableRow>
               <FeatureCell>Resolução</FeatureCell>
-              <TableD className={select === "Basic" ? "red" : null}>
+              <TableD className={select === 'Basic' ? 'red' : null}>
                 480p
               </TableD>
-              <TableD className={select === "Standard" ? "red" : null}>
+              <TableD className={select === 'Standard' ? 'red' : null}>
                 1080p
               </TableD>
-              <TableD className={select === "Premium" ? "red" : null}>
+              <TableD className={select === 'Premium' ? 'red' : null}>
                 4K+HDR
               </TableD>
             </TableRow>
@@ -269,24 +269,24 @@ function PlanForm() {
                 Assista na TV, computador, celular ou tablet
               </FeatureCell>
               <TableD border={true}>
-                {" "}
+                {' '}
                 <BsCheck2
-                  size="25px"
-                  color={select === "Basic" ? "#e50914" : "black"}
+                  size='25px'
+                  color={select === 'Basic' ? '#e50914' : 'black'}
                 />
               </TableD>
               <TableD border={true}>
-                {" "}
+                {' '}
                 <BsCheck2
-                  size="25px"
-                  color={select === "Standard" ? "#e50914" : "black"}
+                  size='25px'
+                  color={select === 'Standard' ? '#e50914' : 'black'}
                 />
               </TableD>
               <TableD border={true}>
-                {" "}
+                {' '}
                 <BsCheck2
-                  size="25px"
-                  color={select === "Premium" ? "#e50914" : "black"}
+                  size='25px'
+                  color={select === 'Premium' ? '#e50914' : 'black'}
                 />
               </TableD>
             </TableRow>
@@ -305,7 +305,7 @@ function PlanForm() {
             </InfoTexts>
           </InfoWrap>
           <SubmitContainer>
-            <SubmitButton type="submit" onClick={handleCustomersPlans}>
+            <SubmitButton type='submit' onClick={handleCustomersPlans}>
               Next
             </SubmitButton>
           </SubmitContainer>

@@ -1,14 +1,20 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { setPost } from "../../features/counter/stockSlice";
-import { fetchMovies, fetchVideo } from "../../services/api";
-import { useDispatch } from "react-redux";
-import { RowWrap, H2, ImgPost, PostWrap, PostContainer } from "./style";
+import React from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { setPost } from '../../features/counter/stockSlice';
+import { fetchMovies, fetchVideo } from '../../services/api';
+import { useDispatch } from 'react-redux';
+import { RowWrap, H2, ImgPost, PostWrap, PostContainer } from './style';
+import { VscChevronRight } from 'react-icons/vsc';
 
-function Card({ title, fetchUrl, isLargeRow }) {
+import './style.css';
+// eslint-disable-next-line react/prop-types
+function Card({ title, fetchUrl }) {
   const dispatch = useDispatch();
   const [movie, setMovie] = useState([]);
-//   const id = useSelector((state) => state.stock.id);
+  const [control, setControl] = useState(false);
+  const [position, setPosition] = useState(null);
+  const container = useRef(null);
+  const controller = useRef(null);
 
   useEffect(() => {
     async function getDataMovieApi() {
@@ -29,32 +35,63 @@ function Card({ title, fetchUrl, isLargeRow }) {
       dispatch(setPost(movies));
     }
     getDataMovieApi();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchUrl]);
 
+  function scrollNext() {
+    console.log(container.current.offsetWidth);
+    container.current.scrollLeft += container.current.offsetWidth;
+  }
+  function scrollPrev() {
+    console.log(container.current.offsetWidth);
+    container.current.scrollLeft -= container.current.offsetWidth;
+  }
+
+  function activeControlPrev() {
+    controller.current.className += ' active';
+  }
+  function disableControl() {
+    controller.current.className = ' post_controler';
+  }
+  function handleControls() {
+    setControl(true);
+  }
+  function offControl() {
+    setControl(false);
+  }
 
   return (
     <>
-      <RowWrap>
+      <RowWrap onMouseOver={handleControls} onMouseLeave={offControl}>
         <H2>{title}</H2>
-        <PostContainer>
+        <PostContainer ref={container}>
           {movie.map(
             (movie) =>
-              ((isLargeRow && movie.poster_path) ||
-                (!isLargeRow && movie.backdrop_path)) && (
-                <PostWrap key={movie.id}>
+              (movie.poster_path || movie.backdrop_path) && (
+                <PostWrap key={movie.id} onMouseEnter={e => setPosition(e.target.getBoundingClientRect())}>
                   <ImgPost
-                    src={`https://image.tmdb.org/t/p/original${
-                      isLargeRow ? movie.poster_path : movie.backdrop_path
-                    }`}
+                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                     alt={movie.name}
-                    isLarge={isLargeRow}
                     id={movie.id}
                   />
                 </PostWrap>
               )
           )}
         </PostContainer>
+
+        {control && (
+          <>
+            <VscChevronRight
+              size='60px'
+              className='post_controler_l'
+              onClick={scrollPrev}
+            />
+            <VscChevronRight
+              size='60px'
+              className='post_controler_r'
+              onClick={scrollNext}
+            />
+          </>
+        )}
       </RowWrap>
     </>
   );
