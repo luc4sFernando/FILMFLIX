@@ -7,15 +7,19 @@ import { RowWrap, H2, ImgPost, PostWrap, PostContainer } from './style';
 import { VscChevronRight } from 'react-icons/vsc';
 
 import './style.css';
+import Modal from '../modal/Modal';
+import { useDisabledBodyScroll } from '../../hooks/useDisableBodyScroll';
 // eslint-disable-next-line react/prop-types
 function Card({ title, fetchUrl }) {
   const dispatch = useDispatch();
   const [movie, setMovie] = useState([]);
-  const [control, setControl] = useState(false);
-  const [position, setPosition] = useState(null);
   const container = useRef(null);
   const controller = useRef(null);
+  const [control, setControl] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [movieFilm, setMovieFilm] = useState({});
 
+  useDisabledBodyScroll(modal);
   useEffect(() => {
     async function getDataMovieApi() {
       const movies = await fetchMovies(fetchUrl);
@@ -49,29 +53,31 @@ function Card({ title, fetchUrl }) {
   function activeControlPrev() {
     controller.current.className += ' active';
   }
-  function disableControl() {
-    controller.current.className = ' post_controler';
-  }
-  function handleControls() {
-    setControl(true);
-  }
-  function offControl() {
-    setControl(false);
-  }
-
+ 
+ 
   return (
     <>
-      <RowWrap onMouseOver={handleControls} onMouseLeave={offControl}>
+    {modal &&  <Modal filmInfo={movieFilm} setModal={setModal}/>}
+      <RowWrap
+        onMouseOver={() => setControl(true)}
+        onMouseLeave={() => setControl(false)}
+      >
         <H2>{title}</H2>
         <PostContainer ref={container}>
           {movie.map(
             (movie) =>
               (movie.poster_path || movie.backdrop_path) && (
-                <PostWrap key={movie.id} onMouseEnter={e => setPosition(e.target.getBoundingClientRect())}>
+                <PostWrap
+                  key={movie.id}>
                   <ImgPost
                     src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                     alt={movie.name}
                     id={movie.id}
+                    onClick={(e) => {
+                      setMovieFilm(movie);
+                      setModal(true);
+                      console.log(e.target.getBoundingClientRect());
+                    }}
                   />
                 </PostWrap>
               )
@@ -90,6 +96,7 @@ function Card({ title, fetchUrl }) {
               className='post_controler_r'
               onClick={scrollNext}
             />
+           
           </>
         )}
       </RowWrap>

@@ -13,7 +13,7 @@ export const Container = styled.div`
       ? "linear-gradient(360deg, transparent, rgba(37, 37, 37, 0.61), #111)"
       : "black"};
   background-color: ${(props) => (props.color ? "#141414" : "transparent")};
-  z-index: 999;
+  z-index: 5;
   transition-timing-function: ease-in;
   transition: all 0.5s;
   border-bottom: ${(props) => (props.border ? "1px solid #e6e6e6" : "none")};

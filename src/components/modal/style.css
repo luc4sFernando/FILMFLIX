@@ -1,0 +1,69 @@
+.background{
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.72);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  
+}
+.background .modal_container {
+    width:600px;
+    height: 700px;
+    background-color:#191919;
+    color: white;
+    border-radius: 5px;
+   
+}
+.background .modal_container .modal_content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+ 
+}
+ .modal_content img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+}
+.background .modal_container .modal_content svg{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.background .modal_container .modal_content .modal_info{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    font-size: 13px;
+    
+}
+.modal_info h2{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #fff;
+}
+.modal_info p{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #fff;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+}
+.modal_gradient{
+margin-top: -338px;
+height: 338px;
+width: 100%;
+background: rgb(25,25,25);
+background: linear-gradient(0deg, rgba(25,25,25,1) 0%, rgba(25,25,25,0.31976540616246496) 100%);
+}
