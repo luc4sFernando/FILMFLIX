@@ -16,6 +16,8 @@
     background-color:#191919;
     color: white;
     border-radius: 5px;
+  
+   
    
 }
 .background .modal_container .modal_content {
@@ -25,6 +27,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+ 
+    
  
 }
  .modal_content img{
@@ -36,6 +40,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    cursor: pointer;
 }
 .background .modal_container .modal_content .modal_info{
     padding: 30px;
@@ -67,3 +72,5 @@ width: 100%;
 background: rgb(25,25,25);
 background: linear-gradient(0deg, rgba(25,25,25,1) 0%, rgba(25,25,25,0.31976540616246496) 100%);
 }
+
+

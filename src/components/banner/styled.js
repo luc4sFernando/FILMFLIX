@@ -6,6 +6,7 @@ width: 100%;
 height: 480px;
 object-fit: contain;
 color: white;
+
 `
 export const BannerContents = styled.div`
 margin-left: 30px;
@@ -61,4 +62,14 @@ margin-left: 1.2rem;
 export const FadeBottom = styled.div`
 height: 18.2rem;
 background-image: linear-gradient(180deg, transparent, rgba(37, 37, 37, 0.61), #111);
+`
+export const FadeBanner = styled.div`
+height: 50px;
+width: 100%;
+position: absolute;
+top: 0;
+z-index: 3;
+
+background: rgb(25,25,25);
+background: linear-gradient(180deg, rgba(20,20,20,0.8995973389355743) 0%, rgba(38,38,38,0) 100%);
 `

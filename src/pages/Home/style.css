@@ -1,0 +1,15 @@
+.fundo{
+    transition: all ease-in-out 2s;
+    animation-name: fly;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes fly{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

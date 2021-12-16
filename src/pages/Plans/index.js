@@ -82,7 +82,7 @@ function PlanForm() {
   }, []);
 
   async function handleCustomersPlans() {
-    await handleUserPlan();
+    handleUserPlan();
     Object.entries(products).forEach(async (doc) => {
       if (doc[1].name === select) {
         await addDoc(collection(db, `customers/${id}/checkout_sessions`), {

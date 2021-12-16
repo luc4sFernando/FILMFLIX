@@ -1,0 +1,15 @@
+.content-transition{
+    animation-name: softTransition;
+    animation-duration: 1s;
+}
+
+@keyframes  softTransition{
+    0% {
+    transform: translateX(150px);
+    opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

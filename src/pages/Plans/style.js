@@ -1,5 +1,14 @@
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
+const transition = keyframes`
+from{
+    transform: translateX(200px);
+    opacity: 0;
+}
+to{
+    transform: translateX(0);
+    opacity: 1;
+}`
 export const Body = styled.div`
 width: 100vw;
 height: 100vh;
@@ -11,14 +20,16 @@ flex-direction: column;
 overflow: hidden;
 `
 export const Content = styled.div`
+
 max-width: 878px;
 height: 750px;
 width: 100%;
 display: flex;
 flex-direction: column;
-justify-content: flex-start;
+justify-content: center;
 align-items: left;
 margin: 30px auto 15px;
+animation: ${transition} 0.5s ease-in;
 
 `
 export const InfoWrap = styled.div`

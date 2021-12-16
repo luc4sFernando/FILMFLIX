@@ -8,6 +8,7 @@ import {
   Header,
   BannerDescription,
   FadeBottom,
+  FadeBanner,
 } from "./styled";
 import { BsPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
@@ -38,6 +39,7 @@ function Banner() {
   };
   return (
     <>
+    <FadeBanner />
       <Header
         style={{
           backgroundSize: "cover",

@@ -70,3 +70,4 @@ font-weight: 800;
 cursor: pointer;
 box-shadow: 0 1px 1px rgb(0 0 0 / 25%);
 `
+

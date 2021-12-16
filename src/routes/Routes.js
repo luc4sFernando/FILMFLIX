@@ -1,73 +1,68 @@
-import React, {useEffect} from 'react'
-import {
-    BrowserRouter as Router,
-    Switch,
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
-  } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 
-import {useDispatch, useSelector} from 'react-redux'
-
-import {login, logout} from '../features/counter/stockSlice'
+import { login, logout } from '../features/counter/stockSlice';
 
 import { userSelector } from '../features/selectors';
 
-import Home from '../pages/Home'
+import Home from '../pages/Home';
 import LoginScreen from '../pages/Login';
 
-import {auth} from '../services/firebase'
+import { auth } from '../services/firebase';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import {Loggin} from '../components/sign'
+import { Loggin } from '../components/sign';
 import Signup from '../pages/signup';
 import RouteRegister from './SignUp';
 import Intro from '../pages/signupIntro';
 import PlanForm from '../pages/Plans';
 import ProfileManager from '../pages/Profiles';
+import SplashAnimation from '../components/splash';
 
 function Routes() {
-
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
-  console.log(user)
+  console.log(user);
 
+  useEffect(() => {
+    // adciona um ouvinte para o estado da autenticação, demostrando o usuário que foi autenticado.
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      if (userAuth) {
+        dispatch(
+          login({
+            uid: userAuth.uid,
+            email: userAuth.email,
+            plans: null,
+          })
+        );
+      } else {
+        dispatch(logout());
+      }
+    });
+    return unsubscribe;
+  }, [dispatch]);
 
-    useEffect(() => {
-      // adciona um ouvinte para o estado da autenticação, demostrando o usuário que foi autenticado.
-      const unsubscribe = auth.onAuthStateChanged((userAuth) => {
-        if(userAuth) {
-          dispatch(
-            login({
-          uid: userAuth.uid,
-          email: userAuth.email,
-          plans: null}))
-        }
-        else{
-          dispatch(logout());
-        }
-      })
-      return unsubscribe;
-    }, [dispatch]);
-
-
-    return (
+  return (
     <>
-    <Router>
-      <Switch>
-      <PublicRoute exact path="/" component={LoginScreen} />
+      <Router>
+        <Switch>
+          <PublicRoute exact path='/' component={LoginScreen} />
+          <RouteRegister path='/intro' component={SplashAnimation} />
+          <PrivateRoute path='/signin' component={Loggin} />
 
-      <PublicRoute  path="/signin" component={Loggin}/>
+          <PrivateRoute path='/home' component={Home} />
 
-      <PrivateRoute path='/home' component={Home}/>
+          <RouteRegister exact path='/signup' component={Signup} />
+          <RouteRegister path='/signup/intro' component={Intro} />
+          <RouteRegister path='/signup/planform' component={PlanForm} />
 
-      <RouteRegister  exact path="/signup" component={Signup}/>
-      <RouteRegister path="/signup/intro" component={Intro}/>
-      <RouteRegister path="/signup/planform" component={PlanForm}/>
-
-      <PrivateRoute path='/profiles/manager' component={ProfileManager}/>
-      </Switch>
-    </Router>
+          <PrivateRoute path='/profiles/manager' component={ProfileManager} />
+        </Switch>
+      </Router>
     </>
-    )
+  );
 }
 
-export default Routes
+export default Routes;

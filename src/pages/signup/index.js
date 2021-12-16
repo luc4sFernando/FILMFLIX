@@ -25,7 +25,7 @@ import {
 } from './styled';
 import Menu from '../../components/nav/Menu';
 import NavBar from '../../components/navbar';
-
+import "./style.css"
 function Signup() {
   const user = useSelector(emailSelector);
   const history = useHistory();
@@ -52,11 +52,11 @@ function Signup() {
   }
 
   return (
-    <>
+    <div className="container-animation">
       <NavBar />
 
       <Body>
-        <Content>
+        <Content className="content-transition">
           <Form>
             <Span>
               STEP <b>1</b> OF <b>3</b>
@@ -93,7 +93,7 @@ function Signup() {
           </Form>
         </Content>
       </Body>
-    </>
+    </div>
   );
 }
 

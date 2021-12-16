@@ -1,20 +1,33 @@
 .post_controler_r{
+    height: 120px;
+    width: 50px;
     position: absolute;
-    top: 50px;
-    right: 0;
+    top: 36px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
-    justify-content: space-between;
+    border-radius: 3px;
     transition: opacity, 0.5s; 
     cursor: pointer;
+    background-color:rgba(0, 0, 0, 0.775)
 }
 .post_controler_l{
+    height: 120px;
     position: absolute;
-    top: 50px;
-    left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 36px;
+    left: 0px;
     z-index: 1;
-    justify-content: space-between;
+    border-radius: 3px;
     transition: opacity, 0.5s; 
     cursor: pointer;
+    background-color:rgba(0, 0, 0, 0.59)
 }
 .post_controler_l {
 transform: rotate(180deg);}

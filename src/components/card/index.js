@@ -3,9 +3,10 @@ import { useEffect, useState, useRef } from 'react';
 import { setPost } from '../../features/counter/stockSlice';
 import { fetchMovies, fetchVideo } from '../../services/api';
 import { useDispatch } from 'react-redux';
-import { RowWrap, H2, ImgPost, PostWrap, PostContainer } from './style';
+import { RowWrap, H2, ImgPost, PostWrap, PostContainer, CardOptions } from './style';
 import { VscChevronRight } from 'react-icons/vsc';
-
+import { AiFillPlayCircle } from 'react-icons/ai';
+import {BsPlusCircle} from 'react-icons/bs'
 import './style.css';
 import Modal from '../modal/Modal';
 import { useDisabledBodyScroll } from '../../hooks/useDisableBodyScroll';
@@ -18,7 +19,7 @@ function Card({ title, fetchUrl }) {
   const [control, setControl] = useState(false);
   const [modal, setModal] = useState(false);
   const [movieFilm, setMovieFilm] = useState({});
-
+  const [offset, setoffset] = useState(0);
   useDisabledBodyScroll(modal);
   useEffect(() => {
     async function getDataMovieApi() {
@@ -42,22 +43,27 @@ function Card({ title, fetchUrl }) {
   }, [fetchUrl]);
 
   function scrollNext() {
-    console.log(container.current.offsetWidth);
-    container.current.scrollLeft += container.current.offsetWidth;
+    console.log(container.current.scrollLeft);
+    container.current.scrollLeft += Math.floor(
+      container.current.offsetWidth + 110
+    );
+    setoffset((prev) => (prev += 1));
+    console.log(offset);
   }
   function scrollPrev() {
-    console.log(container.current.offsetWidth);
-    container.current.scrollLeft -= container.current.offsetWidth;
+    container.current.scrollLeft -= Math.floor(
+      container.current.offsetWidth + 110
+    );
+    setoffset((prev) => (prev -= 1));
   }
 
   function activeControlPrev() {
     controller.current.className += ' active';
   }
- 
- 
+
   return (
     <>
-    {modal &&  <Modal filmInfo={movieFilm} setModal={setModal}/>}
+      {modal && <Modal filmInfo={movieFilm} setModal={setModal} />}
       <RowWrap
         onMouseOver={() => setControl(true)}
         onMouseLeave={() => setControl(false)}
@@ -67,18 +73,18 @@ function Card({ title, fetchUrl }) {
           {movie.map(
             (movie) =>
               (movie.poster_path || movie.backdrop_path) && (
-                <PostWrap
-                  key={movie.id}>
+                <PostWrap key={movie.id}>
                   <ImgPost
                     src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                     alt={movie.name}
                     id={movie.id}
-                    onClick={(e) => {
-                      setMovieFilm(movie);
-                      setModal(true);
-                      console.log(e.target.getBoundingClientRect());
-                    }}
                   />
+                  <CardOptions onClick={(e) => {
+                     setMovieFilm(movie);
+                    setModal(true)}}>
+                  <AiFillPlayCircle size="30px" style={{cursor: "pointer"}}/>
+                  <BsPlusCircle size="30px" style={{cursor: "pointer"}}/>
+                  </CardOptions>
                 </PostWrap>
               )
           )}
@@ -86,17 +92,15 @@ function Card({ title, fetchUrl }) {
 
         {control && (
           <>
-            <VscChevronRight
-              size='60px'
-              className='post_controler_l'
-              onClick={scrollPrev}
-            />
-            <VscChevronRight
-              size='60px'
-              className='post_controler_r'
-              onClick={scrollNext}
-            />
-           
+            {offset > 0 && (
+              <div className='post_controler_l'>
+                <VscChevronRight size='40px' onClick={scrollPrev} />
+              </div>
+            )}
+
+            <div className='post_controler_r'>
+              <VscChevronRight size='40px' onClick={scrollNext} />
+            </div>
           </>
         )}
       </RowWrap>
