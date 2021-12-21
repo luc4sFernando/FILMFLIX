@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useEffect, useState, useRef } from 'react';
+import {useHistory} from "react-router-dom"
 import { setPost } from '../../features/counter/stockSlice';
 import { fetchMovies, fetchVideo } from '../../services/api';
 import { useDispatch } from 'react-redux';
-import { RowWrap, H2, ImgPost, PostWrap, PostContainer, CardOptions } from './style';
+import {
+  RowWrap,
+  H2,
+  ImgPost,
+  PostWrap,
+  PostContainer,
+  CardOptions,
+} from './style';
 import { VscChevronRight } from 'react-icons/vsc';
 import { AiFillPlayCircle } from 'react-icons/ai';
-import {BsPlusCircle} from 'react-icons/bs'
+import { BsPlusCircle } from 'react-icons/bs';
 import './style.css';
 import Modal from '../modal/Modal';
 import { useDisabledBodyScroll } from '../../hooks/useDisableBodyScroll';
 // eslint-disable-next-line react/prop-types
 function Card({ title, fetchUrl }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [movie, setMovie] = useState([]);
   const container = useRef(null);
@@ -69,8 +78,13 @@ function Card({ title, fetchUrl }) {
         onMouseLeave={() => setControl(false)}
       >
         <H2>{title}</H2>
-        <PostContainer ref={container}>
+      
+      {useMemo(() =>{
+        return (
+          <PostContainer ref={container}>
+            {console.log("filho")}
           {movie.map(
+            
             (movie) =>
               (movie.poster_path || movie.backdrop_path) && (
                 <PostWrap key={movie.id}>
@@ -79,17 +93,27 @@ function Card({ title, fetchUrl }) {
                     alt={movie.name}
                     id={movie.id}
                   />
-                  <CardOptions onClick={(e) => {
-                     setMovieFilm(movie);
-                    setModal(true)}}>
-                  <AiFillPlayCircle size="30px" style={{cursor: "pointer"}}/>
-                  <BsPlusCircle size="30px" style={{cursor: "pointer"}}/>
+                  <CardOptions
+                    onClick={(e) => {
+                      setMovieFilm(movie);
+                      setModal(true);
+                    }}
+                  >
+                    <AiFillPlayCircle
+                      size='30px'
+                      style={{ cursor: 'pointer' }}
+                    onClick={(e) => {history.push("/play")}}
+                    />
+                    <BsPlusCircle size='30px' style={{ cursor: 'pointer' }} />
                   </CardOptions>
                 </PostWrap>
               )
           )}
         </PostContainer>
 
+        )
+      }, [movie])}
+     
         {control && (
           <>
             {offset > 0 && (

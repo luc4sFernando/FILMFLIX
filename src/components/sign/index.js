@@ -26,8 +26,15 @@ export function Loggin() {
   const sigIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => console.log(userCredential))
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user)
+        if(user){
+          history.push("/browse")
+        }
+      })
       .catch((error) => alert(error.message));
+      
   };
 
   return (

@@ -9,6 +9,7 @@ import { getAuth } from 'firebase/auth';
 function NavBar({ val }) {
   const history = useHistory();
   const user = useSelector(userSelector);
+
   const [show, handleShow] = useState(false);
 
   const auth = getAuth();
@@ -39,7 +40,7 @@ function NavBar({ val }) {
           onClick={() => {
             history.push('/');
           }}
-          src='https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg'
+          src='/FILMFLIX.png'
         />
 
         <ExitLink

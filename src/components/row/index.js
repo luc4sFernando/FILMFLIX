@@ -2,9 +2,10 @@ import React from "react";
 
 import Card from "../card/index";
 
+import "./style.scss"
 function Row() {
   return (
-    <>
+    <div className="row">
       <Card
         title="NetFlix Originals"
         fetchUrl={`/discover/tv?with_networks=213&append_to_response=videos`}
@@ -17,7 +18,7 @@ function Row() {
       <Card title="Comedy Movies" fetchUrl="/discover/movie?with_genres=35" />
       <Card title="Horror Movies" fetchUrl="/discover/movie?with_genres=27" />
       <Card title="Documentaries" fetchUrl="/discover/movie?with_genres=99" />
-    </>
+    </div>
   );
 }
 

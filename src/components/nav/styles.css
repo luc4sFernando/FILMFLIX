@@ -106,5 +106,10 @@ a{
     width: 150px;
 }
 .small{
-    width: 100px;
+    width: 120px;
+}
+
+.navigator-link{
+    margin-right: 22px;
+    
 }

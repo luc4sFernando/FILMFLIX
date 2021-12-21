@@ -43,6 +43,7 @@ function Banner() {
       <Header
         style={{
           backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
           backgroundImage: `url("https://image.tmdb.org/t/p/original${movie?.backdrop_path}")`,
           backgroundPosition: "center center",
         }}
@@ -51,23 +52,24 @@ function Banner() {
           <BannerTitle>
             {movie?.name || movie?.title || movie?.original_name}
           </BannerTitle>
+          
+          <BannerDescription tru>
+            {truncate(movie?.overview, 150)}
+          </BannerDescription>
           <ButtonsWrap>
-            <BannerButton flex={1}>
+            <BannerButton flex={1} color={true}>
               <BsPlayFill
                 style={{ marginRight: "04px", alignItems: "center" }}
               />
               Assistir
             </BannerButton>
-            <BannerButton flex={1}>
+            <BannerButton flex={1} color={false}>
               <AiOutlineInfoCircle
                 style={{ marginRight: "04px", alignItems: "center" }}
               />
               Mais Informações
             </BannerButton>
           </ButtonsWrap>
-          <BannerDescription tru>
-            {truncate(movie?.overview, 150)}
-          </BannerDescription>
         </BannerContents>
         <FadeBottom></FadeBottom>
       </Header>

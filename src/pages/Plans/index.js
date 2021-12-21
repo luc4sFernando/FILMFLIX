@@ -80,9 +80,19 @@ function PlanForm() {
     };
     handlePlansDataBase();
   }, []);
-
+  const handleUserPlan = async () => {
+    const dataRef = await getDocs(collection(db, `/users`));
+    dataRef.forEach(async (docS) => {
+      const { uid } = docS.data();
+      if (uid === id) {
+        const ref = docS.id;
+        const docRef = doc(db, 'users', ref);
+        await updateDoc(docRef, { plans: true });
+      }
+    });
+  };
   async function handleCustomersPlans() {
-    handleUserPlan();
+    await handleUserPlan();
     Object.entries(products).forEach(async (doc) => {
       if (doc[1].name === select) {
         await addDoc(collection(db, `customers/${id}/checkout_sessions`), {
@@ -110,17 +120,7 @@ function PlanForm() {
     });
   }
 
-  const handleUserPlan = async () => {
-    const dataRef = await getDocs(collection(db, `/users`));
-    dataRef.forEach(async (docS) => {
-      const { uid } = docS.data();
-      if (uid === id) {
-        const ref = docS.id;
-        const docRef = doc(db, 'users', ref);
-        await updateDoc(docRef, { plans: true });
-      }
-    });
-  };
+
 
   return (
     <>
@@ -305,7 +305,7 @@ function PlanForm() {
             </InfoTexts>
           </InfoWrap>
           <SubmitContainer>
-            <SubmitButton type='submit' onClick={handleCustomersPlans}>
+            <SubmitButton onClick={handleCustomersPlans}>
               Next
             </SubmitButton>
           </SubmitContainer>

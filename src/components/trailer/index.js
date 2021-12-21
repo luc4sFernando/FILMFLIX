@@ -1,16 +1,30 @@
-import React from 'react';
-import { MovieContainer, Trailer } from './style';
+import './style.scss';
+import React, { useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
-function Video({ link }) {
+const PlayAnimation = () => {
+  const audio = new Audio('/tadum.mp3');
+  console.log(audio);
+  let history = useHistory();
+  const soundRef = useRef(null);
+  const handleTadum = () => {
+    // soundRef.current.currentTime = 0;
+    // soundRef.current.play();
+    audio.play();
+  };
+
+  useEffect(() => {
+    handleTadum();
+    setTimeout(() => {
+      history.push('/browse');
+    }, 4200);
+  }, [history]);
+
   return (
-    <MovieContainer>
-      <Trailer
-        width='420'
-        height='315'
-        src='https://www.youtube.com/embed/tgbNymZ7vqY?controls=0&?autoplay=1'
-      ></Trailer>
-    </MovieContainer>
+    <div className='PlayAnimation__wrp'>
+      <span className='PlayAnimation__text'>FILMFLIX</span>
+    </div>
   );
-}
+};
 
-export default Video;
+export default PlayAnimation;

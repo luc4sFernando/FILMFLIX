@@ -15,16 +15,17 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import { Loggin } from '../components/sign';
 import Signup from '../pages/signup';
-import RouteRegister from './SignUp';
+
 import Intro from '../pages/signupIntro';
 import PlanForm from '../pages/Plans';
 import ProfileManager from '../pages/Profiles';
 import SplashAnimation from '../components/splash';
+import PlayAnimation from '../components/trailer';
+import RouteRegister from './SignUp';
 
 function Routes() {
+ 
   const dispatch = useDispatch();
-  const user = useSelector(userSelector);
-  console.log(user);
 
   useEffect(() => {
     // adciona um ouvinte para o estado da autenticação, demostrando o usuário que foi autenticado.
@@ -39,6 +40,8 @@ function Routes() {
         );
       } else {
         dispatch(logout());
+        console.log(userAuth);
+        localStorage.clear();
       }
     });
     return unsubscribe;
@@ -49,13 +52,14 @@ function Routes() {
       <Router>
         <Switch>
           <PublicRoute exact path='/' component={LoginScreen} />
-          <RouteRegister path='/intro' component={SplashAnimation} />
-          <PrivateRoute path='/signin' component={Loggin} />
+          <PrivateRoute path='/intro' component={SplashAnimation} />
+          <PrivateRoute path='/play' component={PlayAnimation} />
+          <PublicRoute  path='/signin' component={Loggin} />
 
-          <PrivateRoute path='/home' component={Home} />
+          <PrivateRoute path='/browse' component={Home} />
 
           <RouteRegister exact path='/signup' component={Signup} />
-          <RouteRegister path='/signup/intro' component={Intro} />
+          <PublicRoute path='/signup/intro' component={Intro} />
           <RouteRegister path='/signup/planform' component={PlanForm} />
 
           <PrivateRoute path='/profiles/manager' component={ProfileManager} />

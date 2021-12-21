@@ -7,14 +7,14 @@ function SplashAnimation() {
 
   function passPage(){
     setTimeout(() => {
-      history.push("/home")
+      history.push("/browse")
     }, 5000)
   }
   passPage();
   return (
     <>
       <div id='container'>
-        <netflixintro letter='N'>
+        <netflixintro letter='F'>
           <div class='helper-1'>
             <div class='effect-brush'>
               <span class='fur-31'></span>

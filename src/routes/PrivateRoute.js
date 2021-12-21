@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useUserQueryLoggedIn } from '../hooks/useUserQueryLoggedIn';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../features/selectors/index';
-
 function PrivateRoute({ component: Component, ...rest }) {
   const user = useSelector(userSelector);
 

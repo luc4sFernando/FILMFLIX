@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: fixed;
   top: 0;
-  padding: 20px 50px;
+  padding: 20px 64px;
   width: 100%;
   height: 70px;
   display: flex;
@@ -19,9 +19,9 @@ export const Container = styled.div`
   border-bottom: ${(props) => (props.border ? "1px solid #e6e6e6" : "none")};
 `;
 export const NavigatorList = styled.ul`
-  width: 30vw;
   list-style: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  width: 300px;
+  
 `;
