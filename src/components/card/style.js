@@ -78,6 +78,7 @@ z-index: 1;
     transform: translateY(-05px);
     opacity: 1;
     transition: transform, ease 1s;
+    z-index: 3;
   }
 }
 `

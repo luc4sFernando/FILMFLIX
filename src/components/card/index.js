@@ -18,6 +18,7 @@ import { BsPlusCircle } from 'react-icons/bs';
 import './style.scss';
 import Modal from '../modal/Modal';
 import { useDisabledBodyScroll } from '../../hooks/useDisableBodyScroll';
+import { useResponsiveComponent } from '../../hooks/useResponsiveComponent';
 // eslint-disable-next-line react/prop-types
 function Card({ title, fetchUrl }) {
   const history = useHistory();
@@ -29,6 +30,7 @@ function Card({ title, fetchUrl }) {
   const [modal, setModal] = useState(false);
   const [movieFilm, setMovieFilm] = useState({});
   const [offset, setoffset] = useState(0);
+  const innerWidth = useResponsiveComponent();
   useDisabledBodyScroll(modal);
   useEffect(() => {
     async function getDataMovieApi() {
@@ -99,12 +101,9 @@ function Card({ title, fetchUrl }) {
                       setModal(true);
                     }}
                   >
-                    <AiFillPlayCircle
-                      size='30px'
-                      style={{ cursor: 'pointer' }}
-                    onClick={(e) => {history.push("/play")}}
-                    />
-                    <BsPlusCircle size='30px' style={{ cursor: 'pointer' }} />
+                   {innerWidth < 579 &&  <AiFillPlayCircle size='20px' style={{ cursor: 'pointer', marginRight: "2px" }} onClick={() => history.push("/play")}/> }
+                    {innerWidth < 579 &&  <BsPlusCircle size='20px' style={{ cursor: 'pointer' }} /> }
+                   
                   </CardOptions>
                 </PostWrap>
               )

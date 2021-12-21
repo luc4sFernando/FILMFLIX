@@ -24,7 +24,7 @@ a{
     align-items: center;
     justify-content: flex-end;
     gap: 5px;
-    width: 30vw;
+    width: 70px;
  
 }
 .arrow{
@@ -45,7 +45,7 @@ a{
 }
 .arrow-container{
     height: 150px;
-    width: 200px;
+    width: 90px;
     background-color: transparent;
     position: fixed;
     top: 45px;
@@ -127,4 +127,24 @@ a{
 .navigator-link{
     margin-right: 22px;
     
+}
+#container-controls{
+    display: flex;
+    align-items: center;
+    
+
+    #form{
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        background-color: transparent;
+
+        input{
+            background-color: transparent;
+            outline: none;
+            border: none;
+            color: white;
+            width: 00px;
+        }
+    }
 }

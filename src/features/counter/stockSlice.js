@@ -19,6 +19,8 @@ export const postStock = createSlice({
   },
 });
 
+
+
 export const stockSlice = createSlice({
   name: 'stock',
   initialState,

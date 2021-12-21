@@ -21,3 +21,8 @@ export const fetchVideo = async (movieId) => {
 
   return results;
 };
+export const fetchAllMovies = async() =>{
+  const {data: {results}, } = await axios.get(`/movie/upcoming?api_key=${API_KEY}`);
+
+  return results;
+}

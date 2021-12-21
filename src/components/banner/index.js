@@ -14,10 +14,12 @@ import { BsPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import axios from "../../services/axios";
 import requests from "../../services/requests";
+import { useResponsiveComponent } from "../../hooks/useResponsiveComponent";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
-
+  const innerWidth = useResponsiveComponent();
+  
   useEffect(() => {
     async function requestData() {
       const response = await axios.get(requests.fetchNetflixOriginals);
@@ -27,7 +29,7 @@ function Banner() {
           Math.floor(Math.random() * response.data.results.length - 1)
         ]
       );
-
+    
       return response;
     }
 
