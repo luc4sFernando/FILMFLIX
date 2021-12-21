@@ -9,6 +9,12 @@ export const RowWrap = styled.div`
 export const H2 = styled.h2`
   margin-left: 50px;
   font-size: 0.9rem;
+
+  @media(max-width: 575.98px){
+    margin-left: 15px;
+    font-size: 0.6rem;
+    padding-top: 13px;
+  }
 `;
 export const PostContainer = styled.div`
   position: relative;
@@ -21,15 +27,19 @@ export const PostContainer = styled.div`
     display: none;
     transition: all ease 1s;
   }
+  @media(max-width: 575.98px){
+    padding:  5px 15px;
+
+  }
 `;
 
 export const PostWrap = styled.div`
 height: 120px;
 transition: transform 0.3s;
-&:hover {
-  transform: scale(1.2);
-  z-index: 3;
+@media(max-width: 575.98px){
+  height: 80px;
 }
+
 `;
 
 export const ImgPost = styled.img`
@@ -40,7 +50,10 @@ export const ImgPost = styled.img`
   max-height: 150px;
   object-fit: contain;
   margin-right: 10px;
-
+  @media(max-width: 575.98px){
+    width: 140px;
+    margin-right: 2px;
+  }
 
 `;
 
@@ -59,5 +72,12 @@ z-index: 1;
   transform: translateY(-15px);
   opacity: 1;
   transition: transform, ease 1s;
+}
+@media(max-width: 575.98px){
+  &:hover {
+    transform: translateY(-05px);
+    opacity: 1;
+    transition: transform, ease 1s;
+  }
 }
 `

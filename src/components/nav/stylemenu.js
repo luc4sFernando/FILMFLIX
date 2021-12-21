@@ -17,11 +17,18 @@ export const Container = styled.div`
   transition-timing-function: ease-in;
   transition: all 0.5s;
   border-bottom: ${(props) => (props.border ? "1px solid #e6e6e6" : "none")};
+
+  @media(max-width: 575.98px){
+   height: 40px;
+   padding: 10px  20px;
+   
+}
 `;
 export const NavigatorList = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
   width: 300px;
+  
   
 `;

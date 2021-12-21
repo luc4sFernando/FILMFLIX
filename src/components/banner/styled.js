@@ -20,12 +20,24 @@ export const Header = styled.header`
   color: white;
   margin-bottom: 30px;
 
+  @media(max-width: 575.98px){
+    object-fit: contain;
+    background-repeat: no-repeat;
+    height: 275px;
+  }
+
 `;
 export const BannerContents = styled.div`
   margin-left: 40px;
   padding-top: 200px;
   height: 190px;
   animation: ${rotate} 1.3s;
+
+  @media(max-width: 575.98px){
+    padding-top: 50px;
+    margin-left: 10px;
+    height: auto;
+  }
 
 
 `;
@@ -34,12 +46,43 @@ export const BannerTitle = styled.h1`
   font-weight: 800;
   padding-bottom: 0.3rem;
   margin-left: 1.2rem;
+  @media(max-width: 575.98px){
+    font-size: 1.2rem;
+    margin-bottom: 0.1rem;
+    padding-bottom: 0.1rem;
+    margin-left: 10px;
+  }
 
-  
 `;
+export const BannerDescription = styled.h1`
+  width: 45rem;
+  font-size: 0.8rem;
+  line-height: 1.3rem;
+  padding-top: 1rem;
+  max-width: 360px;
+  height: 80px;
+  margin-left: 1.2rem;
+
+  @media(max-width: 575.98px){
+    font-size: 0.5rem;
+    width: 10rem;
+    line-height: 0.7rem;
+    padding-top: 0.1rem;
+    height: 40px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    font-weight: 400;
+  }
+`;
+
 export const ButtonsWrap = styled.div`
   margin-top: 1.5rem;
   display: flex;
+  @media(max-width: 575.98px){
+    margin-top: 0.4rem;
+    width: 100%;
+
+  }
 `;
 export const BannerButton = styled.button`
   margin-left: 0.4rem;
@@ -58,6 +101,18 @@ export const BannerButton = styled.button`
   color: ${(props) => (props.color ? "black" : "white")};
   margin-right: 0.4rem;
   cursor: pointer;
+
+  @media(max-width: 575.98px){
+    
+    font-size: 0.5rem;
+    padding-left: 0.4rem;
+    padding-right: 0.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    margin-right: 0.4rem;
+    align0items: start;
+    justify-content: flex-start;
+  }
   &:hover {
 
     opacity: 0.6;
@@ -66,15 +121,7 @@ export const BannerButton = styled.button`
 
   
 `;
-export const BannerDescription = styled.h1`
-  width: 45rem;
-  font-size: 0.8rem;
-  line-height: 1.3rem;
-  padding-top: 1rem;
-  max-width: 360px;
-  height: 80px;
-  margin-left: 1.2rem;
-`;
+
 export const FadeBottom = styled.div`
   height: 500px;
   background: rgb(20, 20, 20);

@@ -15,7 +15,7 @@ import {
 import { VscChevronRight } from 'react-icons/vsc';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { BsPlusCircle } from 'react-icons/bs';
-import './style.css';
+import './style.scss';
 import Modal from '../modal/Modal';
 import { useDisabledBodyScroll } from '../../hooks/useDisableBodyScroll';
 // eslint-disable-next-line react/prop-types

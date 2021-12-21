@@ -23,11 +23,19 @@ function Menu({ type }) {
     <Container color={show}>
       <NavigatorList>
         <NavigatorLink type={type} icon='/FILMFLIX.png' />
-        <NavigatorLink><p style={{fontSize: "12px", fontWeight: "400"}}>Start</p></NavigatorLink>
-        <NavigatorLink><p style={{fontSize: "12px", fontWeight: "400"}}>Series</p></NavigatorLink>
-        <NavigatorLink><p style={{fontSize: "12px", fontWeight: "400"}}>Films</p></NavigatorLink>
+        <NavigatorLink>
+          Start
+        </NavigatorLink>
+        <NavigatorLink>
+         Series
+        </NavigatorLink>
+        <NavigatorLink>
+         Films
+        </NavigatorLink>
       </NavigatorList>
       <Preferences type={type} />
-    </Container>)}
+    </Container>
+  );
+}
 
 export default Menu;

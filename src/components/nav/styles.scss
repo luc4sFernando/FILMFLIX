@@ -8,7 +8,12 @@ a{
     color: white;
     font-size: 0.775rem;
     font-weight: bold;
-    font-family: "Helvetica Neue",
+   
+
+    @media(max-width: 575.98px){
+    font-size: 0.535rem;
+    font-weight: 400;
+    }
 }
 .img-responsive{
     width: 30px;
@@ -104,9 +109,19 @@ a{
 
 .large{
     width: 150px;
+
+    @media(max-width: 575.98px){
+        width: 50px;
+        margin-right: 5px;
+    }
 }
 .small{
     width: 120px;
+
+    @media(max-width: 575.98px){
+        width: 45px;
+        margin-right: 5px;
+    }
 }
 
 .navigator-link{

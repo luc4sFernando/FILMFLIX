@@ -3,6 +3,7 @@
     animation-name: fly;
     animation-duration: 2s;
     animation-timing-function: ease-in;
+    overflow: hidden;
 }
 
 @keyframes fly{

@@ -45,7 +45,6 @@ function LoginScreen() {
                     </Button>
                 </Wrap>
                 </HeroCard>
-                
                 </LoginBackground>
         </LoginContainer>
      

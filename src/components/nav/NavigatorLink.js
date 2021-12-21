@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillPlayFill } from 'react-icons/bs';
-import './styles.css';
+import './styles.scss';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { useSelector } from 'react-redux';
 import { idSelector, urlSelector } from '../../features/selectors';
@@ -13,7 +13,7 @@ function NavigatorLink({ icon, children, type }) {
       <li className="navigator-link">
         <Link to='/' >
           {icon && (
-            <img src={icon} className={type === 'Signup' ? 'large' : 'small'} style={{marginRight: "30px"}}/>
+            <img src={icon} className={type === 'Signup' ? 'large' : 'small'}/>
           )}
           {children}
         </Link>
