@@ -31,17 +31,29 @@ export const HeroCard = styled.div`
     margin: 0 auto;
     text-align: center;
     z-index: 1;
+
+    @media(max-width: 575.98px){
+        overflow: hidden;
+    }
 `
 export const Title = styled.h1`
 font-size: 3.125rem;
 color: white;
 max-width: 640px;
 margin: 0 auto;
+@media(max-width: 575.98px){
+    font-size: 1.8rem;
+    width: 300px;
+}
 `
 export const SubTitle = styled.h2`
 font-size: 1.625rem;
 color: white;
 margin: 1rem auto;
+
+@media(max-width: 575.98px){
+    font-size: 0.9rem;
+}
 `
 export const Paragraph = styled.p`
 padding: 0 10%;
@@ -49,6 +61,11 @@ max-width: none;
 padding-bottom: 20px;
 font-size: 1.2rem;
 
+@media(max-width: 575.98px){
+    font-size: 0.8rem;
+    font-weight: 300;
+      
+}
 `
 export const Wrap = styled.form`
 display: flex;
@@ -62,6 +79,13 @@ padding: 10px 10px ;
 &::-webkit-input-placeholder{
 font-size: 16px;
 align-items: center;
+}
+@media(max-width: 575.98px){
+    min-width: 200px;
+    &::-webkit-input-placeholder{
+        font-size: 12px;
+        align-items: center;
+        }
 }
 `
 export const Button = styled.button`
@@ -77,5 +101,10 @@ export const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media(max-width: 575.98px){
+       font-size: 12px;
+       min-height: 40px;
+    }
 
 `

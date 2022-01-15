@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { auth } from '../../services/firebase';
 import db from '../../services/firebase';
@@ -50,50 +50,53 @@ function Signup() {
   function handleRoute() {
     history.push('/signup/planform');
   }
-
+  useEffect(() => {
+    !user && history.push("/") 
+  }, [])
   return (
-    <div className="container-animation">
-      <NavBar />
+   <div className="container-animation">
+    <NavBar />
 
-      <Body>
-        <Content className="content-transition">
-          <Form>
-            <Span>
-              STEP <b>1</b> OF <b>3</b>
-            </Span>
-            <Paragraph>
-              Welcome back!
-              <br />
-              Joining Netflix is easy.
-            </Paragraph>
-            <Span2>
-              Enter your password and you'll be watching in no time.
-            </Span2>
-            <Span3>Email</Span3>
-            <ValueEmail>
-              <b>{user}</b>
-            </ValueEmail>
-            <Input
-              placeholder='Enter your password'
-              type='password'
-              onChange={(e) => {
-                setPass(e.target.value);
-              }}
-              value={pass}
-            />
-            <Button
-              type='submit'
-              onClick={(e) => {
-                e.preventDefault();
-                register();
-              }}
-            >
-              Next
-            </Button>
-          </Form>
-        </Content>
-      </Body>
-    </div>
+    <Body>
+      <Content className="content-transition">
+        <Form>
+          <Span>
+            STEP <b>1</b> OF <b>3</b>
+          </Span>
+          <Paragraph>
+            Welcome back!
+            <br />
+            Joining Netflix is easy.
+          </Paragraph>
+          <Span2>
+            Enter your password and you'll be watching in no time.
+          </Span2>
+          <Span3>Email</Span3>
+          <ValueEmail>
+            <b>{user}</b>
+          </ValueEmail>
+          <Input
+            placeholder='Enter your password'
+            type='password'
+            onChange={(e) => {
+              setPass(e.target.value);
+            }}
+            value={pass}
+          />
+          <Button
+            type='submit'
+            onClick={(e) => {
+              e.preventDefault();
+              register();
+            }}
+          >
+            Next
+          </Button>
+        </Form>
+      </Content>
+    </Body>
+  </div> 
+    
   );
 }
 

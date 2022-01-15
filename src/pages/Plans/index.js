@@ -48,6 +48,7 @@ import {
 } from './style';
 
 import './planform.css';
+import { useResponsiveComponent } from '../../hooks/useResponsiveComponent';
 
 function PlanForm() {
   const id = useSelector(idSelector);
@@ -57,7 +58,8 @@ function PlanForm() {
   function handleInput(select) {
     setSelect(select);
   }
-
+  const mediaQuery = useResponsiveComponent();
+  console.log(mediaQuery);
   useEffect(() => {
     const handlePlansDataBase = async () => {
       const q = query(collection(db, 'products'), where('active', '==', true));
@@ -119,8 +121,6 @@ function PlanForm() {
       }
     });
   }
-
-
 
   return (
     <>
@@ -230,8 +230,16 @@ function PlanForm() {
           </SquaresContainer>
 
           <Table>
-            <TableRow role='row'>
-              <FeatureCell>Price per month</FeatureCell>
+            {mediaQuery < 579 && (
+              <TableRow media='mobile'>
+                <FeatureCell media='mobile'>Price per month</FeatureCell>
+              </TableRow>
+            )}
+            <TableRow role='row' media='others'>
+              {mediaQuery > 579 && (
+                <FeatureCell media='others'>Price per month</FeatureCell>
+              )}
+
               <TableD className={select === 'Basic' ? 'red' : null}>
                 R$25,90
               </TableD>
@@ -242,8 +250,16 @@ function PlanForm() {
                 R$55,90
               </TableD>
             </TableRow>
-            <TableRow>
-              <FeatureCell>Qualidade do vídeo</FeatureCell>
+            {mediaQuery < 579 && (
+              <TableRow media='mobile'>
+                <FeatureCell media='mobile'>Qualidade do vídeo</FeatureCell>
+              </TableRow>
+            )}
+            <TableRow media='others'>
+              {mediaQuery > 579 && (
+                <FeatureCell media='others'>Qualidade do vídeo</FeatureCell>
+              )}
+
               <TableD className={select === 'Basic' ? 'red' : null}>Boa</TableD>
               <TableD className={select === 'Standard' ? 'red' : null}>
                 Melhor
@@ -252,8 +268,16 @@ function PlanForm() {
                 Superior
               </TableD>
             </TableRow>
-            <TableRow>
-              <FeatureCell>Resolução</FeatureCell>
+            {mediaQuery < 579 && (
+              <TableRow media='mobile'>
+                <FeatureCell media='mobile'>Resolução</FeatureCell>
+              </TableRow>
+            )}
+            <TableRow media='others'>
+              {mediaQuery > 579 && (
+                <FeatureCell media='others'>Resolução</FeatureCell>
+              )}
+
               <TableD className={select === 'Basic' ? 'red' : null}>
                 480p
               </TableD>
@@ -264,10 +288,19 @@ function PlanForm() {
                 4K+HDR
               </TableD>
             </TableRow>
-            <TableRow>
-              <FeatureCell border={true}>
-                Assista na TV, computador, celular ou tablet
-              </FeatureCell>
+            {mediaQuery <= 579 && (
+              <TableRow media='mobile'>
+                <FeatureCell media='mobile'>
+                  Assista na TV, computador, celular ou tablet
+                </FeatureCell>
+              </TableRow>
+            )}
+            <TableRow media='others'>
+              {mediaQuery > 579 && (
+                <FeatureCell border={true} media='others'>
+                  Assista na TV, computador, celular ou tablet
+                </FeatureCell>
+              )}
               <TableD border={true}>
                 {' '}
                 <BsCheck2
@@ -305,9 +338,7 @@ function PlanForm() {
             </InfoTexts>
           </InfoWrap>
           <SubmitContainer>
-            <SubmitButton onClick={handleCustomersPlans}>
-              Next
-            </SubmitButton>
+            <SubmitButton onClick={handleCustomersPlans}>Next</SubmitButton>
           </SubmitContainer>
         </Content>
       </Body>

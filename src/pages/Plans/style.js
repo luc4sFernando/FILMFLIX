@@ -31,10 +31,19 @@ align-items: left;
 margin: 30px auto 15px;
 animation: ${transition} 0.5s ease-in;
 
+@media(max-width: 575.98px){
+    margin 50px 10px 0px;
+    650px;
+}
+
 `
 export const InfoWrap = styled.div`
 background-color: white;
 margin-bottom: 40px;
+
+@media(max-width: 575.98px){
+    margin: 0px auto 20px;
+}
 
 `
 
@@ -42,11 +51,20 @@ export const TextContent = styled.div`
 display: flex;
 margin: 3px 0px;
 
+@media(max-width: 575.98px){
+
+}
+
 `
 
 export const Texts = styled.p`
 font-size: 17px;
-margin-left: 14px;`
+margin-left: 14px;
+
+@media(max-width: 575.98px){
+    font-size: 16px;
+}
+`
 
 export const Text1 = styled.h1`
 display: inline-block;
@@ -77,13 +95,20 @@ height: 120px;
 display: flex;
 justify-content: flex-end;
 align-items: center;
+@media(max-width: 575.98px){
+    width: 100%;
+    justify-content: center;
+}
 
 `
 export const ContainerWrap = styled.div`
 width: 88%;
 display: flex;
 justify-content: flex-end;
-
+@media(max-width: 575.98px){
+    width: 100%;
+    justify-content: center;
+}
 `
 export const SquareColum = styled.div`
 width: 68.2%;
@@ -91,6 +116,10 @@ display: flex;
 flex-direction: column;
 align-items: flex-end;
 justify-content: flex-end;
+@media(max-width: 575.98px){
+    width: 100%;
+    justify-content: center;
+}
 
 `
 
@@ -98,6 +127,7 @@ export const SquaresWrap = styled.div`
 display: flex;
 width: 100%;
 justify-content: space-around;
+padding: 0px;
 `
 export const Square = styled.div`
 width: 120px;
@@ -109,6 +139,12 @@ justify-content: center;
 opacity: .6;
 border-radius: 4px;
 cursor: pointer;
+
+@media(max-width: 575.98px){
+    height: 65px;
+    border-radius: 2px;
+    width: 130px;
+}
 
 `
 
@@ -125,6 +161,7 @@ background-color: transparent;
 display: flex;
 align-items: center;
 justify-content: center;
+
 `
 export const Selector = styled.div`
 
@@ -143,12 +180,17 @@ position: relative;
 top: -50px;
 width: 100%;
 display: flex;
-justify-content:   space-around;
+justify-content: space-around;
 margin-bottom: 20px;
 margin-top: -50px;
 z-index: 1;
 color: white;
 font-weight: bold;
+
+@media(max-width: 575.98px){
+    top: -22px;
+    font-size: 14px;
+}
 `
 // export const P = styled.p`
 // position: relative;
@@ -178,12 +220,22 @@ font-weight: bold;
 
 export const Table = styled.table`
 width: 100%;
+padding: 0px 10px;
 border-collapse: collapse;
+
 
 `
 export const TableRow = styled.tr`
 
 
+@media(max-width: 575.98px){
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 300;
+    }
 `
 export const TableD = styled.td`
 min-height: 60px;
@@ -191,6 +243,14 @@ padding: 16px 0px;
 align-items: center;
 border-bottom: ${props => !props.border ?  "1px solid #ccc" : "none"} ;
 text-align: center;
+@media(max-width: 575.98px){
+min-height: 25px;
+padding: 5px;
+min-width: calc(100% / 3);
+font-size: 15px;
+padding: 10px 0px;
+  
+}
 
 `
 export const FeatureCell = styled.td`
@@ -198,6 +258,16 @@ width: 40%;
 padding: 15px;
 min-height: 60px;
 border-bottom: ${props => !props.border ?  "1px solid #ccc" : "none"} ;
+@media(max-width: 575.98px){
+    width: ${props => props.media === "mobile" ? "100%" : "40%"} ;
+    padding: 0;
+    padding-top: 5px;
+    
+    min-height: 25px;
+    border-bottom: none;
+    
+    }
+
 `
 export const InfoTexts = styled.p`
 font-size: 13px;

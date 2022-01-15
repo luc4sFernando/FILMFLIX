@@ -5,65 +5,69 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import './styles.scss';
 import { useDispatch } from 'react-redux';
 import { setText } from '../../features/counter/localSlice';
-import {useSelector} from "react-redux"
-import {textSelector} from "../../features/selectors/index"
+
 function Menu({ type }) {
-  const [show, handleShow] = useState(false);
-  const [searchIcon, setSearchIcon] = useState(false);
-  const [val, setVal] = useState('');
-  const dispatch = useDispatch();
-  const text = useSelector(textSelector);
-  console.log(text);
-  const transitionNavBar = () => {
-    if (window.scrollY > 100) {
-      handleShow(true);
-    } else {
-      handleShow(false);
-    }
-  };
-  function handleSearchInput() {
-    setSearchIcon((prev) => !prev);
-  }
-  useEffect(() => {
-    window.addEventListener('scroll', transitionNavBar);
-    return () => {
-      window.removeEventListener('scroll', transitionNavBar);
+    const [show, handleShow] = useState(false);
+    const [searchIcon, setSearchIcon] = useState(false);
+    const [val, setVal] = useState('');
+    const dispatch = useDispatch();
+
+    const transitionNavBar = () => {
+        if (window.scrollY > 100) {
+            handleShow(true);
+        } else {
+            handleShow(false);
+        }
     };
-  }, []);
-  useEffect(() => {
-    dispatch(setText(val))
-  }, [val]);
+    function handleSearchInput() {
+        setSearchIcon((prev) => !prev);
+    }
+    function closeSearchInput() {
+        setSearchIcon(false);
+    }
+    useEffect(() => {
+        window.addEventListener('scroll', transitionNavBar);
+        return () => {
+            window.removeEventListener('scroll', transitionNavBar);
+        };
+    }, []);
 
-  
-  return (
-    <Container color={show}>
-      <NavigatorList>
-        <NavigatorLink type={type} icon='/FILMFLIX.png' />
-        <NavigatorLink>Start</NavigatorLink>
-        <NavigatorLink>Series</NavigatorLink>
-        <NavigatorLink>Films</NavigatorLink>
-      </NavigatorList>
+    useEffect(() => {
+        searchIcon && window.addEventListener('click', closeSearchInput);
+        return () => {
+            window.removeEventListener('click', closeSearchInput);
+        };
+    }, [searchIcon]);
 
-      <div id='container-controls'>
-        <div id='form'>
-          <AiOutlineSearch
-            color='white'
-            style={{ cursor: 'pointer' }}
-            onClick={handleSearchInput}
-          />
-          <input
-            type='text'
-            style={searchIcon ? { width: '200px' } : { width: '0px' }}
-            value={val}
-            onChange={(e) => {
-              setVal(e.target.value);
-            }}
-          />
-        </div>
-        <Preferences type={type} />
-      </div>
-    </Container>
-  );
+    return (
+        <Container color={show}>
+            <NavigatorList>
+                <NavigatorLink type={type} icon="/FILMFLIX.png" />
+                <NavigatorLink>Start</NavigatorLink>
+                <NavigatorLink>Series</NavigatorLink>
+                <NavigatorLink>Films</NavigatorLink>
+            </NavigatorList>
+
+            <div id="container-controls">
+                <div className={searchIcon ? 'active' : 'form'}>
+                    <AiOutlineSearch
+                        color="white"
+                        onClick={handleSearchInput}
+                    />
+                    <input
+                        type="text"
+                        className={searchIcon ? 'activet' : 'form'}
+                        value={val}
+                        onChange={(e) => {
+                            setVal(e.target.value);
+                            dispatch(setText(e.target.value));
+                        }}
+                    />
+                </div>
+                <Preferences type={type} />
+            </div>
+        </Container>
+    );
 }
 
 export default Menu;

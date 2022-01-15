@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 
 import { login, logout } from '../features/counter/stockSlice';
 
-import { userSelector } from '../features/selectors';
+
 
 import Home from '../pages/Home';
 import LoginScreen from '../pages/Login';

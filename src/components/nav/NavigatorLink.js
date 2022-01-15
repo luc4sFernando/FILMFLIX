@@ -5,15 +5,16 @@ import './styles.scss';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { useSelector } from 'react-redux';
 import { idSelector, urlSelector } from '../../features/selectors';
+
 import db from '../../services/firebase';
 
 function NavigatorLink({ icon, children, type }) {
   return (
     <>
-      <li className="navigator-link">
-        <Link to='/' >
+      <li className='navigator-link'>
+        <Link to='/'>
           {icon && (
-            <img src={icon} className={type === 'Signup' ? 'large' : 'small'}/>
+            <img src={icon} className={type === 'Signup' ? 'large' : 'small'} />
           )}
           {children}
         </Link>
@@ -23,14 +24,13 @@ function NavigatorLink({ icon, children, type }) {
 }
 
 function Preferences({ type }) {
+  
   const test = useRef(null);
   const uid = useSelector(idSelector);
-
   const [url, setUrl] = useState([]);
   const [collectionId, setCollectionId] = useState('');
   const [active, setActive] = useState(false);
   const basicUrl = useSelector(urlSelector);
-  console.log(basicUrl);
 
   useEffect(() => {
     const handleUrlsImages = async () => {
@@ -47,13 +47,14 @@ function Preferences({ type }) {
         );
         docs.forEach(async (doc) => profiles.push(doc.data()));
         await setUrl(profiles);
-        console.log(profiles)
+        console.log(profiles);
       }
     };
     handleUrlsImages();
   }, [collectionId]);
 
   useEffect(() => {
+
     if (test.current.className) {
       test.current.className += 'view';
     }
@@ -61,9 +62,8 @@ function Preferences({ type }) {
 
   return (
     <>
-      {type === 'Home' && (
         <div
-          className='profile-img'
+          id='profile-img'
           onMouseOver={(e) => {
             setActive(true);
           }}
@@ -71,15 +71,15 @@ function Preferences({ type }) {
             setActive(false);
           }}
         >
+         
           {basicUrl ? (
             <img className='img-responsive' src={basicUrl} alt='profileLogo' />
           ) : (
             <Link to={'/profiles/manager'}> New Profile</Link>
           )}
-          {basicUrl && (
-            <BsFillPlayFill className={`arrow ${active ? 'flip' : ''}`} />
-          )}
-
+         
+            <BsFillPlayFill className={`arrow ${active &&'flip' }`} />
+         
           <div
             className={`dropdown  ${active ? 'active hidden' : ''}`}
             ref={test}
@@ -105,9 +105,8 @@ function Preferences({ type }) {
             <Link to={'/profiles/manager'}>Profiles Manager</Link>
           </div>
         </div>
-      )}
-      {type === 'Signup' && <p>Signup</p>}
-    </>
+  
+      </>
   );
 }
 

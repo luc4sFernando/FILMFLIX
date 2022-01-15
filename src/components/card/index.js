@@ -1,16 +1,16 @@
 import React, { useMemo } from 'react';
 import { useEffect, useState, useRef } from 'react';
-import {useHistory} from "react-router-dom"
-import { setPost } from '../../features/counter/stockSlice';
+import { useHistory } from 'react-router-dom';
+import { setPost } from '../../features/counter/filmsSlice';
 import { fetchMovies, fetchVideo } from '../../services/api';
 import { useDispatch } from 'react-redux';
 import {
-  RowWrap,
-  H2,
-  ImgPost,
-  PostWrap,
-  PostContainer,
-  CardOptions,
+    RowWrap,
+    H2,
+    ImgPost,
+    PostWrap,
+    PostContainer,
+    CardOptions,
 } from './style';
 import { VscChevronRight } from 'react-icons/vsc';
 import { AiFillPlayCircle } from 'react-icons/ai';
@@ -19,116 +19,139 @@ import './style.scss';
 import Modal from '../modal/Modal';
 import { useDisabledBodyScroll } from '../../hooks/useDisableBodyScroll';
 import { useResponsiveComponent } from '../../hooks/useResponsiveComponent';
+
 // eslint-disable-next-line react/prop-types
 function Card({ title, fetchUrl }) {
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const [movie, setMovie] = useState([]);
-  const container = useRef(null);
-  const controller = useRef(null);
-  const [control, setControl] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [movieFilm, setMovieFilm] = useState({});
-  const [offset, setoffset] = useState(0);
-  const innerWidth = useResponsiveComponent();
-  useDisabledBodyScroll(modal);
-  useEffect(() => {
-    async function getDataMovieApi() {
-      const movies = await fetchMovies(fetchUrl);
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const [movie, setMovie] = useState([]);
+    const container = useRef(null);
+    const controller = useRef(null);
+    const [control, setControl] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [movieFilm, setMovieFilm] = useState({});
+    const [offset, setoffset] = useState(0);
+    const innerWidth = useResponsiveComponent();
 
-      const videos = await Promise.all(
-        movies.map((item) => fetchVideo(item.id)),
-        setMovie(movies)
-      );
+    useDisabledBodyScroll(modal);
+    useEffect(() => {
+        async function getDataMovieApi() {
+            const movies = await fetchMovies(fetchUrl);
 
-      movies.map((movie, index) => {
-        if (videos[index].length > 0) {
-          movie.trailer = videos[index];
+            const videos = await Promise.all(
+                movies.map((item) => fetchVideo(item.id)),
+                setMovie(movies)
+            );
+
+            movies.map((movie, index) => {
+                if (videos[index].length > 0) {
+                    movie.trailer = videos[index];
+                }
+                return videos;
+            });
+
+            dispatch(setPost(movies));
         }
-        return videos;
-      });
+        getDataMovieApi();
+    }, [fetchUrl]);
 
-      dispatch(setPost(movies));
+    function scrollNext() {
+        console.log(container.current.scrollLeft);
+        container.current.scrollLeft += Math.floor(
+            container.current.offsetWidth + 110
+        );
+        setoffset((prev) => (prev += 1));
+        console.log(offset);
     }
-    getDataMovieApi();
-  }, [fetchUrl]);
+    function scrollPrev() {
+        container.current.scrollLeft -= Math.floor(
+            container.current.offsetWidth + 110
+        );
+        setoffset((prev) => (prev -= 1));
+    }
 
-  function scrollNext() {
-    console.log(container.current.scrollLeft);
-    container.current.scrollLeft += Math.floor(
-      container.current.offsetWidth + 110
+    function activeControlPrev() {
+        controller.current.className += ' active';
+    }
+
+    return (
+        <>
+            {modal && <Modal filmInfo={movieFilm} setModal={setModal} />}
+            <RowWrap
+                onMouseOver={() => setControl(true)}
+                onMouseLeave={() => setControl(false)}
+            >
+                <H2>{title}</H2>
+
+                {useMemo(() => {
+                    return (
+                        <PostContainer ref={container}>
+                            {console.log('filho')}
+                            {movie.map(
+                                (movie) =>
+                                    (movie.poster_path ||
+                                        movie.backdrop_path) && (
+                                        <PostWrap key={movie.id}>
+                                            <ImgPost
+                                                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                                                alt={movie.name}
+                                                id={movie.id}
+                                            />
+                                            <CardOptions
+                                                onClick={(e) => {
+                                                    setMovieFilm(movie);
+                                                    setModal(true);
+                                                }}
+                                            >
+                                                {innerWidth && (
+                                                    <AiFillPlayCircle
+                                                        size="20px"
+                                                        style={{
+                                                            cursor: 'pointer',
+                                                            marginRight: '2px',
+                                                        }}
+                                                        onClick={() =>
+                                                            history.push(
+                                                                '/play'
+                                                            )
+                                                        }
+                                                    />
+                                                )}
+                                                {innerWidth && (
+                                                    <BsPlusCircle
+                                                        size="20px"
+                                                        style={{
+                                                            cursor: 'pointer',
+                                                        }}
+                                                    />
+                                                )}
+                                            </CardOptions>
+                                        </PostWrap>
+                                    )
+                            )}
+                        </PostContainer>
+                    );
+                }, [movie])}
+
+                {control && (
+                    <>
+                        {offset > 0 && (
+                            <div className="post_controler_l">
+                                <VscChevronRight
+                                    size="40px"
+                                    onClick={scrollPrev}
+                                />
+                            </div>
+                        )}
+
+                        <div className="post_controler_r">
+                            <VscChevronRight size="40px" onClick={scrollNext} />
+                        </div>
+                    </>
+                )}
+            </RowWrap>
+        </>
     );
-    setoffset((prev) => (prev += 1));
-    console.log(offset);
-  }
-  function scrollPrev() {
-    container.current.scrollLeft -= Math.floor(
-      container.current.offsetWidth + 110
-    );
-    setoffset((prev) => (prev -= 1));
-  }
-
-  function activeControlPrev() {
-    controller.current.className += ' active';
-  }
-
-  return (
-    <>
-      {modal && <Modal filmInfo={movieFilm} setModal={setModal} />}
-      <RowWrap
-        onMouseOver={() => setControl(true)}
-        onMouseLeave={() => setControl(false)}
-      >
-        <H2>{title}</H2>
-      
-      {useMemo(() =>{
-        return (
-          <PostContainer ref={container}>
-            {console.log("filho")}
-          {movie.map(
-            
-            (movie) =>
-              (movie.poster_path || movie.backdrop_path) && (
-                <PostWrap key={movie.id}>
-                  <ImgPost
-                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                    alt={movie.name}
-                    id={movie.id}
-                  />
-                  <CardOptions
-                    onClick={(e) => {
-                      setMovieFilm(movie);
-                      setModal(true);
-                    }}
-                  >
-                   {innerWidth < 579 &&  <AiFillPlayCircle size='20px' style={{ cursor: 'pointer', marginRight: "2px" }} onClick={() => history.push("/play")}/> }
-                    {innerWidth < 579 &&  <BsPlusCircle size='20px' style={{ cursor: 'pointer' }} /> }
-                   
-                  </CardOptions>
-                </PostWrap>
-              )
-          )}
-        </PostContainer>
-
-        )
-      }, [movie])}
-     
-        {control && (
-          <>
-            {offset > 0 && (
-              <div className='post_controler_l'>
-                <VscChevronRight size='40px' onClick={scrollPrev} />
-              </div>
-            )}
-
-            <div className='post_controler_r'>
-              <VscChevronRight size='40px' onClick={scrollNext} />
-            </div>
-          </>
-        )}
-      </RowWrap>
-    </>
-  );
 }
 
 export default Card;

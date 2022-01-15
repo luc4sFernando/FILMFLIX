@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
 export const useResponsiveComponent = () => {
+    const [query, setQuery] = useState(window.innerWidth);
 
-  const [query, setQuery] = useState(0);
-
-  useEffect(() => {
-      const q = window.innerWidth || 0;
-      setQuery(q)
-      console.log(q)
-  }, [query]);
-  return query;
+    useEffect(() => {
+        function eventFunc() {
+            setQuery(window.innerWidth);
+        }
+        window.addEventListener('resize', eventFunc);
+    }, [query]);
+    return query;
 };
