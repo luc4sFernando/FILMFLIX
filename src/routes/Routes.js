@@ -55,13 +55,10 @@ function Routes() {
           <PrivateRoute path='/intro' component={SplashAnimation} />
           <PrivateRoute path='/play' component={PlayAnimation} />
           <PublicRoute  path='/signin' component={Loggin} />
-
           <PrivateRoute path='/browse' component={Home} />
-
           <RouteRegister exact path='/signup' component={Signup} />
           <PublicRoute path='/signup/intro' component={Intro} />
           <RouteRegister path='/signup/planform' component={PlanForm} />
-
           <PrivateRoute path='/profiles/manager' component={ProfileManager} />
         </Switch>
       </Router>

@@ -49,12 +49,13 @@ import {
 
 import './planform.css';
 import { useResponsiveComponent } from '../../hooks/useResponsiveComponent';
+import { useHistory } from 'react-router-dom';
 
 function PlanForm() {
   const id = useSelector(idSelector);
   const [products, setPrducts] = useState([]);
   const [select, setSelect] = useState('Premium');
-
+  const history = useHistory()
   function handleInput(select) {
     setSelect(select);
   }
@@ -338,7 +339,7 @@ function PlanForm() {
             </InfoTexts>
           </InfoWrap>
           <SubmitContainer>
-            <SubmitButton onClick={handleCustomersPlans}>Next</SubmitButton>
+            <SubmitButton onClick={() => history.push("/")}>Next</SubmitButton>
           </SubmitContainer>
         </Content>
       </Body>

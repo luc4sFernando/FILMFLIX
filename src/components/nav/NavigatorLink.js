@@ -31,6 +31,7 @@ function Preferences({ type }) {
   const [collectionId, setCollectionId] = useState('');
   const [active, setActive] = useState(false);
   const basicUrl = useSelector(urlSelector);
+  const [mediaQuery, setMediaQuery] = useState(false)
 
   useEffect(() => {
     const handleUrlsImages = async () => {
@@ -52,59 +53,123 @@ function Preferences({ type }) {
     };
     handleUrlsImages();
   }, [collectionId]);
-
+  const changeMenuDropEvent = (e) => {
+    console.log(e.target)
+    if(active && mediaQuery){
+     setActive(false)
+    };
+  }
   useEffect(() => {
-
+    window.addEventListener('click', changeMenuDropEvent);
+        return () => {
+            window.removeEventListener('click', changeMenuDropEvent);
+        };
+  }, )
+  useEffect(() => {
+    
     if (test.current.className) {
       test.current.className += 'view';
     }
-  }, [active]);
+    if (window.matchMedia("(max-width: 991.90px)").matches){
+      setMediaQuery(true);
+      
+    }
+     if (window.matchMedia("(min-width: 992px)").matches){
+      setMediaQuery(false);
+      
+    }
+    
+  } );
 
   return (
     <>
-        <div
-          id='profile-img'
-          onMouseOver={(e) => {
-            setActive(true);
-          }}
-          onMouseOut={(e) => {
-            setActive(false);
-          }}
-        >
-         
-          {basicUrl ? (
-            <img className='img-responsive' src={basicUrl} alt='profileLogo' />
-          ) : (
-            <Link to={'/profiles/manager'}> New Profile</Link>
-          )}
-         
-            <BsFillPlayFill className={`arrow ${active &&'flip' }`} />
-         
-          <div
-            className={`dropdown  ${active ? 'active hidden' : ''}`}
-            ref={test}
-          >
-            <div className={active ? 'arrow-container' : 'arrow-off'}>
-              {' '}
-              <BsFillPlayFill className='arrow-absolute' />
-            </div>
-            {basicUrl &&
-              url.map((val, index) => {
-                return (
-                  <div key={index} className='profiles-nav-item'>
-                    <img
-                      src={val.photoURL}
-                      alt='profileimage'
-                      style={{ width: '30px', borderRadius: '4px' }}
-                    />
-                    <a>{val.name}</a>
-                  </div>
-                );
-              })}
+      {mediaQuery ? (
+         <div
+         id='profile-img'
+         onClick={(e) => {
+           setActive(true);
+         }}
+        
+       >
+        
+         {basicUrl ? (
+           <img className='img-responsive' src={basicUrl} alt='profileLogo' />
+         ) : (
+           <Link to={'/profiles/manager'}> New Profile</Link>
+         )}
+        
+           <BsFillPlayFill className={`arrow ${active &&'flip' }`} />
+        
+         <div
+           className={`dropdown  ${active ? 'active hidden' : ''}`}
+           ref={test}
+         >
+           <div className={active ? 'arrow-container' : 'arrow-off'}>
+             {' '}
+             <BsFillPlayFill className='arrow-absolute' />
+           </div>
+           {basicUrl &&
+             url.map((val, index) => {
+               return (
+                 <div key={index} className='profiles-nav-item'>
+                   <img
+                     src={val.photoURL}
+                     alt='profileimage'
+                     style={{ width: '30px', borderRadius: '4px' }}
+                   />
+                   <a>{val.name}</a>
+                 </div>
+               );
+             })}
 
-            <Link to={'/profiles/manager'}>Profiles Manager</Link>
-          </div>
+           <Link to={'/profiles/manager'}>Profiles Manager</Link>
+         </div>
+       </div>
+
+      ) :  <div
+      id='profile-img'
+      onMouseOver={(e) => {
+        setActive(true);
+      }}
+      onMouseOut={(e) => {
+        setActive(false);
+      }}
+    >
+     
+      {basicUrl ? (
+        <img className='img-responsive' src={basicUrl} alt='profileLogo' />
+      ) : (
+        <Link to={'/profiles/manager'}> New Profile</Link>
+      )}
+     
+        <BsFillPlayFill className={`arrow ${active &&'flip' }`} />
+     
+      <div
+        className={`dropdown  ${active ? 'active hidden' : ''}`}
+        ref={test}
+      >
+        <div className={active ? 'arrow-container' : 'arrow-off'}>
+          {' '}
+          <BsFillPlayFill className='arrow-absolute' />
         </div>
+        {basicUrl &&
+          url.map((val, index) => {
+            return (
+              <div key={index} className='profiles-nav-item'>
+                <img
+                  src={val.photoURL}
+                  alt='profileimage'
+                  style={{ width: '30px', borderRadius: '4px' }}
+                />
+                <a>{val.name}</a>
+              </div>
+            );
+          })}
+
+        <Link to={'/profiles/manager'}>Profiles Manager</Link>
+      </div>
+    </div>}
+            
   
       </>
   );

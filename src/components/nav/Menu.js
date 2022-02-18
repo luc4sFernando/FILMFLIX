@@ -13,19 +13,27 @@ function Menu({ type }) {
     const dispatch = useDispatch();
 
     const transitionNavBar = () => {
-        if (window.scrollY > 100) {
+        if (window.scrollY > 100 && window.innerWidth > 999) {
             handleShow(true);
-        } else {
+        }
+        else if (window.scrollY > 20 && window.innerWidth < 999) {
+            handleShow(true);
+        }  
+        else {
             handleShow(false);
         }
     };
     function handleSearchInput() {
         setSearchIcon((prev) => !prev);
     }
-    function closeSearchInput() {
+    function closeSearchInput(e) {
+        if(e.target.tagName.toLowerCase() === "input") return;
         setSearchIcon(false);
+      
+        
     }
     useEffect(() => {
+        
         window.addEventListener('scroll', transitionNavBar);
         return () => {
             window.removeEventListener('scroll', transitionNavBar);
@@ -33,6 +41,7 @@ function Menu({ type }) {
     }, []);
 
     useEffect(() => {
+        
         searchIcon && window.addEventListener('click', closeSearchInput);
         return () => {
             window.removeEventListener('click', closeSearchInput);
@@ -49,7 +58,8 @@ function Menu({ type }) {
             </NavigatorList>
 
             <div id="container-controls">
-                <div className={searchIcon ? 'active' : 'form'}>
+              
+                <div className={searchIcon ? 'activet' : 'form'}>
                     <AiOutlineSearch
                         color="white"
                         onClick={handleSearchInput}
@@ -58,12 +68,15 @@ function Menu({ type }) {
                         type="text"
                         className={searchIcon ? 'activet' : 'form'}
                         value={val}
+                        placeholder="Name, Gender, Desc and etc..."
                         onChange={(e) => {
                             setVal(e.target.value);
                             dispatch(setText(e.target.value));
                         }}
                     />
                 </div>
+                
+               
                 <Preferences type={type} />
             </div>
         </Container>
