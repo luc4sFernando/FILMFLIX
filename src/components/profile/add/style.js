@@ -38,13 +38,15 @@ export const SectionTitle = styled.h1`
 `;
 export const SectionDesc = styled.p`
     color: #666;
-    font-size: 1.3vw;
 
     @media (max-width: 575.98px) {
         font-size: 0.7rem;
     }
     @media (min-width: 576px) and (max-width: 991.98px) {
         font-size: 0.7rem;
+    }
+    @media  (min-width: 992px) {
+        font-size: 2.0rem;
     }
 `;
 export const ContainerElements = styled.div`
@@ -68,6 +70,9 @@ export const ContainerElements = styled.div`
         justify-content: flex-start;
         padding: 0px;
         align-items: start;
+    }
+    @media (min-width: 992px)  {
+    margin-top: 20px;
     }
 `;
 export const InputContainer = styled.div`
@@ -143,9 +148,11 @@ export const ButtonsContent = styled.div`
     justify-content: flex-start;
     padding: 20px 0px;
     gap: 20px;
+    
 
     @media (max-width: 575.98px) {
         padding: 15px 0px;
+
     }
 
     @media (min-width: 576px) and (max-width: 991.98px) {
@@ -160,7 +167,11 @@ export const Button = styled.button`
     letter-spacing: 2px;
     font-weight: bold;
     font-size: 0.8rem;
+    cursor: pointer;
 
+    &:hover{
+        opacity: 0.7;
+    }
     @media (max-width: 575.98px) {
         padding: 5px 10px;
         font-size: 0.6rem;

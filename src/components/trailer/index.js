@@ -14,8 +14,8 @@ const PlayAnimation = () => {
         handleTadum();
         setTimeout(() => {
             history.push('/browse');
-        }, 4200);
-    }, []);
+        }, 3500);
+    });
 
     return (
         <div className="PlayAnimation__wrp">

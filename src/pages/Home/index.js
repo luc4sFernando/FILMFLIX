@@ -20,7 +20,7 @@ function Home() {
     useEffect(() => {
         const filtered = filter(films, queryFilm);
         setFilteredFilms(filtered);
-        console.log(filtered);
+        
     }, [queryFilm]);
     const mediaQuery = useResponsiveComponent();
     return (

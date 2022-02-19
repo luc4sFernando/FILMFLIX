@@ -28,16 +28,29 @@
     }
     #profile-img{
         display: flex;
-        width: 60px;
+        width: 90px;
         align-items: center;
-    
-    @media (max-width: 575.98px) {
-        width: 40px;
-        align-items: center;
+        justify-content: center;
+        
+        
+        @media (max-width: 575.98px) {
+            width:60px;
+            justify-content: center;
+             align-items: center;
     }
     @media (min-width: 768px) and (max-width: 991.98px) {
         align-items: center;
+        width: 70px;
+        justify-content: center;
     }
+  
+    }
+    .link{
+        p{
+            margin-left: 10px;
+           
+        }
+       
     }
     .arrow{
         transform: rotate(90deg);
@@ -202,13 +215,17 @@
     }
 
     .navigator-link{
-        margin-right: 12px;
-        
+        margin-right: 22px;
 
         @media(max-width: 575.98px){
         margin-right: 10px;
         align-items: center;
         }
+
+        @media(min-width: 576px) and (max-width: 991.9px){
+            margin-right: 12px;
+            align-items: center;
+            }
         
     }
     #container-controls{

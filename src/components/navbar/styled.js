@@ -24,14 +24,20 @@ export const NavContainer = styled.div`
 
 export const NetFlixLogo = styled.img`
 cursor: pointer;
-position: fixed;
+position: absolute;
 top: 23.8px;
-left: 51px;
-width: 120px;
+left: 61px;
+width: 140px;
 
 @media(max-width: 575.98px){
-    width: 75px;
-    margin-right: 5px;
+    width: 85px;
+    left: 50px;
+    top: 16px;
+}
+
+@media(min-width: 576px) and (max-width: 991.9px){
+    width: 120px;
+    left: 50px;
     top: 16px;
 }
 }
@@ -45,26 +51,28 @@ export const ProfileLogo = styled.img`
     position: fixed;
     top: 15px;
     right: 30px;
+
+
 `;
-export const ButtonLogin = styled.button`
-    border: none;
-    cursor: pointer;
-    padding: 10px 20px;
-    position: fixed;
-    top: 25px;
-    right: 50px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 3px;
-    background-color: #db202c;
-    color: white;
-`;
+
 export const ExitLink = styled(Link)`
-    position: absolute;
+position: absolute;
     color: black;
-    right: 40px;
+    right: 60px;
+    top: 16px;
     font-size: 2em;
     z-index: 999;
     cursor: pointer;
     font-weight: 400;
+
+    @media(max-width: 576px){
+        font-size: 1.5em;
+        top: 16px;
+        right: 50px;
+    }
+    @media(min-width: 576px) and (max-width: 991.9px){
+        width: 120px;
+        right: 50px;
+        top: 16px;
+    }
 `;

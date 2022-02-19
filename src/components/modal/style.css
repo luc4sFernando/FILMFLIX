@@ -11,6 +11,7 @@
   
 }
 .background .modal_container {
+    position: relative;
     width:600px;
     height: 700px;
     background-color:#191919;
@@ -41,6 +42,7 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
+    z-index: 5;
 }
 .background .modal_container .modal_content .modal_info{
     padding: 30px;
@@ -51,6 +53,7 @@
     font-size: 13px;
     position: absolute;
     top: 250px;
+    z-index: 4;
     
 }
 .modal_info h2{
@@ -66,20 +69,53 @@
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
 }
-.modal_gradient{
-margin-top: -338px;
-height: 338px;
-width: 100%;
-background: rgb(25,25,25);
-background: linear-gradient(0deg, rgba(25,25,25,1) 0%, rgba(25,25,25,0.31976540616246496) 100%);
-}
 
 
 .infos{
-    margin-top: 20px;
-    width: 100px;
+    margin-top: 10px;
+    align-items: center;
+    width: 350px;
     display: flex;
     justify-content: flex-start;
     font-size: 11px;
     color: gray;
+}
+p + span{
+    margin-left: 10px;
+}
+.infos p {
+    margin-left: 10px;
+}
+
+@media(max-width: 575.98px){
+    .modal_gradient{
+        width: 100%;
+     position: absolute;
+     top: 0px;
+     background: linear-gradient(0deg, rgba(25,25,25,1) 0%, rgba(25,25,25,0.31976540616246496) 100%);
+     height: 281px;
+     z-index: 2;
+    }
+}
+@media(min-width: 576px) and (max-width: 991.9px){
+    .modal_gradient{
+        width: 100%;
+     position: absolute;
+     top: 0px;
+     background: linear-gradient(0deg, rgba(25,25,25,1) 0%, rgba(25,25,25,0.31976540616246496) 100%);
+     height: 338px;
+     z-index: 2;
+    }
+}
+@media(min-width: 992px){
+    .modal_gradient{
+
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        background: linear-gradient(0deg, rgba(25,25,25,1) 0%, rgba(25,25,25,0.31976540616246496) 100%);
+        height: 338px;
+        z-index: 2;
+        
+        }
 }

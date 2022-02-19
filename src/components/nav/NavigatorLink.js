@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillPlayFill } from 'react-icons/bs';
 import './styles.scss';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, getDoc } from 'firebase/firestore';
 import { useSelector } from 'react-redux';
 import { idSelector, urlSelector } from '../../features/selectors';
 
@@ -31,6 +31,8 @@ function Preferences({ type }) {
   const [collectionId, setCollectionId] = useState('');
   const [active, setActive] = useState(false);
   const basicUrl = useSelector(urlSelector);
+  const [userProfiles, SetUserProfiles] = useState(false)
+
   const [mediaQuery, setMediaQuery] = useState(false)
 
   useEffect(() => {
@@ -48,13 +50,13 @@ function Preferences({ type }) {
         );
         docs.forEach(async (doc) => profiles.push(doc.data()));
         await setUrl(profiles);
-        console.log(profiles);
+      
       }
     };
     handleUrlsImages();
   }, [collectionId]);
   const changeMenuDropEvent = (e) => {
-    console.log(e.target)
+
     if(active && mediaQuery){
      setActive(false)
     };
@@ -65,9 +67,11 @@ function Preferences({ type }) {
             window.removeEventListener('click', changeMenuDropEvent);
         };
   }, )
+
+ 
   useEffect(() => {
     
-    if (test.current.className) {
+    if (test.current?.className) {
       test.current.className += 'view';
     }
     if (window.matchMedia("(max-width: 991.90px)").matches){
@@ -89,41 +93,42 @@ function Preferences({ type }) {
          onClick={(e) => {
            setActive(true);
          }}
-        
        >
-        
-         {basicUrl ? (
+         {url?.length ?  (
+           <>
            <img className='img-responsive' src={basicUrl} alt='profileLogo' />
-         ) : (
-           <Link to={'/profiles/manager'}> New Profile</Link>
-         )}
-        
+              
            <BsFillPlayFill className={`arrow ${active &&'flip' }`} />
         
-         <div
-           className={`dropdown  ${active ? 'active hidden' : ''}`}
-           ref={test}
-         >
-           <div className={active ? 'arrow-container' : 'arrow-off'}>
-             {' '}
-             <BsFillPlayFill className='arrow-absolute' />
+           <div
+             className={`dropdown  ${active ? 'active hidden' : ''}`}
+             ref={test}
+           >
+             <div className={active ? 'arrow-container' : 'arrow-off'}>
+               {' '}
+               <BsFillPlayFill className='arrow-absolute' />
+             </div>
+             {basicUrl &&
+               url.map((val, index) => {
+                 return (
+                   <div key={index} className='profiles-nav-item'>
+                     <img
+                       src={val.photoURL}
+                       alt='profileimage'
+                       style={{ width: '30px', borderRadius: '4px' }}
+                     />
+                     <a>{val.name}</a>
+                   </div>
+                 );
+               })}
+  
+             <Link to={'/profiles/manager'}>Profiles Manager</Link>
            </div>
-           {basicUrl &&
-             url.map((val, index) => {
-               return (
-                 <div key={index} className='profiles-nav-item'>
-                   <img
-                     src={val.photoURL}
-                     alt='profileimage'
-                     style={{ width: '30px', borderRadius: '4px' }}
-                   />
-                   <a>{val.name}</a>
-                 </div>
-               );
-             })}
-
-           <Link to={'/profiles/manager'}>Profiles Manager</Link>
-         </div>
+           </>
+         ) : (
+           <Link to={'/profiles/manager'}className="link" ><p>New Profile</p> </Link>
+         )}
+      
        </div>
 
       ) :  <div
@@ -136,38 +141,43 @@ function Preferences({ type }) {
       }}
     >
      
-      {basicUrl ? (
+      {url?.length ? (
+        <>
         <img className='img-responsive' src={basicUrl} alt='profileLogo' />
-      ) : (
-        <Link to={'/profiles/manager'}> New Profile</Link>
-      )}
-     
         <BsFillPlayFill className={`arrow ${active &&'flip' }`} />
      
-      <div
-        className={`dropdown  ${active ? 'active hidden' : ''}`}
-        ref={test}
-      >
-        <div className={active ? 'arrow-container' : 'arrow-off'}>
-          {' '}
-          <BsFillPlayFill className='arrow-absolute' />
-        </div>
-        {basicUrl &&
-          url.map((val, index) => {
-            return (
-              <div key={index} className='profiles-nav-item'>
-                <img
-                  src={val.photoURL}
-                  alt='profileimage'
-                  style={{ width: '30px', borderRadius: '4px' }}
-                />
-                <a>{val.name}</a>
-              </div>
-            );
-          })}
+     <div
+       className={`dropdown  ${active ? 'active hidden' : ''}`}
+       ref={test}
+     >
+       <div className={active ? 'arrow-container' : 'arrow-off'}>
+         {' '}
+         <BsFillPlayFill className='arrow-absolute' />
+       </div>
+       {basicUrl &&
+         url.map((val, index) => {
+           return (
+             <div key={index} className='profiles-nav-item'>
+               <img
+                 src={val.photoURL}
+                 alt='profileimage'
+                 style={{ width: '30px', borderRadius: '4px' }}
+               />
+               <a>{val.name}</a>
+             </div>
+           );
+         })}
 
-        <Link to={'/profiles/manager'}>Profiles Manager</Link>
-      </div>
+       <Link to={'/profiles/manager'}>Profiles Manager</Link>
+     </div>
+        </>
+        
+      ) 
+      : (
+        <Link to={'/profiles/manager'} className="link"> 
+        <p>New Profile</p></Link>
+      )}
+     
     </div>}
             
   

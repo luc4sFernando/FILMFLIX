@@ -16,9 +16,10 @@ import { VscChevronRight } from 'react-icons/vsc';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { BsPlusCircle } from 'react-icons/bs';
 import './style.scss';
-import Modal from '../modal/Modal';
+import Modal from '../modal';
 import { useDisabledBodyScroll } from '../../hooks/useDisableBodyScroll';
 import { useResponsiveComponent } from '../../hooks/useResponsiveComponent';
+import {useFetchGenreMovies} from "../../hooks/useFetchGenreMovies"
 
 // eslint-disable-next-line react/prop-types
 function Card({ title, fetchUrl }) {
@@ -56,12 +57,12 @@ function Card({ title, fetchUrl }) {
     }, [fetchUrl]);
 
     function scrollNext() {
-        console.log(container.current.scrollLeft);
+      
         container.current.scrollLeft += Math.floor(
             container.current.offsetWidth + 110
         );
         setoffset((prev) => (prev += 1));
-        console.log(offset);
+       
     }
     function scrollPrev() {
         container.current.scrollLeft -= Math.floor(
@@ -73,6 +74,7 @@ function Card({ title, fetchUrl }) {
     function activeControlPrev() {
         controller.current.className += ' active';
     }
+
 
     return (
         <>
@@ -86,7 +88,7 @@ function Card({ title, fetchUrl }) {
                 {useMemo(() => {
                     return (
                         <PostContainer ref={container}>
-                            {console.log('filho')}
+                        
                             {movie.map(
                                 (movie) =>
                                     (movie.poster_path ||

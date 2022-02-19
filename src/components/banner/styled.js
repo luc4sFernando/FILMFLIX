@@ -165,20 +165,24 @@ export const BannerButton = styled.button`
 `;
 
 export const FadeBottom = styled.div`
-    height: 600px;
+    height: 450px;
     background: rgb(20, 20, 20);
-    background: linear-gradient(
-        0deg,
-        rgba(20, 20, 20, 1) 23%,
-        rgba(26, 26, 26, 0.639093137254902) 49%,
-        rgba(38, 38, 38, 0) 78%
-    );
-    @media (max-width: 575.98px) {
-        height: 500px;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%);
+ 
+    @media(max-width: 575.98px) {
+        height: 200px;
         background: rgb(0,0,0);
-        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(10,10,10,1) 75%, rgba(22,22,22,0) 100%);
+        background: linear-gradient(0deg, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%);
+    }
+        @media (min-width: 576px) and (max-width: 991.98px){
+            height: 200px;
+            background: rgb(0,0,0);
+            background: linear-gradient(0deg, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%);
+        
+        }
+ 
 `;
-export const FadeBanner = styled.div`
+export const FadeTop = styled.div`
     height: 50px;
     width: 100%;
     position: absolute;
@@ -190,4 +194,5 @@ export const FadeBanner = styled.div`
         rgba(20, 20, 20, 0.8995973389355743) 0%,
         rgba(38, 38, 38, 0) 100%
     );
+
 `;
