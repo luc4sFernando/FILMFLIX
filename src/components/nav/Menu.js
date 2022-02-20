@@ -49,7 +49,7 @@ function Menu({ type }) {
     }, [searchIcon]);
 
     return (
-        <Container color={show}>
+        <Container color={show ? 1 : ""}>
             <NavigatorList>
                 <NavigatorLink type={type} icon="/FILMFLIX.png" />
                 <NavigatorLink>Start</NavigatorLink>

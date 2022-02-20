@@ -21,6 +21,7 @@ import { idSelector } from '../../../features/selectors/index';
 import { saveImgsDatabase } from '../../../services/fireStoreUrl';
 import { useDispatch } from 'react-redux';
 import { setBasicUrl } from '../../../features/counter/stockSlice';
+import Loading from '../../loading';
 
 function AddProfileForm({ value }) {
   console.log(value);
@@ -88,7 +89,7 @@ function AddProfileForm({ value }) {
             </ButtonsContent>
           </Content>
         ) : (
-          <h1>LOADING</h1>
+         <Loading />
         )}
       </ContainerAddProfile>
     </>

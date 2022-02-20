@@ -9,7 +9,7 @@ export const NavContainer = styled.div`
     height: 90px;
     display: flex;
     justify-content: space-between;
-    background-color: ${(props) => (props.color ? 'black' : 'transparent')};
+    background-color: 'transparent'};
     z-index: 1;
     transition-timing-function: ease-in;
     transition: all 0.5s;

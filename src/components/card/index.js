@@ -33,7 +33,6 @@ function Card({ title, fetchUrl }) {
     const [movieFilm, setMovieFilm] = useState({});
     const [offset, setoffset] = useState(0);
     const innerWidth = useResponsiveComponent();
-
     useDisabledBodyScroll(modal);
     useEffect(() => {
         async function getDataMovieApi() {
@@ -105,35 +104,42 @@ function Card({ title, fetchUrl }) {
                                                     setModal(true);
                                                 }}
                                             >
-                                                {innerWidth && (
-                                                    <AiFillPlayCircle
-                                                        size="20px"
+                                                {(innerWidth >= 992) ? (
+                                                    <><AiFillPlayCircle
+                                                        size="40px"
                                                         style={{
                                                             cursor: 'pointer',
                                                             marginRight: '2px',
                                                         }}
-                                                        onClick={() =>
-                                                            history.push(
-                                                                '/play'
-                                                            )
-                                                        }
-                                                    />
-                                                )}
-                                                {innerWidth && (
-                                                    <BsPlusCircle
+                                                        onClick={() => history.push(
+                                                            '/play'
+                                                        )} /><BsPlusCircle
+                                                            size="40px"
+                                                            style={{
+                                                                cursor: 'pointer',
+                                                            }} /></>
+                                                ) : (   <><AiFillPlayCircle
+                                                    size="20px"
+                                                    style={{
+                                                        cursor: 'pointer',
+                                                        marginRight: '2px',
+                                                    }}
+                                                    onClick={() => history.push(
+                                                        '/play'
+                                                    )} /><BsPlusCircle
                                                         size="20px"
                                                         style={{
                                                             cursor: 'pointer',
-                                                        }}
-                                                    />
-                                                )}
+                                                        }} /></>)}
+                                             
+                                             
                                             </CardOptions>
                                         </PostWrap>
                                     )
                             )}
                         </PostContainer>
                     );
-                }, [movie])}
+                }, [movie, innerWidth])}
 
                 {control && (
                     <>

@@ -9,32 +9,16 @@ import { getAuth } from 'firebase/auth';
 function NavBar({ val }) {
     const history = useHistory();
     const user = useSelector(userSelector);
-
-    const [show, handleShow] = useState(false);
-
     const auth = getAuth();
-
     const currentUser = auth.currentUser;
     console.log(currentUser);
 
-    const transitionNavBar = () => {
-        if (window.scrollY > 100) {
-            handleShow(true);
-        } else {
-            handleShow(false);
-        }
-    };
 
-    useEffect(() => {
-        window.addEventListener('scroll', transitionNavBar);
-        return () => {
-            window.removeEventListener('scroll', transitionNavBar);
-        };
-    }, []);
+
 
     return (
         <>
-            <NavContainer border={val} color={show}>
+            <NavContainer border={val} >
                 <NetFlixLogo
                     user={user}
                     onClick={() => {

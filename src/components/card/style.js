@@ -21,6 +21,12 @@ export const H2 = styled.h2`
         padding-top: 13px;
         padding-bottom: 5px;
     }
+    @media(min-width: 992px){
+        margin-left: 45px;
+        font-size: 1.2rem;
+        padding-top: 13px;
+        padding-bottom: 9px;
+    }
 `;
 export const PostContainer = styled.div`
     position: relative;
@@ -35,78 +41,145 @@ export const PostContainer = styled.div`
     }
     @media (max-width: 575.98px) {
         padding: 5px 15px;
+        &:hover > * {
+            transform: translateX(-25%);
+        }
     }
     @media (min-width: 576px) and (max-width: 991.98px){
         padding: 5px 35px;
+        &:hover > * {
+            transform: translateX(-25%);
+        }
+    }
+    @media (min-width: 992px){
+        padding: 5px 45px;
+        &:hover > * {
+            transform: translateX(-25%);
+        }
     }
 `;
 
 export const PostWrap = styled.div`
-    height: 120px;
-    transition: transform 0.3s;
+    position: relative;
+    display: block;
+    transition: transform 500ms;
+
     @media (max-width: 575.98px) {
-        height: 80px;
+        width: 131px;
+        margin-right: 4px;
+      
+     &:hover ~ & {
+            transform: translateX(25%);
+          }
+     &:focus, &:hover{
+         transform: scale(1.3);
+         z-index: 2;
+     }}
+   
+
+    @media (min-width: 576px) and (max-width: 991.9px){
+        width: 190px;
+        margin-right: 4px;
+        &:hover ~ & {
+            transform: translateX(25%);
+          }
+     &:focus, &:hover{
+         transform: scale(1.3);
+         z-index: 2;
+     }
+    
     }
-    @media (min-width: 575.98px) {
-        height: 80px;
+    @media (min-width: 992px){
+        width: 350px;
+        margin-right: 10px;
+       
+        &:hover ~ & {
+            transform: translateX(25%);
+          }
+     &:focus, &:hover{
+         transform: scale(1.3);
+         z-index: 2;
+     }
+     
     }
 `;
 
 export const ImgPost = styled.img`
-    position: relative;
     cursor: pointer;
     border-radius: 3px;
     width: 200px;
-    max-height: 150px;
-    object-fit: contain;
+    object-fit: cover;
     margin-right: 10px;
+
     @media (max-width: 575.98px) {
-        width: 140px;
-        margin-right: 2px;
+        min-width: 131px;
+        width: 100%;
     }
-    @media (min-width: 575.98px) {
-        width: 170px;
-        margin-right: 4px;
+    @media (min-width: 576px) and (max-width: 991.9px) {
+        min-width: 170px;
+        width: 100%;
+     
+    }
+    @media(min-width: 992px){
+        width: 350px;
+      
     }
 `;
 
 export const CardOptions = styled.div`
 display: flex;
-align-items: end;
+align-items: center;
 padding: 5px 10px;
 margin-right: 10px;
 position: absolute;
 top: 0px;
-width: 200px;
+width: 100%;
 height: 100%;
-opacity: 0;
+opacity: 1;
 z-index: 1;
-&: hover {
-  transform: translateY(-15px);
-  opacity: 1;
-  transition: transform, ease 1s;
-}
+
 
 @media(max-width: 575.98px){
-  width: 120px;
+    & > * {
+        transform: translateY(110px);
+    }
   &:hover {
-    transform: translateY(-12px);
     opacity: 1;
-    transition: transform, ease 1s;
     z-index: 6;
+    & > * {
+        transition: transform, ease 500ms;
+        transform: translateY(15px);
+    }
   }}
 
-   @media (min-width: 576px) { 
-    width: 120px;
-    top: 5px;
+   @media (min-width: 576px) and (max-width: 991.9px){ 
+
+   & > * {
+       transform: translateY(110px);
+   }
     &:hover{
       opacity: 1;
-      transform: translateY(-10px);
-      transition: transform, ease 1s;
       z-index: 6;
+      & > * {
+        transition: transform, ease 500ms;
+        transform: translateY(20px);
+    }
     }
     
 
+    }
+    @media(min-width: 992px){
+        & > * {
+            transform: translateY(150px);
+        }
+         &:hover{
+           opacity: 1;
+           z-index: 6;
+           & > * {
+             transition: transform, ease 500ms;
+             transform: translateY(30px);
+         }
+         }
     }
 
 }

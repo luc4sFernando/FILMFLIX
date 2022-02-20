@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 import stockReducer from "../features/counter/stockSlice";
 import localReducer from "../features/counter/localSlice"
@@ -8,6 +8,7 @@ import { combineReducers } from "redux";
 import { persistReducer, persistStore } from "redux-persist";
 
 import storage from "redux-persist/lib/storage";
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from "redux-persist/es/constants";
 
 const rootReducer = combineReducers({
   stock: stockReducer,
@@ -24,7 +25,12 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer, localReducer
+  reducer: persistedReducer, localReducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
 });
 
 export const persistor = persistStore(store);

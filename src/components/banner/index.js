@@ -57,7 +57,7 @@ function Banner() {
                         {truncate(movie?.overview, 150)}
                     </BannerDescription>
                     <ButtonsWrap>
-                        <BannerButton flex={1} color={true}>
+                        <BannerButton flex={1} color="true">
                             <BsPlayFill
                                 style={{
                                     marginRight: '04px',
@@ -66,7 +66,7 @@ function Banner() {
                             />
                             Assistir
                         </BannerButton>
-                        <BannerButton flex={1} color={false}>
+                        <BannerButton flex={1} >
                             <AiOutlineInfoCircle
                                 style={{
                                     marginRight: '04px',
