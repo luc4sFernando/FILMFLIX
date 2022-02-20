@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { BsFillPlayFill } from 'react-icons/bs';
 import './styles.scss';
 import { collection, query, where, getDocs, getDoc } from 'firebase/firestore';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { idSelector, urlSelector } from '../../features/selectors';
 
 import db from '../../services/firebase';
+import { setBank } from '../../features/reducers/profiles.slice';
 
 function NavigatorLink({ icon, children, type }) {
   return (
@@ -32,29 +33,33 @@ function Preferences({ type }) {
   const [active, setActive] = useState(false);
   const basicUrl = useSelector(urlSelector);
   const [userProfiles, SetUserProfiles] = useState(false)
-
+  const dispatch = useDispatch()
   const [mediaQuery, setMediaQuery] = useState(false)
 
   useEffect(() => {
     const handleUrlsImages = async () => {
       const q = query(collection(db, 'users'), where('uid', '==', uid));
-
       const querySnapshot = await getDocs(q);
       const profiles = [];
       querySnapshot.forEach(async (doc) => {
-        await setCollectionId(doc.id);
+        setCollectionId(doc.id);
       });
       if (collectionId) {
         const docs = await getDocs(
           collection(db, `users/${collectionId}/profiles`)
         );
         docs.forEach(async (doc) => profiles.push(doc.data()));
-        await setUrl(profiles);
+        if(profiles) {
+          setUrl(profiles);
+          dispatch(setBank(profiles))
+        };
       
+       return profiles;
       }
     };
-    handleUrlsImages();
+  handleUrlsImages();
   }, [collectionId]);
+
   const changeMenuDropEvent = (e) => {
 
     if(active && mediaQuery){
@@ -122,7 +127,7 @@ function Preferences({ type }) {
                  );
                })}
   
-             <Link to={'/profiles/manager'}>Profiles Manager</Link>
+             <Link to={'/profiles'}>Profiles Manager</Link>
            </div>
            </>
          ) : (
@@ -168,7 +173,7 @@ function Preferences({ type }) {
            );
          })}
 
-       <Link to={'/profiles/manager'}>Profiles Manager</Link>
+       <Link to={'/profiles'}>Profiles Manager</Link>
      </div>
         </>
         

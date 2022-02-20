@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import { useDispatch} from 'react-redux';
 
-import { login, logout } from '../features/counter/stockSlice';
+import { login, logout } from '../features/reducers/stockSlice';
 
 
 
@@ -22,6 +22,7 @@ import ProfileManager from '../pages/Profiles';
 import SplashAnimation from '../components/splash';
 import PlayAnimation from '../components/trailer';
 import RouteRegister from './SignUp';
+import ProfileCard from '../components/profile';
 
 function Routes() {
  
@@ -60,6 +61,7 @@ function Routes() {
           <PublicRoute path='/signup/intro' component={Intro} />
           <RouteRegister path='/signup/planform' component={PlanForm} />
           <PrivateRoute path='/profiles/manager' component={ProfileManager} />
+          <PrivateRoute path='/profiles' component={ProfileCard} />
         </Switch>
       </Router>
     </>

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import {Button,  HeroCard, Input, LoginBackground, LoginContainer, Paragraph, SubTitle, Title, Wrap} from './styled'
 import {MdArrowForwardIos} from 'react-icons/md'
 import { useDispatch } from 'react-redux'
-import {passedEmail} from '../../features/counter/stockSlice'
+import {passedEmail} from '../../features/reducers/stockSlice'
 
 
 function LoginScreen() {

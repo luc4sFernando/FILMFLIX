@@ -11,7 +11,7 @@ export const useResponsiveComponent = () => {
         window.addEventListener('resize', eventFunc);
         return () => {
             window.removeEventListener("resize", eventFunc)
-            window.removeEventListener("load", eventFunc)
+            window.removeEventListener("resize", eventFunc)
         }
     }, [query]);
     console.log(query)

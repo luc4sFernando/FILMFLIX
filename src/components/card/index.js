@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { setPost } from '../../features/counter/filmsSlice';
+import { setPost } from '../../features/reducers/filmsSlice';
 import { fetchMovies, fetchVideo } from '../../services/api';
 import { useDispatch } from 'react-redux';
 import {

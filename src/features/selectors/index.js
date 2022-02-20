@@ -5,3 +5,4 @@ export const idSelector = (state) => state.stock.user.uid;
 export const urlSelector = (state) => state.stock.url;
 export const textSelector = (state) => state.local.text
 export const filmsSelector = (state) => state.films.posts;
+export const profilesSelector = (state) => state.profiles.bank;

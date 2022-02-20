@@ -8,6 +8,7 @@ export const filmsStorage = createSlice({
     reducers: {
         setPost: (state, action) => {
             state.posts = action.payload;
+            return state;
         },
     },
 });

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 export const ProfilesContainer = styled.div`
-    width: 80%;
-    max-height: 80%;
+    width: 100%;
+    height: 100%;
     display: flex;
+    overflow: hidden;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -13,52 +14,86 @@ export const SectionTitle = styled.h1`
     font-size: 2rem;
     font-weight: 500;
     margin: 0px 0px 15px 0px;
+
+    @media(max-width: 575.98px){
+        font-size: 1.6rem;
+        font-weight: 300; 
+    }
 `;
 export const ProfilesWrap = styled.div`
     width: 100%;
-    height: 200px;
+   display: flex;
+   justify-content: center;
+    @media(max-width: 575.98px){
+     
+    }
 `;
 export const ListProfiles = styled.ul`
     display: flex;
     width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
     height: 200px;
-    gap: 16px;
     list-style: none;
+   
+
+   
 `;
 export const ProfileList = styled.li`
-    margin-right: 55px;
+
     height: 100px;
     width: 100px;
+    @media(max-width: 575.98px){
+   
+        margin-bottom: 20px;
+        
+      }
 `;
 export const ProfileLink = styled(Link)`
     width: 200px;
-    heigth: 200px;
+    height: 200px;
     cursor: pointer;
 `;
 export const AvatarWrap = styled.div`
-    display: flex;
-    justfify-content: center;
-    flex-direction: column;
-    height: 250px;
-    width: 250px;
-    align-items: center;
+    position: relative;
+  
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      @media(max-width: 575.98){
+          max-height: 90px;
+      }
 `;
 export const AvatarProfile = styled.div`
-    background-image: url('https://occ-0-657-420.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY-6eTzsvs5WrTzo-_fqPmLIk27GsoxIKIeB1aCXt8ZkATPfw5_-Q4Oee0LyUVHyEP0n9bHe4c75NcsBADOzQZi5QHyx.png?r=f54');
-
+  
+    background-image: url(${props => props.val});
     background-size: cover;
     background-repeat: no-repeat;
-    width: 150px;
-    height: 150px;
     border-radius: 4px;
-
-    &:hover {
-        outline: 3px solid white;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+     
+    @media(max-width: 575.98px){
+        width: 84px;
+        height: 84px;
+        &:hover {
+            outline: 3px solid white;
+        }
+      }
 `;
-export const Name = styled.span`
+export const Name = styled.p`
     color: white;
-    font-size: 18px;
+
     font-weigth: 300;
-    margin: -20px 0 0 0;
+    text-align: center;
+
+    @media(max-width: 575.98px){
+        font-size: 11px;
+        margin-bottom: 15px;
+    }
 `;

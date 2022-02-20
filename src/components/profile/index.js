@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdEdit } from 'react-icons/md';
 import { GrAddCircle } from 'react-icons/gr';
 import {
@@ -12,30 +12,49 @@ import {
     ProfilesWrap,
     SectionTitle,
 } from '../../components/profile/style';
+import { useSelector } from 'react-redux';
+import { profilesSelector } from '../../features/selectors';
+import { useHistory } from 'react-router-dom';
+import NavBar from '../navbar';
 
 function ProfileCard() {
+    const history = useHistory()
+    const [profiles, setProfiles] = useState([]);
+    const datas = useSelector(state => state.profiles.bank);
+  
+  
+    console.log(datas)
     return (
         <>
+        <NavBar/>
             <ProfilesContainer>
                 <SectionTitle>Manager Profiles</SectionTitle>
                 <ProfilesWrap>
                     <ListProfiles>
-                        <ProfileList>
+                        {datas && datas.map(val => {
+                            return(
+                                <>
+                                 <ProfileList >
                             <ProfileLink>
                                 <AvatarWrap>
-                                    <AvatarProfile style={{ opacity: '0.3' }} />
+                                    <AvatarProfile style={{ opacity: '0.3' }} val={val.photoURL} />
                                     <MdEdit
-                                        size="40px"
+                                        size="25px"
                                         color="white"
                                         style={{
-                                            position: 'relative',
-                                            top: '-93px',
+                                            position: 'absolute',
+                                            top: "auto"
+                                          
                                         }}
                                     />
-                                    <Name>Lucas</Name>
                                 </AvatarWrap>
+                                    <Name>{val.name}</Name>
                             </ProfileLink>
                         </ProfileList>
+                                </>
+                            )
+                        })}
+                       
                         <ProfileList>
                             <ProfileLink>
                                 <AvatarWrap>
@@ -46,12 +65,13 @@ function ProfileCard() {
                                         size="50px"
                                         color="white"
                                         style={{
-                                            position: 'relative',
-                                            top: '-97px',
+                                            position: 'absolute',
+                                          
                                         }}
+                                        onClick={() => history.push("/profiles/manager")}
                                     />
-                                    <Name>Lucas</Name>
                                 </AvatarWrap>
+                                    <Name>New Profile</Name>
                             </ProfileLink>
                         </ProfileList>
                     </ListProfiles>

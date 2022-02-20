@@ -1,8 +1,9 @@
 import axios from "axios";
 
-import { API_BASE_URL, API_KEY } from "../configs/constants";
 
-axios.defaults.baseURL = API_BASE_URL;
+const API_KEY = process.env.REACT_APP_API_KEY;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+axios.defaults.baseURL = "https://api.themoviedb.org/3"
 
 export const fetchMovies = async (path) => {
   const {

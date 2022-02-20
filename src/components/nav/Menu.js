@@ -4,7 +4,7 @@ import { Container, NavigatorList } from './stylemenu';
 import { AiOutlineSearch } from 'react-icons/ai';
 import './styles.scss';
 import { useDispatch } from 'react-redux';
-import { setText } from '../../features/counter/localSlice';
+import { setText } from '../../features/reducers/localSlice';
 
 function Menu({ type }) {
     const [show, handleShow] = useState(false);

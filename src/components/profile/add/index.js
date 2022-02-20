@@ -20,7 +20,7 @@ import {
 import { idSelector } from '../../../features/selectors/index';
 import { saveImgsDatabase } from '../../../services/fireStoreUrl';
 import { useDispatch } from 'react-redux';
-import { setBasicUrl } from '../../../features/counter/stockSlice';
+import { setBasicUrl } from '../../../features/reducers/stockSlice';
 import Loading from '../../loading';
 
 function AddProfileForm({ value }) {
