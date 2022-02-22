@@ -16,7 +16,7 @@ function RouteRegister({ component: Component, ...rest }) {
                 ) : (
                     <Redirect
                         to={{
-                            pathname: '/intro',
+                            pathname: '/browse',
                             state: { from: props.location },
                         }}
                     />

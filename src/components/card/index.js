@@ -19,7 +19,7 @@ import './style.scss';
 import Modal from '../modal';
 import { useDisabledBodyScroll } from '../../hooks/useDisableBodyScroll';
 import { useResponsiveComponent } from '../../hooks/useResponsiveComponent';
-import {useFetchGenreMovies} from "../../hooks/useFetchGenreMovies"
+
 
 // eslint-disable-next-line react/prop-types
 function Card({ title, fetchUrl }) {

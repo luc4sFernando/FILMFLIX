@@ -339,7 +339,7 @@ function PlanForm() {
             </InfoTexts>
           </InfoWrap>
           <SubmitContainer>
-            <SubmitButton onClick={() => history.push("/")}>Next</SubmitButton>
+            <SubmitButton onClick={() => history.push("/intro")}>Next</SubmitButton>
           </SubmitContainer>
         </Content>
       </Body>

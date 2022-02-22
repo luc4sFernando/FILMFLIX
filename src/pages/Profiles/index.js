@@ -28,7 +28,7 @@ function ProfileManager() {
   console.log(imgs)
   return (
     <>
-      <NavBar />
+      <NavBar url={"/browse"} />
       <LoginBackground>
         {addProfile ? <AddProfileForm value={imgs} /> : <ProfileCard />}
       </LoginBackground>

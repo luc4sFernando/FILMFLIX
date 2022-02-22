@@ -1,20 +1,18 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { NavContainer, NetFlixLogo, ExitLink } from './styled';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../features/selectors';
 import { useHistory } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
 
-function NavBar({ val }) {
+function NavBar({ val, url }) {
     const history = useHistory();
     const user = useSelector(userSelector);
     const auth = getAuth();
     const currentUser = auth.currentUser;
     console.log(currentUser);
 
-
-
+console.log(url)
 
     return (
         <>
@@ -22,7 +20,7 @@ function NavBar({ val }) {
                 <NetFlixLogo
                     user={user}
                     onClick={() => {
-                        history.push('/');
+                        history.push(url);
                     }}
                     src="/FILMFLIX.png"
                 />

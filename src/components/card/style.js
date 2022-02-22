@@ -41,9 +41,7 @@ export const PostContainer = styled.div`
     }
     @media (max-width: 575.98px) {
         padding: 5px 15px;
-        &:hover > * {
-            transform: translateX(-25%);
-        }
+     
     }
     @media (min-width: 576px) and (max-width: 991.98px){
         padding: 5px 35px;
@@ -68,13 +66,7 @@ export const PostWrap = styled.div`
         width: 131px;
         margin-right: 4px;
       
-     &:hover ~ & {
-            transform: translateX(25%);
-          }
-     &:focus, &:hover{
-         transform: scale(1.3);
-         z-index: 2;
-     }}
+   }
    
 
     @media (min-width: 576px) and (max-width: 991.9px){
@@ -133,6 +125,7 @@ padding: 5px 10px;
 margin-right: 10px;
 position: absolute;
 top: 0px;
+cursor: pointer;
 width: 100%;
 height: 100%;
 opacity: 1;
@@ -144,8 +137,7 @@ z-index: 1;
         transform: translateY(110px);
     }
   &:hover {
-    opacity: 1;
-    z-index: 6;
+    opacity: 0;
     & > * {
         transition: transform, ease 500ms;
         transform: translateY(15px);
@@ -159,7 +151,6 @@ z-index: 1;
    }
     &:hover{
       opacity: 1;
-      z-index: 6;
       & > * {
         transition: transform, ease 500ms;
         transform: translateY(20px);
@@ -174,7 +165,6 @@ z-index: 1;
         }
          &:hover{
            opacity: 1;
-           z-index: 6;
            & > * {
              transition: transform, ease 500ms;
              transform: translateY(30px);

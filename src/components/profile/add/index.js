@@ -22,16 +22,18 @@ import { saveImgsDatabase } from '../../../services/fireStoreUrl';
 import { useDispatch } from 'react-redux';
 import { setBasicUrl } from '../../../features/reducers/stockSlice';
 import Loading from '../../loading';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import EditProfile from '../edit';
 
 function AddProfileForm({ value }) {
-  console.log(value);
+
   const [loadScreen, setLoadScreen] = useState(false);
   const user = useSelector(idSelector);
   const [userName, setUserName] = useState('');
   const dispatch = useDispatch();
 
   const history = useHistory();
-
+  const location = useLocation();
   useEffect(() => {
     if (value.length > 0) {
       setLoadScreen(true);
@@ -52,13 +54,15 @@ function AddProfileForm({ value }) {
     });
     history.push('/');
   });
-
+ 
   return (
     <>
       <ContainerAddProfile>
+        {console.log(loadScreen)}
         {loadScreen ? (
           <Content>
-            <DescContainer>
+            {location.state ? (  <EditProfile user={location.state} state={{name: userName, setName: setUserName, func: getAndSetUserFromFirestore, image: value[0]}}/>): (<>
+              <DescContainer>
               <SectionTitle>Add profile</SectionTitle>
 
               <SectionDesc>Add a Netflix profile for someone else</SectionDesc>
@@ -83,10 +87,15 @@ function AddProfileForm({ value }) {
                   getAndSetUserFromFirestore();
                 }}
               >
-                Continuar
+                Continue
               </Button>
-              <Button>Cancelar</Button>
+              <Button onClick={() => {
+        history.push("/");
+    }}>Cancel</Button>
             </ButtonsContent>
+            </>)}
+          
+        
           </Content>
         ) : (
          <Loading />

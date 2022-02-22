@@ -120,7 +120,7 @@ function Preferences({ type }) {
                      <img
                        src={val.photoURL}
                        alt='profileimage'
-                       style={{ width: '30px', borderRadius: '4px' }}
+                       style={{ width: '30px',height: "30px", borderRadius: '4px' }}
                      />
                      <a>{val.name}</a>
                    </div>

@@ -13,7 +13,6 @@ import {
     SectionTitle,
 } from '../../components/profile/style';
 import { useSelector } from 'react-redux';
-import { profilesSelector } from '../../features/selectors';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../navbar';
 
@@ -26,7 +25,7 @@ function ProfileCard() {
     console.log(datas)
     return (
         <>
-        <NavBar/>
+        <NavBar url="/browse"/>
             <ProfilesContainer>
                 <SectionTitle>Manager Profiles</SectionTitle>
                 <ProfilesWrap>
@@ -34,7 +33,10 @@ function ProfileCard() {
                         {datas && datas.map(val => {
                             return(
                                 <>
-                                 <ProfileList >
+                                 <ProfileList onClick={(e) => history.push({
+                                     pathname: "/profiles/manager",
+                                     state: val
+                                 })}>
                             <ProfileLink>
                                 <AvatarWrap>
                                     <AvatarProfile style={{ opacity: '0.3' }} val={val.photoURL} />
