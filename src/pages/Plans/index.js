@@ -231,13 +231,13 @@ function PlanForm() {
           </SquaresContainer>
 
           <Table>
-            {mediaQuery < 579 && (
+            {mediaQuery <= 992 && (
               <TableRow media='mobile'>
                 <FeatureCell media='mobile'>Price per month</FeatureCell>
               </TableRow>
             )}
             <TableRow role='row' media='others'>
-              {mediaQuery > 579 && (
+              {mediaQuery > 992 && (
                 <FeatureCell media='others'>Price per month</FeatureCell>
               )}
 
@@ -251,13 +251,13 @@ function PlanForm() {
                 R$55,90
               </TableD>
             </TableRow>
-            {mediaQuery < 579 && (
+            {mediaQuery <= 992 && (
               <TableRow media='mobile'>
                 <FeatureCell media='mobile'>Qualidade do vídeo</FeatureCell>
               </TableRow>
             )}
             <TableRow media='others'>
-              {mediaQuery > 579 && (
+              {mediaQuery > 992 && (
                 <FeatureCell media='others'>Qualidade do vídeo</FeatureCell>
               )}
 
@@ -269,13 +269,13 @@ function PlanForm() {
                 Superior
               </TableD>
             </TableRow>
-            {mediaQuery < 579 && (
+            {mediaQuery <= 992 && (
               <TableRow media='mobile'>
                 <FeatureCell media='mobile'>Resolução</FeatureCell>
               </TableRow>
             )}
             <TableRow media='others'>
-              {mediaQuery > 579 && (
+              {mediaQuery > 992 && (
                 <FeatureCell media='others'>Resolução</FeatureCell>
               )}
 
@@ -289,7 +289,7 @@ function PlanForm() {
                 4K+HDR
               </TableD>
             </TableRow>
-            {mediaQuery <= 579 && (
+            {mediaQuery <= 992 && (
               <TableRow media='mobile'>
                 <FeatureCell media='mobile'>
                   Assista na TV, computador, celular ou tablet
@@ -297,7 +297,7 @@ function PlanForm() {
               </TableRow>
             )}
             <TableRow media='others'>
-              {mediaQuery > 579 && (
+              {mediaQuery > 992 && (
                 <FeatureCell border={true} media='others'>
                   Assista na TV, computador, celular ou tablet
                 </FeatureCell>

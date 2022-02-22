@@ -33,8 +33,13 @@ animation: ${transition} 0.5s ease-in;
 
 @media(max-width: 575.98px){
     margin 50px 10px 0px;
-    650px;
+    width: 400px;
 }
+@media(min-width: 576px) and (max-width: 991.9px){
+    margin 50px 10px 0px;
+    width: 450px;
+}
+
 
 `
 export const InfoWrap = styled.div`
@@ -43,6 +48,9 @@ margin-bottom: 40px;
 
 @media(max-width: 575.98px){
     margin: 0px auto 20px;
+}
+@media(min-width: 576px) and (max-width: 991.9px){
+    margin: 0px auto ;
 }
 
 `
@@ -63,6 +71,9 @@ margin-left: 14px;
 
 @media(max-width: 575.98px){
     font-size: 16px;
+}
+@media(min-width: 576px) and (max-width: 991.9px){
+    font-size: 18px;
 }
 `
 
@@ -99,6 +110,11 @@ align-items: center;
     width: 100%;
     justify-content: center;
 }
+@media(min-width: 576px) and (max-width: 991.9px){
+    width: 100%;
+    justify-content: center;
+}
+
 
 `
 export const ContainerWrap = styled.div`
@@ -106,6 +122,10 @@ width: 88%;
 display: flex;
 justify-content: flex-end;
 @media(max-width: 575.98px){
+    width: 100%;
+    justify-content: center;
+}
+@media(min-width: 576px) and (max-width: 991.9px){
     width: 100%;
     justify-content: center;
 }
@@ -117,6 +137,10 @@ flex-direction: column;
 align-items: flex-end;
 justify-content: flex-end;
 @media(max-width: 575.98px){
+    width: 100%;
+    justify-content: center;
+}
+@media(min-width: 576px) and (max-width: 991.9px){
     width: 100%;
     justify-content: center;
 }
@@ -145,7 +169,11 @@ cursor: pointer;
     border-radius: 2px;
     width: 130px;
 }
-
+@media(min-width: 576px) and (max-width: 991.9px){
+    height: 65px;
+    border-radius: 2px;
+    width: 130px;
+}
 `
 
 export const SquareSelectorWrap = styled.div`
@@ -188,6 +216,11 @@ color: white;
 font-weight: bold;
 
 @media(max-width: 575.98px){
+    top: -22px;
+    font-size: 14px;
+
+}
+@media(min-width: 576px) and (max-width: 991.9px){
     top: -22px;
     font-size: 14px;
 }
@@ -236,6 +269,17 @@ export const TableRow = styled.tr`
     font-size: 12px;
     font-weight: 300;
     }
+    
+    @media(min-width: 576px) and (max-width: 991.9px){
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 300;
+        
+    }
+    
 `
 export const TableD = styled.td`
 min-height: 60px;
@@ -243,6 +287,7 @@ padding: 16px 0px;
 align-items: center;
 border-bottom: ${props => !props.border ?  "1px solid #ccc" : "none"} ;
 text-align: center;
+
 @media(max-width: 575.98px){
 min-height: 25px;
 padding: 5px;
@@ -251,6 +296,15 @@ font-size: 15px;
 padding: 10px 0px;
   
 }
+@media(min-width: 576px) and (max-width: 991.9px){
+    min-height: 25px;
+    padding: 5px;
+    min-width: calc(100% / 3);
+    font-size: 15px;
+    padding: 10px 0px;
+
+}
+
 
 `
 export const FeatureCell = styled.td`
@@ -262,12 +316,17 @@ border-bottom: ${props => !props.border ?  "1px solid #ccc" : "none"} ;
     width: ${props => props.media === "mobile" ? "100%" : "40%"} ;
     padding: 0;
     padding-top: 5px;
-    
     min-height: 25px;
     border-bottom: none;
     
     }
-
+    @media(min-width: 576px) and (max-width: 991.9px){
+        width: ${props => props.media === "mobile" ? "100%" : "40%"} ;
+        padding: 0;
+        padding-top: 5px;
+        min-height: 25px;
+        border-bottom: none;
+    }
 `
 export const InfoTexts = styled.p`
 font-size: 13px;

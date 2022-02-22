@@ -4,7 +4,6 @@ export const Nav = styled.div``;
 export const NavContainer = styled.div`
     position: fixed;
     top: 0;
-    padding: 20px;
     width: 100%;
     height: 90px;
     display: flex;
@@ -14,10 +13,13 @@ export const NavContainer = styled.div`
     transition-timing-function: ease-in;
     transition: all 0.5s;
     border-bottom: ${(props) => (props.border ? '1px solid #e6e6e6' : 'none')};
-
     @media (max-width: 575.98px) {
         height: 50px;
         padding: 0px;
+        align-items: center;
+    }
+    @media(min-width: 576px) and (max-width: 991.9px){
+        height: 70px;
         align-items: center;
     }
 `;
@@ -59,7 +61,7 @@ export const ExitLink = styled(Link)`
 position: absolute;
     color: black;
     right: 60px;
-    top: 16px;
+    top: 23.8px;
     font-size: 2em;
     z-index: 999;
     cursor: pointer;
