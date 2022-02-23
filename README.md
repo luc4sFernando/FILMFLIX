@@ -1,2 +1,2 @@
-<h1>FILMFLIX</h1>
+<h1 style="margin: 0 auto" >FILMFLIX</h1>
 
