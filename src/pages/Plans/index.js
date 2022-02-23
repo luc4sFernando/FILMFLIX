@@ -59,9 +59,12 @@ function PlanForm() {
   function handleInput(select) {
     setSelect(select);
   }
+
+
   const mediaQuery = useResponsiveComponent();
-  console.log(mediaQuery);
+ 
   useEffect(() => {
+    console.log(mediaQuery);
     const handlePlansDataBase = async () => {
       const q = query(collection(db, 'products'), where('active', '==', true));
 
@@ -122,10 +125,9 @@ function PlanForm() {
       }
     });
   }
-
   return (
     <>
-      <NavBar val={true} />
+      <NavBar val={true} link={true} />
       <Body>
         <Content>
           <InfoWrap>

@@ -37,3 +37,17 @@ export const NavigatorList = styled.ul`
         align-items: center;
     }
 `;
+
+export const Logout = styled.p`
+font-size: 0.8rem;
+font-weight: bold;
+margin-left: 10px;
+margin-bottom: 5px;
+cursor: pointer;
+color: white;
+@media (max-width: 575.98px) {
+    font-size: 0.8rem;
+    z-index: 3;
+
+}
+`

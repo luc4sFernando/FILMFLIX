@@ -19,11 +19,15 @@ export const SectionTitle = styled.h1`
         font-size: 1.6rem;
         font-weight: 300; 
     }
+    @media(min-width: 576px) and (max-width: 991.98px) {
+        font-size: 1.6rem;
+        font-weight: 300; 
+    }
 `;
 export const ProfilesWrap = styled.div`
     width: 100%;
    display: flex;
-   justify-content: center;
+
     @media(max-width: 575.98px){
      
     }
@@ -35,8 +39,7 @@ export const ListProfiles = styled.ul`
     flex-wrap: wrap;
     height: 200px;
     list-style: none;
-   
-
+    
    
 `;
 export const ProfileList = styled.li`
@@ -48,6 +51,15 @@ export const ProfileList = styled.li`
         margin-bottom: 20px;
         
       }
+      @media(min-width: 576px) and (max-width: 991.98px) {
+        margin-bottom: 20px; 
+    }
+    @media(min-width: 992px){
+        width: 144px;
+       
+        margin-bottom: 20px; 
+    }
+   
 `;
 export const ProfileLink = styled(Link)`
     width: 200px;
@@ -55,17 +67,20 @@ export const ProfileLink = styled(Link)`
     cursor: pointer;
 `;
 export const AvatarWrap = styled.div`
-    position: relative;
-  
-      height: 100px;
+        position: relative;
+      height: 144px;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      @media(max-width: 575.98){
+      @media(max-width: 575.98px){
+          padding-top: 0px;
           max-height: 90px;
+          margin-bottom: 10px;
       }
+      @media(min-width: 576px) and (max-width: 991.98px) {
+        max-height: 100px;
+    }
 `;
 export const AvatarProfile = styled.div`
   
@@ -77,7 +92,7 @@ export const AvatarProfile = styled.div`
     justify-content: center;
     align-items: center;
     position: relative;
-     
+   
     @media(max-width: 575.98px){
         width: 84px;
         height: 84px;
@@ -85,6 +100,21 @@ export const AvatarProfile = styled.div`
             outline: 3px solid white;
         }
       }
+      @media(min-width: 576px) and (max-width: 991.98px) {
+        width: 84px;
+        height: 84px;
+        &:hover  {
+            outline: 3px solid white;
+        }
+    }
+    @media(min-width: 992px){
+        width: 114px;
+        height: 114px;
+
+        &:hover {
+            outline: 3px solid white;
+        }
+    }
 `;
 export const Name = styled.p`
     color: white;
@@ -94,6 +124,14 @@ export const Name = styled.p`
 
     @media(max-width: 575.98px){
         font-size: 11px;
+        margin-bottom: 15px;
+    }
+    @media(min-width: 575.98px) and (max-width: 991.98px) {
+        font-size: 11px;
+        margin-bottom: 15px;
+    }
+    @media(min-width: 992px){
+        font-size: 15px;
         margin-bottom: 15px;
     }
 `;

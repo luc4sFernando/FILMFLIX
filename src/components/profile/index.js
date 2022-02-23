@@ -61,13 +61,14 @@ function ProfileCard() {
                             <ProfileLink>
                                 <AvatarWrap>
                                     <AvatarProfile
-                                        style={{ background: 'white' }}
+                                        style={{ background: 'gray' }}
                                     />
                                     <GrAddCircle
                                         size="50px"
                                         color="white"
                                         style={{
                                             position: 'absolute',
+                                            
                                           
                                         }}
                                         onClick={() => history.push("/profiles/manager")}

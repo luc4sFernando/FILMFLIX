@@ -37,6 +37,7 @@ font-size: 13px;
 export const Span2 = styled.span`
 font-size: 19px;
 margin-bottom: 12px;
+margin-left: 0px;
 color: #333;
 @media(max-width: 575.98px){
     font-size: 12px;

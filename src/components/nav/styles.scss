@@ -38,7 +38,7 @@
             justify-content: center;
              align-items: center;
     }
-    @media (min-width: 768px) and (max-width: 991.98px) {
+    @media (min-width: 576px) and (max-width: 991.98px) {
         align-items: center;
         width: 70px;
         justify-content: center;
@@ -67,19 +67,20 @@
         position: fixed;
 
         @media (max-width: 575.98px) {
-            top: 35px;
-            right: 10px;
+            top: 36px;
+            right: 26px;
             width: 50px;
         }
 
         @media (min-width: 576px) and (max-width: 991.98px){
-            top: 45px;
-            right: 28px;
+            top: 50px;
+            right: 52px;
             width: 50px;
             align-items: center;
             }
             @media (min-width: 991px){
-                right: 68px;
+                right: 105px;
+                top: 60px;
             }
     
 
@@ -116,15 +117,19 @@
        padding: 10px;
         
         @media (max-width: 575.98px) {
-        right: 20px;
-        top: 47px;
+        right: 27px;
+        top: 50px;
+        width: 150px;
         }
         @media (min-width: 576px) and (max-width: 991.98px){
-            right: 35px;
-            top: 57px;
+            right: 52px;
+            top: 64px;
+            width: 150px;
             }
             @media (min-width: 991px){
-                right: 60px;
+                right: 80px;
+                top: 72px;
+                width: 160px;
             }
      
     }
@@ -150,8 +155,8 @@
     .dropdown a{
         font-weight: normal;
         cursor: pointer;
-        margin: 10px 0px;
-        z-index: 999;
+        margin: 07px 0px;
+        z-index: 2;
         width: 100%;
 
         @media(max-width: 575.98px){
@@ -165,11 +170,17 @@
             font-size: 0.7rem;
         
             }
+            @media (min-width: 992px){
+          
+            
+                font-size: 0.8rem;
+            
+                }
     }
     .dropdown .profiles-nav-item{
         display: flex;
         width: 100%;
-        margin-bottom: 10px;
+    
         z-index: 999;
      
 
@@ -183,6 +194,10 @@
 
         @media (max-width: 575.98px) {
             font-size: 0.8rem;
+
+        }
+        @media (min-width: 992px) {
+            font-size: 0.9rem;
 
         }
         

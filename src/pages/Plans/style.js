@@ -11,7 +11,7 @@ to{
 }`
 export const Body = styled.div`
 width: 100vw;
-height: 100vh;
+height: 100%;
 background-color: white;
 display: flex;
 justify-content: center;
@@ -22,13 +22,14 @@ overflow: hidden;
 export const Content = styled.div`
 
 max-width: 878px;
-height: 750px;
+height:750px;
 width: 100%;
+
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: left;
-margin: 30px auto 15px;
+
 animation: ${transition} 0.5s ease-in;
 
 @media(max-width: 575.98px){
@@ -192,7 +193,6 @@ justify-content: center;
 
 `
 export const Selector = styled.div`
-
 width: 0;
 height: 0;
 border-left: solid 12px transparent;
@@ -283,11 +283,11 @@ export const TableRow = styled.tr`
 `
 export const TableD = styled.td`
 min-height: 60px;
-padding: 16px 0px;
+padding: 10px 0px;
 align-items: center;
 border-bottom: ${props => !props.border ?  "1px solid #ccc" : "none"} ;
 text-align: center;
-
+min-width: calc(100% / 3);
 @media(max-width: 575.98px){
 min-height: 25px;
 padding: 5px;

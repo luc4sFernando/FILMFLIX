@@ -55,7 +55,7 @@ function Signup() {
   }, [])
   return (
    <div className="container-animation">
-    <NavBar />
+    <NavBar link={true}/>
 
     <Body>
       <Content className="content-transition">

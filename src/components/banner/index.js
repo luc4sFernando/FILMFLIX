@@ -10,6 +10,7 @@ import {
     FadeBanner,
     FadeTop,
 } from './styled';
+import {useHistory} from "react-router-dom"
 import { BsPlayFill } from 'react-icons/bs';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import axios from '../../services/axios';
@@ -17,7 +18,7 @@ import requests from '../../services/requests';
 
 function Banner() {
     const [movie, setMovie] = useState([]);
-
+    const history = useHistory();
     useEffect(() => {
         async function requestData() {
             const response = await axios.get(requests.fetchNetflixOriginals);
@@ -57,7 +58,7 @@ function Banner() {
                         {truncate(movie?.overview, 150)}
                     </BannerDescription>
                     <ButtonsWrap>
-                        <BannerButton flex={1} color="true">
+                        <BannerButton flex={1} color="true" onClick={()=> history.push("/play")}>
                             <BsPlayFill
                                 style={{
                                     marginRight: '04px',

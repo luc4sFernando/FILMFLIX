@@ -14,7 +14,7 @@ function Intro() {
 
   return (
     <>
-      <NavBar val={true} />
+      <NavBar val={true} link={true}/>
       <Body>
         <Content>
           <IoIosCheckmarkCircleOutline

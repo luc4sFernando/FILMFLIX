@@ -3,14 +3,17 @@ import { NavContainer, NetFlixLogo, ExitLink } from './styled';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../features/selectors';
 import { useHistory } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
 
-function NavBar({ val, url }) {
+function NavBar({ val, url, link}) {
     const history = useHistory();
     const user = useSelector(userSelector);
     const auth = getAuth();
     const currentUser = auth.currentUser;
     console.log(currentUser);
+    async function logout(){
+        signOut(auth).then(val => console.log(val))
+    }
 
 console.log(url)
 
@@ -24,15 +27,16 @@ console.log(url)
                     }}
                     src="/FILMFLIX.png"
                 />
-
-                <ExitLink
+                {link && ( <ExitLink
                     to="/"
                     onClick={() => {
                         localStorage.clear();
+                        logout();
                     }}
                 >
                     Exit
-                </ExitLink>
+                </ExitLink>)}
+               
             </NavContainer>
         </>
     );

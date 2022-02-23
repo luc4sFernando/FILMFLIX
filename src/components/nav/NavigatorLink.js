@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillPlayFill } from 'react-icons/bs';
+import {RiPencilLine} from "react-icons/ri"
 import './styles.scss';
 import { collection, query, where, getDocs, getDoc } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import { idSelector, urlSelector } from '../../features/selectors';
-
+import { getAuth, signOut } from "firebase/auth";
 import db from '../../services/firebase';
 import { setBank } from '../../features/reducers/profiles.slice';
+import { Logout } from './stylemenu';
 
 function NavigatorLink({ icon, children, type }) {
   return (
@@ -60,6 +62,11 @@ function Preferences({ type }) {
   handleUrlsImages();
   }, [collectionId]);
 
+  const statusChange = async () => {
+    const auth = getAuth();
+    console.log(auth)
+    signOut(auth).then(log => console.log(log))
+  }
   const changeMenuDropEvent = (e) => {
 
     if(active && mediaQuery){
@@ -126,12 +133,21 @@ function Preferences({ type }) {
                    </div>
                  );
                })}
-  
-             <Link to={'/profiles'}>Profiles Manager</Link>
+
+        <Link to={'/profiles'}>
+         <div style={{display: "flex",  width: "100%", padding: "08px 0px", alignItems: "center"}}>
+         <RiPencilLine style={{marginRight: "7px"}} size={"25px"} stroke="red" />
+         <p style={{
+           fontWeight: "500"
+         }}>Profiles Manager</p>
+         </div>
+         </Link>
+         <Logout onClick={statusChange}>Sign out</Logout>
            </div>
            </>
          ) : (
            <Link to={'/profiles/manager'}className="link" ><p>New Profile</p> </Link>
+
          )}
       
        </div>
@@ -172,8 +188,17 @@ function Preferences({ type }) {
              </div>
            );
          })}
+     
 
-       <Link to={'/profiles'}>Profiles Manager</Link>
+       <Link to={'/profiles'}>
+       <div style={{display: "flex", width: "100%", padding: "08px 0px", alignItems: "center"}}>
+         <RiPencilLine style={{marginRight: "7px"}} size={"25px"} stroke="red" />
+         <p style={{
+           fontWeight: "500"
+         }}>Profiles Manager</p>
+         </div>
+         </Link>
+         <Logout onClick={statusChange}>Sign out</Logout>
      </div>
         </>
         
