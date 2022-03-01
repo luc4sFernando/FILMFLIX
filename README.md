@@ -1,6 +1,6 @@
 <h1 align="center" >FILMFLIX</h1>
-
 <p align="center"><strong>Filmflix é um clone da netflix</strong></p>
+![Frame 1](https://user-images.githubusercontent.com/80063365/156101769-1b113876-e767-463e-93bb-7a1a437b5912.jpg)
 <h2 id="About">Sobre</h2>
 <p>Iniciei este projeto com o objetivo de aprender a estruturar um Web App de complexidade de nível médio utilizando react, styled-components, Tentei replicar o layout original e também. Também inseri um clone bem próximo da animação original da Netflix (bifurcada de um famoso codepen de Claudio Bonfati ), feita inteiramente com CSS, assim como a animação play. Em seguida, experimentei o som original do Netflix "ta-duummm" e o fiz tocar junto com a animação de playm animações.
 Eu me esforcei muito para isso e espero que você goste.</p>
