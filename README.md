@@ -12,7 +12,7 @@
 Eu me esforcei muito para isso e espero que você goste.</p>
 
 <p>O web app possibilita o usuário criar a sua conta utilizando email e senha, salvando as informações no firestore do firebase e também fazer login, será escolhido um plano de pagamento e por baixo dos panos já existe a função para o pagamento utilizando o gateway do stripe, mas por causa dos custos está desativado, neste app é possivel criar perfis e edita-los.</p>
-<p> Na medida que fui desenvolvendo a complexidade foi diminuindo, reduzindo então o desafio, portanto decidi parar antes de extender muito a aplicação, algumas funcionalidades não foram criadas, como deletar perfil e conta e trocar a imagem do usuário</p>
+<p> Na medida que fui desenvolvendo a complexidade foi diminuindo, reduzindo então o desafio, portanto decidi parar antes de extender muito a aplicação, algumas funcionalidades não foram criadas, como deletar perfil e conta e trocar a imagem do usuário.</p>
 
 ## :tophat: Recursos
 <ul>
@@ -39,4 +39,10 @@ Eu me esforcei muito para isso e espero que você goste.</p>
     <li>Stripe</li>
     <li>React-icons</li>
   <li>TMDB API</li>
+  <li>Surge Sh</li>
 </ul>
+
+## :department_store: Deploy
+
+<p>O deploy da aplicação foi realizado pelo surge.sh, está disponível para ser utilizado:</p>
+<a href="https://filmflix.surge.sh/" target="_blank">https://filmflix.surge.sh/</a>
