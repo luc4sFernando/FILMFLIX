@@ -4,6 +4,7 @@
  </div>
 <div align="center">
   <img src="https://user-images.githubusercontent.com/80063365/156101769-1b113876-e767-463e-93bb-7a1a437b5912.jpg" />
+  <video src="https://user-images.githubusercontent.com/80063365/156107914-aef9696d-3cfb-4069-87a1-cf4ae9f467a5.mp4" />
 </div>
 
 ## :dart: Sobre
