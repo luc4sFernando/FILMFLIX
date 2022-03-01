@@ -47,3 +47,8 @@ Eu me esforcei muito para isso e espero que você goste.</p>
 
 <p>O deploy da aplicação foi realizado pelo surge.sh, está disponível para ser utilizado:</p>
 <a href="https://filmflix.surge.sh/" target="_blank">filmflix.surge.sh/</a>
+
+## :printer: Prints
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/80063365/156101769-1b113876-e767-463e-93bb-7a1a437b5912.jpg" />
+</div>
