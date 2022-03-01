@@ -50,5 +50,8 @@ Eu me esforcei muito para isso e espero que você goste.</p>
 
 ## :printer: Prints
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/80063365/156101769-1b113876-e767-463e-93bb-7a1a437b5912.jpg" />
+  <img src="https://user-images.githubusercontent.com/80063365/156108596-a927843b-9c9f-4921-8d20-8b070e3ca2d6.png" />
+    <img src="https://user-images.githubusercontent.com/80063365/156108599-1c021651-5707-40ca-8312-7a9acb45563e.png" />
+  <img src="https://user-images.githubusercontent.com/80063365/156108618-6ad46d59-eda5-4feb-8bbb-0ba0cd70bf9a.png" />
+   <img src="https://user-images.githubusercontent.com/80063365/156108624-af34b23e-f687-4e6b-92dc-abc055eca167.png" />
 </div>
