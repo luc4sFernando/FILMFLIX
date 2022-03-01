@@ -45,4 +45,4 @@ Eu me esforcei muito para isso e espero que você goste.</p>
 ## :department_store: Deploy
 
 <p>O deploy da aplicação foi realizado pelo surge.sh, está disponível para ser utilizado:</p>
-<a href="https://filmflix.surge.sh/" target="_blank">https://filmflix.surge.sh/</a>
+<a href="https://filmflix.surge.sh/" target="_blank">filmflix.surge.sh/</a>
