@@ -55,3 +55,5 @@ Eu me esforcei muito para isso e espero que você goste.</p>
   <img src="https://user-images.githubusercontent.com/80063365/156108618-6ad46d59-eda5-4feb-8bbb-0ba0cd70bf9a.png" />
    <img src="https://user-images.githubusercontent.com/80063365/156108624-af34b23e-f687-4e6b-92dc-abc055eca167.png" />
 </div>
+## :page_with_curl: Licença
+<a href="https://github.com/luc4sFernando/FILMFLIX/blob/main/LICENSE">MIT</a>
